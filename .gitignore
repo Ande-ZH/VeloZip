@@ -24,3 +24,4 @@ logs/
 # Benchmark results
 velozip-benchmark/results/
 jmh-result*.json
+.zcode/
