@@ -7,17 +7,35 @@ plugins {
 
 val libs = the<VersionCatalogsExtension>().named("libs")
 
+// Compile-only stubs of paper-server / vanilla NMS classes (no maven artifact
+// for paper-server; the vanilla jar is unobfuscated but not published as a
+// compile dependency). Signatures verified against Purpur 26.1.2 — see
+// docs/STUBS.md. Never packaged; runtime links against the real server classes.
+sourceSets {
+    create("stubs")
+}
+
 dependencies {
+    "stubsCompileOnly"(project(":velozip-common"))
+    "stubsCompileOnly"(libs.findLibrary("paper-api").get())
+
     api(project(":velozip-common"))
 
+    compileOnly(sourceSets["stubs"].output)
     compileOnly(libs.findLibrary("paper-api").get())
 
     // snakeyaml is provided by the server (bukkit) at runtime.
-    implementation(libs.findLibrary("hdrhistogram").get())
 
     testImplementation(project(":velozip-common"))
     testImplementation(libs.findLibrary("junit-jupiter").get())
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    // paper-api 26.1.2 metadata requires a Java 25 target; the backend jar only
+    // ever loads on the Purpur JVM, which itself requires Java 25.
+    options.release.set(25)
+    options.encoding = "UTF-8"
 }
 
 tasks.named<ShadowJar>("shadowJar") {
@@ -27,8 +45,14 @@ tasks.named<ShadowJar>("shadowJar") {
     relocate("org.hdrhistogram", "dev.velozip.shaded.hdrhistogram")
 
     mergeServiceFiles()
+
+    // The stub classes must never leak into the shipped jar.
+    exclude("net/minecraft/**")
+    exclude("org/bukkit/craftbukkit/**")
+    exclude("io/papermc/paper/configuration/**")
 }
 
+// Keep the plain jar out of the way; the shadow jar is the deliverable.
 tasks.jar {
     archiveClassifier.set("thin")
 }

@@ -1,0 +1,16 @@
+name: VeloZip
+version: 0.1.0
+main: dev.velozip.backend.VeloZipBackendPlugin
+api-version: '26.1.2'
+description: Zstd Level 1 transport compression between Velocity 3.4.0 and this backend
+author: Ande-ZH
+website: https://github.com/ande-zh/VeloZip
+commands:
+  velozip:
+    description: VeloZip status and statistics
+    permission: velozip.command
+    usage: /velozip [status|stats]
+permissions:
+  velozip.command:
+    description: Allows using /velozip
+    default: op
