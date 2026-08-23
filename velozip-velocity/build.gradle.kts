@@ -7,9 +7,21 @@ plugins {
 
 val libs = the<VersionCatalogsExtension>().named("libs")
 
+// Compile-only stubs of Velocity 3.4.0 proxy-internal classes (no maven artifact
+// exists for them). Signatures are verified against commit 6b1ea78 — see
+// docs/STUBS.md. They are never packaged into the jar; at runtime the plugin
+// links against the real classes in the proxy.
+sourceSets {
+    create("stubs")
+}
+
 dependencies {
+    "stubsCompileOnly"(project(":velozip-common"))
+    "stubsCompileOnly"(libs.findLibrary("velocity-api").get())
+
     api(project(":velozip-common"))
 
+    compileOnly(sourceSets["stubs"].output)
     compileOnly(libs.findLibrary("velocity-api").get())
     // velocity-plugin.json is written by hand; no annotation processor needed.
 
@@ -31,6 +43,9 @@ tasks.named<ShadowJar>("shadowJar") {
     relocate("org.hdrhistogram", "dev.velozip.shaded.hdrhistogram")
 
     mergeServiceFiles()
+
+    // The stub classes must never leak into the shipped jar.
+    exclude("com/velocitypowered/proxy/**")
 }
 
 // Keep the plain jar out of the way; the shadow jar is the deliverable.

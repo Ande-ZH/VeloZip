@@ -1,0 +1,29 @@
+# VeloZip configuration
+# Full reference: https://github.com/ande-zh/VeloZip (docs/ANALYSIS.md)
+
+enabled: true
+
+compression:
+  algorithm: zstd      # phase 1: only "zstd" is accepted
+  level: 1             # phase 1: only 1 is accepted
+  raw-threshold: 128   # batches smaller than this are sent as RAW frames
+
+batch:
+  max-size: 65536          # emit a batch when it reaches 64 KiB ...
+  max-delay-micros: 500    # ... or 500 microseconds after its first packet
+
+limits:
+  max-frame-size: 1048576        # 1 MiB max compressed frame on the wire
+  max-uncompressed-size: 2097152 # 2 MiB max decompressed batch
+
+authentication:
+  secret: ""           # empty = no authentication; must match on both sides
+
+require-velozip: false # true = refuse to use backends that fail negotiation
+
+debug: false
+
+# Velocity side only: per-server opt-out. Absent = enabled.
+# servers:
+#   lobby:
+#     enabled: false
