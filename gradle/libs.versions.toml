@@ -1,0 +1,29 @@
+[versions]
+# Bytecode target for all shipped modules (Velocity 3.4.0 minimum; runs fine on the
+# Java 25 required by Purpur 26.1.2). Compile toolchain is JDK 25 because
+# paper-api 26.1.2 classes are class-file major 69.
+javaRelease = "17"
+netty = "4.2.7.Final"
+zstdJni = "1.5.7-15"
+snakeyaml = "2.6"
+hdrHistogram = "2.2.2"
+jmh = "1.37"
+junit = "5.13.4"
+velocityApi = "3.4.0"
+paperApi = "26.1.2.build.74-stable"
+shadow = "9.6.1"
+
+[libraries]
+netty-codec = { module = "io.netty:netty-codec", version.ref = "netty" }
+netty-handler = { module = "io.netty:netty-handler", version.ref = "netty" }
+zstd-jni = { module = "com.github.luben:zstd-jni", version.ref = "zstdJni" }
+snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
+hdrhistogram = { module = "org.hdrhistogram:HdrHistogram", version.ref = "hdrHistogram" }
+jmh-core = { module = "org.openjdk.jmh:jmh-core", version.ref = "jmh" }
+jmh-annprocess = { module = "org.openjdk.jmh:jmh-generator-annprocess", version.ref = "jmh" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+velocity-api = { module = "com.velocitypowered:velocity-api", version.ref = "velocityApi" }
+paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paperApi" }
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }

@@ -1,0 +1,26 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+bin/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Test / run artifacts
+run/
+logs/
+*.log
+
+# Benchmark results
+velozip-benchmark/results/
+jmh-result*.json
