@@ -5,8 +5,9 @@ plugins {
 val libs = the<VersionCatalogsExtension>().named("libs")
 
 dependencies {
-    implementation(project(":velozip-common"))
+    api(project(":velozip-common"))
     implementation(libs.findLibrary("netty-handler").get())
+    implementation(libs.findLibrary("netty-transport").get())
     implementation(libs.findLibrary("jmh-core").get())
     annotationProcessor(libs.findLibrary("jmh-annprocess").get())
 }

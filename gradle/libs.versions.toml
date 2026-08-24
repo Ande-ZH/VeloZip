@@ -16,6 +16,7 @@ shadow = "9.6.1"
 [libraries]
 netty-codec = { module = "io.netty:netty-codec", version.ref = "netty" }
 netty-handler = { module = "io.netty:netty-handler", version.ref = "netty" }
+netty-transport = { module = "io.netty:netty-transport", version.ref = "netty" }
 zstd-jni = { module = "com.github.luben:zstd-jni", version.ref = "zstdJni" }
 snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
 hdrhistogram = { module = "org.hdrhistogram:HdrHistogram", version.ref = "hdrHistogram" }
