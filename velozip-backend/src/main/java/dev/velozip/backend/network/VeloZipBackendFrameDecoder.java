@@ -29,6 +29,7 @@ public final class VeloZipBackendFrameDecoder extends Varint21FrameDecoder {
 
     public VeloZipBackendFrameDecoder(VeloZipConfig cfg, VeloZipMetrics metrics,
                                       VeloZipLogger logger) {
+        super(null); // no BandwidthDebugMonitor, matching a normal TCP connection
         this.cfg = cfg;
         this.metrics = metrics;
         this.logger = logger;

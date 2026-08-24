@@ -17,10 +17,10 @@ public final class GlobalConfiguration {
 
     public static final class Proxies {
         public Velocity velocity = new Velocity();
-    }
 
-    public static final class Velocity {
-        public boolean enabled = false;
-        public String secret = "";
+        public static final class Velocity {
+            public boolean enabled = false;
+            public String secret = "";
+        }
     }
 }

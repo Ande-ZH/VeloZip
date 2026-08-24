@@ -9,11 +9,15 @@ import java.util.List;
 /**
  * STUB of vanilla 26.1.2 net.minecraft.network.Varint21FrameDecoder (the TCP
  * frame decoder created by Connection.configureSerialization, pipeline name
- * "splitter"). Compile-time only; never packaged. The real class's decode()
- * performs vanilla varint21 length framing; VeloZip's dual-mode decoder calls
- * super.decode() for vanilla frames and only replaces the transport framing.
+ * "splitter"). Compile-time only; never packaged. The real constructor takes
+ * a nullable BandwidthDebugMonitor (vanilla passes null for normal TCP
+ * connections); VeloZip's subclass passes null too.
  */
 public class Varint21FrameDecoder extends ByteToMessageDecoder {
+
+    public Varint21FrameDecoder(BandwidthDebugMonitor monitor) {
+        // Real class stores the monitor; unused by the stub.
+    }
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
