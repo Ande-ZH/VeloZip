@@ -16,6 +16,16 @@ Thanks for your interest!
 3. Conventional Commits (`feat(velocity): ...`, `fix(common): ...`, `docs: ...`).
 4. PRs that change protocol behavior must bump `TransportProtocol` or document backward compatibility.
 
+## Releasing
+
+1. Update `CHANGELOG.md` (Keep-a-Changelog), bump the version in `gradle.properties`,
+   both plugin descriptors, and the two `PLUGIN_VERSION` constants.
+2. Write `.github/releases/vX.Y.Z.md` (Chinese, mirroring the CHANGELOG section plus
+   an install section) — the CI release step uses it as the GitHub Release body.
+3. Commit, tag `vX.Y.Z`, push the tag: CI builds, tests, and publishes the Release
+   with both jars plus a `checksums.txt` (sha256). If the notes file is missing, CI
+   falls back to extracting the tag's section from `CHANGELOG.md`.
+
 ## Compatibility policy
 
 The verified platform range is **Velocity 3.4.0 → 4.1.1** and **Purpur 26.1.2 / 26.2**,
