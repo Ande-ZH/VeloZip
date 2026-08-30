@@ -28,8 +28,10 @@ jobs:
           cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref_type != 'tag' }}
 
       # Full build: unit tests (PARANOID leak detection) + shadow jars.
+      # Output is teed to a log file so failures are diagnosable from the
+      # uploaded artifact (no admin API access needed to read it).
       - name: Build (tests + shadow jars)
-        run: ./gradlew build --stacktrace --no-daemon
+        run: ./gradlew build --stacktrace --no-daemon 2>&1 | tee build-output.log
 
       - name: Generate checksums
         working-directory: ${{ github.workspace }}
@@ -48,7 +50,7 @@ jobs:
             checksums.txt
           if-no-files-found: error
 
-      # Always upload build reports/logs on failure so the cause is visible
+      # Always upload build output/logs on failure so the cause is visible
       # without admin API access (repo is public but logs API needs auth).
       - name: Upload build diagnostics (on failure)
         if: failure()
@@ -56,8 +58,9 @@ jobs:
         with:
           name: build-diagnostics-${{ github.run_id }}
           path: |
+            build-output.log
             **/build/reports/
-          if-no-files-found: ignore
+          if-no-files-found: error
           retention-days: 7
 
       # Tag builds publish a GitHub Release with the two jars + checksums.
