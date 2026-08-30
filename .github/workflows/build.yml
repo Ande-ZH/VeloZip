@@ -30,7 +30,11 @@ jobs:
       # Full build: unit tests (PARANOID leak detection) + shadow jars.
       # Output is teed to a log file so failures are diagnosable from the
       # uploaded artifact (no admin API access needed to read it).
+      # shell: bash gives -eo pipefail; without it, the tee pipeline masks
+      # gradlew's exit code (bit us once: an exec-bit failure showed as
+      # "Build success" with an empty log and broke the checksums step).
       - name: Build (tests + shadow jars)
+        shell: bash
         run: ./gradlew build --stacktrace --no-daemon 2>&1 | tee build-output.log
 
       - name: Generate checksums
