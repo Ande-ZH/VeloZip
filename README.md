@@ -2,6 +2,8 @@
 
 **English** | [中文](README.zh-CN.md)
 
+[![build](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml) [![Release](https://img.shields.io/badge/release-v0.2.0-blue)](https://github.com/Ande-ZH/VeloZip/releases)
+
 High-performance Zstd (Level 1) transport compression between **Velocity 3.4.0–4.1.1** and **Purpur 26.1.2 / 26.2** backend servers — with **zero changes** to the client ↔ proxy link.
 
 ## What is VeloZip?
@@ -55,9 +57,10 @@ See [docs/ANALYSIS.md](docs/ANALYSIS.md) for the full source-verified network an
 
 ## Installation
 
-1. Drop `VeloZip-Velocity-x.x.x.jar` into the Velocity `plugins/` directory.
-2. Drop `VeloZip-Backend-x.x.x.jar` into the Purpur `plugins/` directory.
-3. Restart. Both sides log their version and platform at startup; per-connection activation is logged as `VeloZip transport enabled for <server>`. Unknown/unverified platform versions log a warning but negotiation is still attempted (fail-safe).
+1. Download `VeloZip-Velocity-0.2.0.jar` and `VeloZip-Backend-0.2.0.jar` from [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases) (each release ships both jars plus a SHA-256 `checksums.txt`), or build them from source.
+2. Drop `VeloZip-Velocity-x.x.x.jar` into the Velocity `plugins/` directory.
+3. Drop `VeloZip-Backend-x.x.x.jar` into the Purpur `plugins/` directory.
+4. Restart. Both sides log their version and platform at startup; per-connection activation is logged as `VeloZip transport enabled for <server>`. Unknown/unverified platform versions log a warning but negotiation is still attempted (fail-safe).
 
 ## Configuration
 
@@ -127,6 +130,23 @@ See [docs/BENCHMARK.md](docs/BENCHMARK.md) for the JMH methodology, full result 
 ```
 
 Produces `velozip-velocity/build/libs/VeloZip-Velocity-0.2.0.jar` and `velozip-backend/build/libs/VeloZip-Backend-0.2.0.jar`. Requires a JDK 25 toolchain (auto-provisioned by Gradle if missing); shipped bytecode targets Java 17.
+
+## Project structure
+
+| Module | Purpose |
+|---|---|
+| `velozip-common` | Platform-agnostic transport core: `0x00 0x5A` framing, dual-mode decode, Zstd compress/decompress, batching, negotiation, metrics |
+| `velozip-velocity` | Velocity proxy plugin — negotiation, pipeline injection, config, `/velozip` commands |
+| `velozip-backend` | Purpur backend plugin — request validation, pipeline injection, config, `/velozip` commands |
+| `velozip-benchmark` | JMH microbenchmarks (see [docs/BENCHMARK.md](docs/BENCHMARK.md)) |
+| `velozip-itest` | MCProtocolLib E2E bots — `bot` (26.1 clients) and `botLegacy` (1.21.11 clients) |
+
+New platform versions are added by implementing a `NetworkAdapter` (one per side); the compression core never changes. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Known limitations
+
+- On the **sending** end, `/velozip stats` reports RAW/ZSTD frame counts of `0` (a metrics caveat present since 0.1.0); byte counters and compression ratios are correct. Fix planned for 0.3.0.
+- When bridging client/server version gaps with ViaVersion, known **upstream** (non-VeloZip) issues exist — see the Compatibility matrix and the [CHANGELOG](CHANGELOG.md) for details.
 
 ## Troubleshooting
 

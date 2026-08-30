@@ -2,6 +2,8 @@
 
 [English](README.md) | **中文**
 
+[![build](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml) [![Release](https://img.shields.io/badge/release-v0.2.0-blue)](https://github.com/Ande-ZH/VeloZip/releases)
+
 在 **Velocity 3.4.0–4.1.1** 与 **Purpur 26.1.2 / 26.2** 后端服务器之间的高性能 Zstd（Level 1）传输压缩 —— 对客户端 ↔ 代理链路**零改动**。
 
 ## VeloZip 是什么？
@@ -53,9 +55,10 @@ Velocity 等 Minecraft 代理使用原版 zlib 编解码器压缩与后端服务
 
 ## 安装
 
-1. 将 `VeloZip-Velocity-x.x.x.jar` 放入 Velocity 的 `plugins/` 目录。
-2. 将 `VeloZip-Backend-x.x.x.jar` 放入 Purpur 的 `plugins/` 目录。
-3. 重启。两端在启动时记录各自的版本和平台；每条连接的激活记录为 `VeloZip transport enabled for <server>`。未知/未验证的平台版本会打印警告，但仍会尝试协商（故障安全）。
+1. 从 [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases) 下载 `VeloZip-Velocity-0.2.0.jar` 和 `VeloZip-Backend-0.2.0.jar`（每个 Release 附带两个 jar 以及 SHA-256 `checksums.txt`），或从源码自行构建。
+2. 将 `VeloZip-Velocity-x.x.x.jar` 放入 Velocity 的 `plugins/` 目录。
+3. 将 `VeloZip-Backend-x.x.x.jar` 放入 Purpur 的 `plugins/` 目录。
+4. 重启。两端在启动时记录各自的版本和平台；每条连接的激活记录为 `VeloZip transport enabled for <server>`。未知/未验证的平台版本会打印警告，但仍会尝试协商（故障安全）。
 
 ## 配置
 
@@ -123,6 +126,23 @@ JMH 方法论、完整结果表格以及 32 vs 64 KiB 批处理大小决策数�
 ```
 
 生成 `velozip-velocity/build/libs/VeloZip-Velocity-0.2.0.jar` 和 `velozip-backend/build/libs/VeloZip-Backend-0.2.0.jar`。需要 JDK 25 工具链（若缺失，Gradle 会自动下载）；生成的字节码目标为 Java 17。
+
+## 项目结构
+
+| 模块 | 用途 |
+|---|---|
+| `velozip-common` | 平台无关的传输核心：`0x00 0x5A` 分帧、双模解码、Zstd 压缩/解压缩、批处理、协商、指标 |
+| `velozip-velocity` | Velocity 代理插件 —— 协商、管道注入、配置、`/velozip` 命令 |
+| `velozip-backend` | Purpur 后端插件 —— 请求验证、管道注入、配置、`/velozip` 命令 |
+| `velozip-benchmark` | JMH 微基准测试（见 [docs/BENCHMARK.md](docs/BENCHMARK.md)） |
+| `velozip-itest` | MCProtocolLib E2E bot —— `bot`（26.1 客户端）与 `botLegacy`（1.21.11 客户端） |
+
+新的平台版本通过实现 `NetworkAdapter`（每端一个）来添加；压缩核心永不改动。详见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+## 已知限制
+
+- 在**发送端**，`/velozip stats` 的 RAW/ZSTD 帧计数显示为 `0`（自 0.1.0 起存在的统计口径问题）；字节计数与压缩比是正确的。计划在 0.3.0 修复。
+- 使用 ViaVersion 桥接客户端/服务器版本差异时，存在已知的**上游**（非 VeloZip）问题 —— 详见兼容性矩阵与 [CHANGELOG](CHANGELOG.md)。
 
 ## 故障排查
 
