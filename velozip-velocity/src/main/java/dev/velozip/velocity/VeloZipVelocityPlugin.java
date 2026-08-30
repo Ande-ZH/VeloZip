@@ -17,7 +17,7 @@ import dev.velozip.common.metrics.VeloZipMetrics;
 import dev.velozip.common.protocol.Negotiation;
 import dev.velozip.velocity.adapter.NetworkAdapter;
 import dev.velozip.velocity.adapter.VeloZipChannelIds;
-import dev.velozip.velocity.adapter.Velocity340NetworkAdapter;
+import dev.velozip.velocity.adapter.VelocityNetworkAdapter;
 import dev.velozip.velocity.command.VeloZipCommand;
 import dev.velozip.velocity.config.VelocityConfigLoader;
 import io.netty.channel.Channel;
@@ -31,10 +31,12 @@ import java.nio.file.Path;
  * VeloZip-Velocity: negotiates and drives the VeloZip transport on backend
  * connections. The client-facing side of the proxy is never touched.
  */
-@Plugin(id = "velozip", name = "VeloZip", version = "0.1.0",
+@Plugin(id = "velozip", name = "VeloZip", version = VeloZipVelocityPlugin.PLUGIN_VERSION,
         description = "Zstd Level 1 transport compression for Velocity <-> Purpur backend connections",
         authors = {"Ande-ZH"})
 public final class VeloZipVelocityPlugin {
+
+    public static final String PLUGIN_VERSION = "0.2.0";
 
     private final ProxyServer proxy;
     private final Logger slf4jLogger;
@@ -67,9 +69,10 @@ public final class VeloZipVelocityPlugin {
             return;
         }
 
-        Velocity340NetworkAdapter velocityAdapter =
-                new Velocity340NetworkAdapter(config, metrics, logger, "0.1.0");
+        VelocityNetworkAdapter velocityAdapter =
+                new VelocityNetworkAdapter(config, metrics, logger, PLUGIN_VERSION);
         this.adapter = velocityAdapter;
+        velocityAdapter.checkPlatform(proxy.getVersion().getVersion());
 
         // Registering the channel makes Velocity route velozip plugin messages to
         // our PluginMessageEvent subscription instead of forwarding them to clients.
@@ -77,10 +80,10 @@ public final class VeloZipVelocityPlugin {
 
         proxy.getCommandManager().register(
                 proxy.getCommandManager().metaBuilder("velozip").plugin(this).build(),
-                new VeloZipCommand(metrics, "0.1.0",
+                new VeloZipCommand(metrics, PLUGIN_VERSION,
                         "Velocity " + proxy.getVersion().getVersion()));
 
-        logger.info("VeloZip {}", "0.1.0");
+        logger.info("VeloZip {}", PLUGIN_VERSION);
         logger.info("Platform: Velocity {}", proxy.getVersion().getVersion());
         logger.info("Transport protocol: {}", VeloZip.TRANSPORT_PROTOCOL);
         logger.info("Compression: {} Level {}", VeloZip.ALGORITHM_ZSTD, VeloZip.COMPRESSION_LEVEL);
@@ -112,7 +115,7 @@ public final class VeloZipVelocityPlugin {
         }
         try {
             Negotiation.Refuse refuse = Negotiation.decodeRefuse(event.getData());
-            ((Velocity340NetworkAdapter) adapter).onRefuse(channelOf(source), refuse);
+            ((VelocityNetworkAdapter) adapter).onRefuse(channelOf(source), refuse);
         } catch (Exception e) {
             logger.warn("VeloZip: malformed message from {}", source.getServerInfo().getName());
         }
@@ -129,7 +132,7 @@ public final class VeloZipVelocityPlugin {
         if (!config.enabledForServer(target)) {
             return;
         }
-        String failure = ((Velocity340NetworkAdapter) adapter).knownFailure(target);
+        String failure = ((VelocityNetworkAdapter) adapter).knownFailure(target);
         if (failure != null) {
             event.setResult(ServerPreConnectEvent.ServerResult.denied());
             event.getPlayer().sendMessage(Component.text(

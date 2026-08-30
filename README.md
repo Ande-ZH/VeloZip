@@ -2,7 +2,7 @@
 
 **English** | [中文](README.zh-CN.md)
 
-High-performance Zstd (Level 1) transport compression between **Velocity 3.4.0** and **Purpur 26.1.2** backend servers — with **zero changes** to the client ↔ proxy link.
+High-performance Zstd (Level 1) transport compression between **Velocity 3.4.0–4.1.1** and **Purpur 26.1.2 / 26.2** backend servers — with **zero changes** to the client ↔ proxy link.
 
 ## What is VeloZip?
 
@@ -20,14 +20,14 @@ See [docs/ANALYSIS.md](docs/ANALYSIS.md) for the full source-verified network an
                 Minecraft Client
                        │  vanilla protocol — untouched
                        ▼
-                Velocity 3.4.0
+           Velocity 3.4.0 … 4.1.1
               VeloZip-Velocity.jar
                        │  existing backend TCP connection
                        │  VeloZip handshake (plugin message, PLAY state)
                        │  → protocol switch → VeloZip framing
                        │  batch (≤64 KiB / 500 µs) → Zstd level 1
                        ▼
-                Purpur 26.1.2
+           Purpur 26.1.2 or 26.2
               VeloZip-Backend.jar
 ```
 
@@ -39,19 +39,25 @@ See [docs/ANALYSIS.md](docs/ANALYSIS.md) for the full source-verified network an
 
 | Component | Requirement |
 |---|---|
-| Proxy | Velocity 3.4.0 (build 566+) |
-| Backend | Purpur 26.1.2 (build 2592+) |
-| Java (proxy) | 17+ (runs fine on 25) |
-| Java (backend) | 25 (required by Purpur 26.1.2) |
-| Client | Any vanilla client — nothing to install |
+| Proxy | Velocity 3.4.0–4.1.1 (one plugin jar for the whole range) |
+| Backend | Purpur 26.1.2 or 26.2 |
+| Java (proxy) | 17+ for Velocity 3.x, 21+ for 3.5.x, 25 for Velocity 4.x |
+| Java (backend) | 25 (required by Purpur 26.1.2 / 26.2) |
+| Client | Whatever your proxy accepts — nothing to install |
 
-> **Note on client version:** Velocity 3.4.0 predates Minecraft 26.1 and registers protocol only up to 1.21.11. Connecting a 26.1 client through the proxy requires [ViaVersion](https://github.com/ViaVersion/ViaVersion) 5.11.0 on both ends (plus ViaBackwards on the backend). This is orthogonal to VeloZip — VeloZip compresses whatever bytes the proxy and backend exchange.
+> **Client version range = your Velocity's protocol registry.** VeloZip never inspects client
+> protocol versions; it compresses the proxy ↔ backend link below the packet layer. With the
+> recommended **Velocity 4.1.1**, clients **1.7.2 through 26.2** connect natively — no
+> ViaVersion needed anywhere. With Velocity 3.4.0 (registers only up to 1.21.11), bridging
+> 26.1+ clients requires [ViaVersion](https://github.com/ViaVersion/ViaVersion) on the proxy
+> and backend (plus ViaBackwards on the backend); that path is orthogonal to VeloZip and was
+> re-verified in v0.2.0 (see Compatibility below).
 
 ## Installation
 
 1. Drop `VeloZip-Velocity-x.x.x.jar` into the Velocity `plugins/` directory.
 2. Drop `VeloZip-Backend-x.x.x.jar` into the Purpur `plugins/` directory.
-3. Restart. Both sides log their version and platform at startup; per-connection activation is logged as `VeloZip transport enabled for <server>`.
+3. Restart. Both sides log their version and platform at startup; per-connection activation is logged as `VeloZip transport enabled for <server>`. Unknown/unverified platform versions log a warning but negotiation is still attempted (fail-safe).
 
 ## Configuration
 
@@ -60,8 +66,8 @@ Both plugins generate `plugins/velozip/config.yml` (identical schema, plus a per
 ```yaml
 enabled: true
 compression:
-  algorithm: zstd      # only zstd in phase 1; anything else fails startup
-  level: 1             # only 1 in phase 1
+  algorithm: zstd      # only zstd; anything else fails startup
+  level: 1             # only 1
   raw-threshold: 128   # batches smaller than this are sent as RAW frames
 batch:
   max-size: 65536          # emit batch at 64 KiB
@@ -79,13 +85,26 @@ Velocity side additionally supports per-server opt-out (`servers: { lobby: { ena
 
 ## Compatibility
 
-| Proxy | Backend | Status |
-|---|---|---|
-| Velocity 3.4.0 | Purpur 26.1.2 | **Supported** |
-| Other Velocity | Purpur 26.1.2 | Unsupported |
-| Velocity 3.4.0 | Other Paper/Purpur | Unsupported |
+Verified combinations (live E2E with a protocol bot, v0.2.0):
 
-Phase 1 intentionally supports exactly one combination; the adapter layer (`Velocity340NetworkAdapter` / `Purpur2612NetworkAdapter`) exists so future versions can be added without touching the compression core.
+| # | Proxy | Backend | Via | Bot | Result |
+|---|---|---|---|---|---|
+| A | Velocity 4.1.1 | Purpur 26.1.2 | none | 26.1 | ✅ transport on both ends, **82.1%** |
+| B | Velocity 3.4.0 | Purpur 26.1.2 | 5.11.0 ×3 | 26.1 | ✅ transport on both ends, **82.6%** (bot later kicked by a known upstream Via 5.11.0 translation bug — not VeloZip) |
+| C | Velocity 4.1.1 | Purpur 26.2 | 5.12.0-SNAPSHOT ×2 | 26.1 | ✅ 9/10 sessions, **79.2%** |
+| D | Velocity 4.1.1 | Purpur 26.1.2 | 5.11.0 ×2 | **1.21.11** | ✅ transport on both ends, **83.4%** (bot-side packet decode error via the Via bridge — not VeloZip) |
+
+Full Velocity range **3.4.0 → 4.1.1** and backend range **26.1.2 / 26.2** are supported by one
+plugin jar on each side: the network internals VeloZip hooks (pipeline handler names,
+frame-decoder classes, plugin-message API) are identical across that range — verified against
+Velocity commit `6b1ea78` (3.4.0) and `db0a17e` (4.1.1), Paper `ver/26.1.2` and `main` (26.2)
+(see [docs/ANALYSIS.md](docs/ANALYSIS.md) appendix). Older-but-unsupported Velocity versions
+(3.4.0 is UNSUPPORTED by PaperMC since 2026-08-24) still work; 4.1.1 is recommended because it
+natively registers protocols up to Minecraft 26.2.
+
+Platform versions outside the verified set (e.g. a future Velocity 4.2) log a clear warning at
+startup and negotiation is still attempted; the existing type checks keep the connection vanilla
+if the pipeline layout ever diverges.
 
 ## Commands
 
@@ -94,9 +113,10 @@ Phase 1 intentionally supports exactly one combination; the adapter layer (`Velo
 
 ## Performance
 
-- **Live E2E** (Velocity 3.4.0 build 566 ↔ Purpur 26.1.2 build 2592, Java 25): **83.0% bandwidth reduction** (30.46 KiB → 5.19 KiB per measurement window), compress P50 78 µs.
+- **Live E2E, v0.2.0 matrix** (see Compatibility): **79.2–83.4% bandwidth reduction** across all four combinations.
+- **Live E2E, v0.1.0 stack** (Velocity 3.4.0 build 566 ↔ Purpur 26.1.2 build 2592, Java 25): **83.0% bandwidth reduction**, compress P50 78 µs.
 - **JMH** (MC_LIKE dataset): compress-only ~22 µs @32 KiB, ~51 µs @64 KiB — both well under 1 ms.
-- **Tests**: 40 unit tests green under Netty `PARANOID` leak detection.
+- **Tests**: 43 unit tests green under Netty `PARANOID` leak detection.
 
 See [docs/BENCHMARK.md](docs/BENCHMARK.md) for the JMH methodology, full result tables, and the 32 vs 64 KiB batch-size decision data.
 
@@ -106,13 +126,14 @@ See [docs/BENCHMARK.md](docs/BENCHMARK.md) for the JMH methodology, full result 
 ./gradlew build
 ```
 
-Produces `velozip-velocity/build/libs/VeloZip-Velocity-0.1.0.jar` and `velozip-backend/build/libs/VeloZip-Backend-0.1.0.jar`. Requires a JDK 25 toolchain (auto-provisioned by Gradle if missing); shipped bytecode targets Java 17.
+Produces `velozip-velocity/build/libs/VeloZip-Velocity-0.2.0.jar` and `velozip-backend/build/libs/VeloZip-Backend-0.2.0.jar`. Requires a JDK 25 toolchain (auto-provisioned by Gradle if missing); shipped bytecode targets Java 17.
 
 ## Troubleshooting
 
 - **`no zstd-jni in java.library.path`** — the temp dir may be mounted `noexec`. Set `-DZstdTempFolder=<writable+executable dir>` or install the native library system-wide.
 - **`VeloZip transport not enabled`** logs — check `authentication.secret` equality, `enabled: true` on both sides, and matching `velozip:negotiate` channel reachability.
 - Negotiation never happens for a server → it is probably disabled in `servers:` or the backend plugin is missing; with `require-velozip: false` the connection stays vanilla (safe fallback).
+- **`has NOT been verified with this plugin`** warning — the platform version is newer (or older) than the verified set. VeloZip still negotiates; if the pipeline layout changed incompatibly, connections fall back to vanilla automatically.
 
 ## Contributing
 

@@ -12,6 +12,7 @@ import dev.velozip.common.logging.VeloZipLogger;
 import dev.velozip.common.metrics.VeloZipMetrics;
 import dev.velozip.common.protocol.Negotiation;
 import dev.velozip.common.transport.VeloZipBatchEncoder;
+import dev.velozip.common.util.PlatformVersions;
 import dev.velozip.velocity.network.VeloZipVelocityFrameDecoder;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
@@ -21,12 +22,14 @@ import net.kyori.adventure.text.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Velocity 3.4.0 backend-channel injection. Handler names verified against
- * commit 6b1ea78 (see docs/ANALYSIS.md §2.2):
+ * Velocity backend-channel injection. Handler names are identical across
+ * Velocity 3.4.0 (commit 6b1ea78) and 4.1.1 (commit db0a17e) — verified
+ * against both sources (see docs/ANALYSIS.md §2.2 and the v0.2.0 appendix):
  *
  * <pre>
  * frame-decoder, read-timeout, frame-encoder, minecraft-decoder, flow-handler,
@@ -42,15 +45,24 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *   <li>REFUSE plugin message or 5 s timeout restores the original decoder</li>
  * </ol>
  */
-public final class Velocity340NetworkAdapter implements NetworkAdapter {
+public final class VelocityNetworkAdapter implements NetworkAdapter {
 
-    /** Velocity pipeline handler names (Connections constants, 3.4.0). */
+    /** Velocity pipeline handler names (Connections constants, unchanged 3.4.0 → 4.1.1). */
     private static final String FRAME_DECODER = "frame-decoder";
     private static final String FRAME_ENCODER = "frame-encoder";
     private static final String COMPRESSION_DECODER = "compression-decoder";
     private static final String COMPRESSION_ENCODER = "compression-encoder";
     private static final String MINECRAFT_ENCODER = "minecraft-encoder";
     private static final String VELOZIP_ENCODER = "velozip-encoder";
+
+    /**
+     * major.minor families whose network layer this adapter was verified
+     * against. An unknown family logs a warning and negotiation still runs —
+     * the pipeline type checks below fail safe (skip and stay vanilla) if the
+     * internals ever diverge.
+     */
+    private static final Set<String> VERIFIED_FAMILIES =
+            Set.of("3.4", "3.5", "4.0", "4.1");
 
     private static final AttributeKey<NegotiationState> STATE_KEY =
             AttributeKey.valueOf("velozip.negotiation");
@@ -59,20 +71,38 @@ public final class Velocity340NetworkAdapter implements NetworkAdapter {
     private final VeloZipMetrics metrics;
     private final VeloZipLogger logger;
     private final String pluginVersion;
+    /** Family of the proxy version last passed to checkPlatform; null before startup. */
+    private volatile String verifiedFamily;
     /** Per-server last-known negotiation failure, for require-velozip pre-checks. */
     private final Map<String, String> failedServers = new ConcurrentHashMap<>();
 
-    public Velocity340NetworkAdapter(VeloZipConfig cfg, VeloZipMetrics metrics,
-                                     VeloZipLogger logger, String pluginVersion) {
+    public VelocityNetworkAdapter(VeloZipConfig cfg, VeloZipMetrics metrics,
+                                  VeloZipLogger logger, String pluginVersion) {
         this.cfg = cfg;
         this.metrics = metrics;
         this.logger = logger;
         this.pluginVersion = pluginVersion;
     }
 
+    /**
+     * @param proxyVersion the value of {@code proxy.getVersion().getVersion()},
+     *                     logged at plugin startup
+     */
+    public void checkPlatform(String proxyVersion) {
+        String family = PlatformVersions.majorMinor(proxyVersion);
+        verifiedFamily = family;
+        if (family == null || !VERIFIED_FAMILIES.contains(family)) {
+            logger.warn("VeloZip: Velocity {} has NOT been verified with this plugin "
+                            + "(verified: 3.4.x, 3.5.x, 4.0.x, 4.1.x). Negotiation will "
+                            + "still be attempted; if the pipeline layout differs, "
+                            + "VeloZip skips the connection and leaves it vanilla.",
+                    proxyVersion == null ? "unknown" : proxyVersion);
+        }
+    }
+
     @Override
     public boolean isSupported() {
-        return true; // phase 1 targets exactly Velocity 3.4.0
+        return verifiedFamily != null && VERIFIED_FAMILIES.contains(verifiedFamily);
     }
 
     /** @return a human-readable failure reason if this server failed negotiation before. */

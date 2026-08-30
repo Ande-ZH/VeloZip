@@ -335,3 +335,73 @@ REFUSE (Purpur → Velocity, plugin message, 走 vanilla 路径)：
 3. Bukkit 端 incoming plugin message 派发是否要求对端先行 `minecraft:register` 声明（现行证据：incoming 派发只依赖服务端插件注册；M4 实测验证，若需要则启用 Velocity ChannelRegistrar 注册公告作为通道声明，代码已预留）。
 4. 纯 paper-api 依赖下 stub 引用 paper-server 内部类的签名正确性 → M0/M3 从真实 26.1.2 服务端 jar 以 javap 复核（见 docs/STUBS.md）。
 5. Velocity 3.4.0 在 Java 25 JVM 上的运行兼容性（M4 本地实测）。
+
+## 10. v0.2.0 版本扩展调研附录（2026-08-30）
+
+本附录记录 v0.2.0 将支持区间从「仅 Velocity 3.4.0 ↔ Purpur 26.1.2」扩展到
+「Velocity 3.4.0–4.1.1 ↔ Purpur 26.1.2/26.2」的全部核验证据。所有结论均来自对
+fill.papermc.io v3 / repo.papermc.io / GitHub 源码（指定 commit）的核验，非记忆推测。
+
+### 10.1 版本与协议注册表
+
+| 平台 | 版本 | 发布 | 最新 build | 协议范围 | Java | 状态 |
+|---|---|---|---|---|---|---|
+| Velocity | 3.4.0 | 2026-01-25 | 566（commit 6b1ea78） | 4 → 774 (1.21.11) | 17 | UNSUPPORTED（2026-08-24 起） |
+| Velocity | 3.5.0 / 3.5.1 | 2026-07-11 | 615（commit 4498f1e） | 4 → **776 (26.2)** | 21 | 3.5.1 DEPRECATED（2026-09-30 止） |
+| Velocity | 4.0.0 | 2026-07-14 | 6（commit 90f8905） | 4 → 776 | 25 | UNSUPPORTED |
+| Velocity | 4.1.0 / 4.1.1 | 2026-08-24 / 08-26 | 24（commit db0a17e） | 4 → 776 | 25 | **SUPPORTED（推荐）** |
+| Paper/Purpur | 26.1.2 | — | Paper 74 / Purpur 2592 | 775 | 25 | 稳定 |
+| Paper/Purpur | 26.2 | 2026-08-29 / 08-26 | Paper 121 / Purpur 2627 | 776 | 25 | 稳定 |
+
+- 26.1（775）于 2026-03-22 由 PR #1739 并入 Velocity（3.5.0 起可用）；26.2（776）
+  于 2026-06-16 由 PR #1807 并入。26.3 仅为开放草案 PR #1867，未并入。
+- 客户端范围完全由代理协议注册表决定；VeloZip 代码零协议版本引用（v0.1.0 即如此）。
+
+### 10.2 Velocity 网络层 3.4.0 → 4.1.1 稳定性核验
+
+对 6b1ea78（3.4.0）、4498f1e（3.5.1）、db0a17e（4.1.1）三个 commit 逐一比对：
+
+- `Connections` 常量（`frame-decoder`/`frame-encoder`/`compression-decoder`/
+  `compression-encoder`/`minecraft-decoder`/`minecraft-encoder` 等 15 个）**完全一致**。
+- `BackendChannelInitializer` 安装顺序一致：frame-decoder → read-timeout →
+  frame-encoder → minecraft-decoder → flow-handler → minecraft-encoder。
+- `MinecraftVarintFrameDecoder`（`proxy.protocol.netty` 包，构造器
+  `(ProtocolUtils.Direction)`、`setState(StateRegistry)`）三版本签名一致。
+  `MinecraftConnection.setState` 通过**按类查找 + 空检查**取 frame decoder 并调用
+  `setState`——VeloZip 子类替换满足该查找（子类实例匹配父类查找）。
+- `VelocityServerConnection.sendPluginMessage(ChannelIdentifier, byte[])` 一致；
+  `ServerConnectedEvent` 在 `TransitionSessionHandler.handle(JoinGamePacket)`、
+  `setAutoReading(false)` 期间触发的时序一致；`getConnectionInFlight()` 存在。
+- **4.x 差异**：`MinecraftConnection` 移至 `proxy.connection` 包（3.4.0 实测即此包，
+  与 4.x 一致——插件引用无差异）；Java 25 + Adventure 5.2.0。
+  Adventure 5.0 曾移除 `BuildableComponent`（对 4.x 编译插件抛 NoSuchMethodError），
+  **5.2.0 恢复桥接方法**修复了该二进制兼容问题；Velocity 4.1.1 恰好携带 5.2.0。
+  VeloZip 仅用 `Component.text`/`NamedTextColor`/builder——经 5.2.0 javadoc 逐一
+  核验签名不变（`NamedTextColor` 由枚举改为 final 类，但静态字段读取的二进制
+  描述符不变）。
+- 3.5.x/4.x 新增 serverbound `SimpleBytesPerSecondLimiter`（解压后限速）与
+  「压缩声明校验」——均作用于 packet 层，与 VeloZip 的 transport 层替换正交
+  （组合 B/C/D 实测共存正常）。
+
+### 10.3 Paper/Purpur 网络层 26.1.2 → 26.2 稳定性核验
+
+对 Paper `ver/26.1.2` 与 `main`（26.2）的 patch 集比对（Purpur 自身 delta 仅
+连接限速/断开消息/AFK，不触碰网络层）：
+
+- vanilla `HandlerNames` 未被 patch；`Connection.java.patch` 与 0007 功能 patch
+  仅引用 SPLITTER/PREPENDER/DECOMPRESS/COMPRESS，两版本一致；bundler/unbundler
+  已不存在。
+- `Varint21FrameDecoder` 两版本 patch 逐字节一致（仅 decode 顶部的
+  `channel().isActive()` 守卫）；构造器 `(BandwidthDebugMonitor)`（可空）不变，
+  `super(null)` 子类化仍可编译。
+- `Connection.channel` 公有字段不变（访问转换器条目仍在）；`ServerPlayer.connection`
+  → `ServerGamePacketListenerImpl.connection` 链不变；`CraftPlayer.getHandle()`
+  在无版本号包（1.20.5+ 起不变）。
+- 26.2 唯一真实网络变化：登录压缩时序修复（#13929 + c9e894d，
+  `sendPacketAndScheduleNettyTask`）——只影响登录包写入顺序，VeloZip 在 PLAY 态
+  协商后才移除压缩 handler，正交（组合 C 实测通过）。
+
+### 10.4 E2E 实测矩阵结论
+
+见 docs/BENCHMARK.md「v0.2.0 client-range E2E matrix」：四组合全部双端激活，
+带宽降低 79.2–83.4%。偶发与上游问题定性记录于 CHANGELOG 0.2.0 Notes。

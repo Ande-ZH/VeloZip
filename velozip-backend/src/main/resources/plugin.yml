@@ -1,5 +1,5 @@
 name: VeloZip
-version: 0.1.0
+version: 0.2.0
 main: dev.velozip.backend.VeloZipBackendPlugin
 api-version: '26.1.2'
 description: Zstd Level 1 transport compression between Velocity 3.4.0 and this backend

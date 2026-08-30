@@ -4,6 +4,7 @@ import dev.velozip.common.config.VeloZipConfig;
 import dev.velozip.common.logging.VeloZipLogger;
 import dev.velozip.common.metrics.VeloZipMetrics;
 import dev.velozip.common.transport.VeloZipBatchEncoder;
+import dev.velozip.common.util.PlatformVersions;
 import dev.velozip.backend.network.VeloZipBackendFrameDecoder;
 import net.minecraft.network.Connection;
 import net.minecraft.network.Varint21FrameDecoder;
@@ -15,8 +16,10 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
 
 /**
- * Purpur 26.1.2 connection injection. Handler names verified against the
- * 26.1.2 server (see docs/ANALYSIS.md §3.1):
+ * Purpur backend connection injection. Handler names and the NMS field chain
+ * are identical across Purpur 26.1.2 (build 2592) and Purpur 26.2 (build
+ * 2627) — verified against Paper ver/26.1.2 and main (26.2) patch sets (see
+ * docs/ANALYSIS.md §3.1 and the v0.2.0 appendix). Pipeline layout:
  *
  * <pre>
  * [FlushConsolidationHandler] timeout (legacy_query) splitter [decompress]
@@ -28,9 +31,9 @@ import io.netty.channel.ChannelPipeline;
  * encoder. From that point the connection's outbound bytes are VeloZip frames
  * — the first one is the de-facto ACK the Velocity side keys off.
  */
-public final class Purpur2612NetworkAdapter implements NetworkAdapter {
+public final class PurpurNetworkAdapter implements NetworkAdapter {
 
-    /** Server pipeline handler names (HandlerNames constants, 26.1.2). */
+    /** Server pipeline handler names (HandlerNames constants, unchanged 26.1.2 → 26.2). */
     private static final String SPLITTER = "splitter";
     private static final String DECOMPRESS = "decompress";
     private static final String COMPRESS = "compress";
@@ -41,19 +44,47 @@ public final class Purpur2612NetworkAdapter implements NetworkAdapter {
     private static final io.netty.util.AttributeKey<Boolean> ACTIVE_KEY =
             io.netty.util.AttributeKey.valueOf("velozip.active");
 
+    /**
+     * major.minor Minecraft versions whose network layer this adapter was
+     * verified against. An unknown version logs a warning and activation
+     * still runs — the pipeline type checks fail safe (skip and stay
+     * vanilla) if the internals ever diverge.
+     */
+    private static final java.util.Set<String> VERIFIED_VERSIONS =
+            java.util.Set.of("26.1", "26.2");
+
     private final VeloZipConfig cfg;
     private final VeloZipMetrics metrics;
     private final VeloZipLogger logger;
 
-    public Purpur2612NetworkAdapter(VeloZipConfig cfg, VeloZipMetrics metrics, VeloZipLogger logger) {
+    /** Family of the bukkit version last passed to checkPlatform; null before startup. */
+    private volatile String verifiedFamily;
+
+    public PurpurNetworkAdapter(VeloZipConfig cfg, VeloZipMetrics metrics, VeloZipLogger logger) {
         this.cfg = cfg;
         this.metrics = metrics;
         this.logger = logger;
     }
 
+    /**
+     * @param bukkitVersion the value of {@code getServer().getBukkitVersion()},
+     *                      logged at plugin startup
+     */
+    public void checkPlatform(String bukkitVersion) {
+        String family = PlatformVersions.majorMinor(bukkitVersion);
+        verifiedFamily = family;
+        if (family == null || !VERIFIED_VERSIONS.contains(family)) {
+                    logger.warn("VeloZip: {} has NOT been verified with this plugin "
+                                    + "(verified: 26.1.x, 26.2.x). Activation will still be "
+                                    + "attempted; if the pipeline layout differs, VeloZip skips "
+                                    + "the connection and leaves it vanilla.",
+                            bukkitVersion == null ? "unknown" : bukkitVersion);
+        }
+    }
+
     @Override
     public boolean isSupported() {
-        return true; // phase 1 targets exactly Purpur 26.1.2 (Paper 26.1.2 base)
+        return verifiedFamily != null && VERIFIED_VERSIONS.contains(verifiedFamily);
     }
 
     @Override

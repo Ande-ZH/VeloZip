@@ -26,7 +26,7 @@ public final class VeloZipBackendCommand implements CommandExecutor, TabComplete
         String sub = args.length == 0 ? "status" : args[0].toLowerCase(Locale.ROOT);
         switch (sub) {
             case "status" -> {
-                sender.sendMessage("§6VeloZip 0.1.0");
+                sender.sendMessage("§6VeloZip " + dev.velozip.backend.VeloZipBackendPlugin.PLUGIN_VERSION);
                 sender.sendMessage("§7Transport Protocol: " + VeloZip.TRANSPORT_PROTOCOL);
                 sender.sendMessage("§7Compression: " + VeloZip.ALGORITHM_ZSTD
                         + " Level " + VeloZip.COMPRESSION_LEVEL);
@@ -36,7 +36,8 @@ public final class VeloZipBackendCommand implements CommandExecutor, TabComplete
             }
             case "stats" -> {
                 VeloZipMetrics.Snapshot s = metrics.snapshot();
-                sender.sendMessage("§6VeloZip 0.1.0 — transport statistics");
+                sender.sendMessage("§6VeloZip " + dev.velozip.backend.VeloZipBackendPlugin.PLUGIN_VERSION
+                        + " — transport statistics");
                 sender.sendMessage("§7Original:    " + human(s.originalBytes()));
                 sender.sendMessage("§7Transferred: " + human(s.wireBytes()));
                 sender.sendMessage("§7Saved:       " + human(s.savedBytes()));

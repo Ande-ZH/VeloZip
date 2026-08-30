@@ -1,7 +1,7 @@
 package dev.velozip.backend;
 
 import dev.velozip.backend.adapter.NetworkAdapter;
-import dev.velozip.backend.adapter.Purpur2612NetworkAdapter;
+import dev.velozip.backend.adapter.PurpurNetworkAdapter;
 import dev.velozip.backend.command.VeloZipBackendCommand;
 import dev.velozip.backend.config.BackendConfigLoader;
 import dev.velozip.common.VeloZip;
@@ -23,6 +23,8 @@ import java.util.logging.Logger;
  * proxies) are never touched.
  */
 public final class VeloZipBackendPlugin extends JavaPlugin implements org.bukkit.plugin.messaging.PluginMessageListener {
+
+    public static final String PLUGIN_VERSION = "0.2.0";
 
     private VeloZipLogger logger;
     private VeloZipConfig config;
@@ -50,7 +52,8 @@ public final class VeloZipBackendPlugin extends JavaPlugin implements org.bukkit
             return;
         }
 
-        this.adapter = new Purpur2612NetworkAdapter(config, metrics, logger);
+        this.adapter = new PurpurNetworkAdapter(config, metrics, logger);
+        ((PurpurNetworkAdapter) adapter).checkPlatform(getServer().getBukkitVersion());
 
         getServer().getMessenger().registerIncomingPluginChannel(this, VeloZip.CHANNEL_FULL, this);
         getServer().getMessenger().registerOutgoingPluginChannel(this, VeloZip.CHANNEL_FULL);
@@ -60,7 +63,7 @@ public final class VeloZipBackendPlugin extends JavaPlugin implements org.bukkit
         getCommand("velozip").setExecutor(command);
         getCommand("velozip").setTabCompleter(command);
 
-        logger.info("VeloZip {}", "0.1.0");
+        logger.info("VeloZip {}", PLUGIN_VERSION);
         logger.info("Platform: {} {}", getServer().getName(), getServer().getBukkitVersion());
         logger.info("Transport protocol: {}", VeloZip.TRANSPORT_PROTOCOL);
         logger.info("Compression: {} Level {}", VeloZip.ALGORITHM_ZSTD, VeloZip.COMPRESSION_LEVEL);

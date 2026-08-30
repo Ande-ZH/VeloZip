@@ -132,3 +132,27 @@ baseline vs VeloZip comparison of Mbps/CPU/TPS/RTT) is a deployment exercise
 that requires a populated server; the methodology is captured in
 `docs/ANALYSIS.md` and the `/velozip stats` counters expose every metric the
 checklist asks for.
+## v0.2.0 client-range E2E matrix (2026-08-30)
+
+Four live stacks (real jars, Java 25 on both processes, modern forwarding, shared
+secret, 64 KiB / 500 µs defaults), each driven by an MCProtocolLib bot and measured
+with `/velozip stats` via RCON:
+
+| # | Proxy | Backend | Via | Bot | Bandwidth reduction | Compress P50 | Notes |
+|---|---|---|---|---|---|---|---|
+| A | Velocity 4.1.1 (b24) | Purpur 26.1.2 (b2592) | none | 26.1 | **82.1%** (2.76 MiB → 507 KiB) | 48 µs | 26.x client connects natively — no Via needed anywhere |
+| B | Velocity 3.4.0 (b566) | Purpur 26.1.2 (b2592) | 5.11.0 ×3 | 26.1 | **82.6%** (188 KiB → 33 KiB) | 2327 µs* | v0.1.0 stack regression pass; bot later kicked by known upstream Via 5.11.0 LEVEL_PARTICLES bug |
+| C | Velocity 4.1.1 (b24) | Purpur 26.2 (b2627) | 5.12.0-SNAPSHOT ×2 | 26.1 | **79.2%** (5.72 MiB → 1.19 MiB, 3 sessions) | 81 µs | 9/10 sessions clean; one non-reproducible disconnect right after an unclean restart |
+| D | Velocity 4.1.1 (b24) | Purpur 26.1.2 (b2592) | 5.11.0 ×2 | **1.21.11** | **83.4%** (1.27 MiB → 215 KiB) | 159 µs | legacy client through the Via bridge; bot-side decode error is upstream, transport verified |
+
+\* B's P50 is over only 3 compression ops (short session before the upstream kick) —
+not comparable to the other rows' 300+ ops.
+
+All four combinations activate the transport on both ends (`VeloZip transport enabled`
+on proxy and backend) before any upstream issue occurs. The ratio spread (79.2–83.4%)
+tracks session content (a 26.2 fresh world sends more chunk-adjacent, less compressible
+traffic during the short measurement windows), not platform differences.
+
+Frame-type counters (`Frames: N (ZSTD x, RAW y)`) count only decoded (received) frames —
+the sending side's counters stay 0; a pre-existing 0.1.0 cosmetic gap, byte counters and
+ratios are unaffected (fix planned for 0.3.0).
