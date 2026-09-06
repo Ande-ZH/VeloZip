@@ -1,0 +1,34 @@
+{
+  "rows": 38,
+  "forks": 76,
+  "measurementIterationMeans": 608,
+  "failures": [],
+  "buildSuccessful": true,
+  "noisy": [
+    {
+      "benchmark": "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+      "params": {
+        "dataset": "MC_LIKE",
+        "size": "65536"
+      },
+      "relativeError": 0.296848353259978,
+      "forkMeans": [
+        58.73739513916943,
+        101.45948770308148
+      ]
+    },
+    {
+      "benchmark": "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+      "params": {
+        "dataset": "RANDOM",
+        "size": "128"
+      },
+      "relativeError": 0.31268430795609237,
+      "forkMeans": [
+        2.2286930817800927,
+        1.3111485467591815
+      ]
+    }
+  ],
+  "resultsSha256": "9631af41fc352a57c972598f1b40db0b6923c4d0f87bacecab823b5bb8fb433e"
+}

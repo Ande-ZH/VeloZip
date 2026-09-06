@@ -1,0 +1,2814 @@
+[
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.BatchRoundTrip.batchRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "batchSize" : "32768"
+        },
+        "primaryMetric" : {
+            "score" : 9.705180911903522,
+            "scoreError" : 0.08550655930908982,
+            "scoreConfidence" : [
+                9.619674352594432,
+                9.790687471212612
+            ],
+            "scorePercentiles" : {
+                "0.0" : 9.548114581642881,
+                "50.0" : 9.696550731446703,
+                "90.0" : 9.834181676852863,
+                "95.0" : 9.933421496709384,
+                "99.0" : 9.933421496709384,
+                "99.9" : 9.933421496709384,
+                "99.99" : 9.933421496709384,
+                "99.999" : 9.933421496709384,
+                "99.9999" : 9.933421496709384,
+                "100.0" : 9.933421496709384
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    9.687897921482527,
+                    9.548114581642881,
+                    9.592655912228466,
+                    9.933421496709384,
+                    9.68062080845422,
+                    9.637030029278064,
+                    9.723530222446524,
+                    9.791650325485781
+                ],
+                [
+                    9.693436733391971,
+                    9.693986341585493,
+                    9.717250330122727,
+                    9.692083118669016,
+                    9.713831787128328,
+                    9.737840923250653,
+                    9.699115121307914,
+                    9.740428937272391
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.BatchRoundTrip.batchRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "batchSize" : "65536"
+        },
+        "primaryMetric" : {
+            "score" : 19.546170209284043,
+            "scoreError" : 1.8300852785744688,
+            "scoreConfidence" : [
+                17.716084930709574,
+                21.37625548785851
+            ],
+            "scorePercentiles" : {
+                "0.0" : 18.88320959033415,
+                "50.0" : 19.061426315314243,
+                "90.0" : 21.573932408500127,
+                "95.0" : 26.233102209872335,
+                "99.0" : 26.233102209872335,
+                "99.9" : 26.233102209872335,
+                "99.99" : 26.233102209872335,
+                "99.999" : 26.233102209872335,
+                "99.9999" : 26.233102209872335,
+                "100.0" : 26.233102209872335
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    18.968843956835897,
+                    19.083449699528373,
+                    19.39661323150284,
+                    18.89858964308597,
+                    18.939307032492614,
+                    19.57714535076917,
+                    19.039402931100113,
+                    18.982460900361737
+                ],
+                [
+                    18.88320959033415,
+                    19.120108902564887,
+                    19.573391385108714,
+                    18.888951433796496,
+                    26.233102209872335,
+                    19.101145268464066,
+                    18.928599379293377,
+                    19.124402433433932
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "RANDOM",
+            "size" : "128"
+        },
+        "primaryMetric" : {
+            "score" : 1.0138329116518154,
+            "scoreError" : 0.037489053523555596,
+            "scoreConfidence" : [
+                0.9763438581282599,
+                1.0513219651753711
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.9695422098393885,
+                "50.0" : 1.005237814518767,
+                "90.0" : 1.0739325631585646,
+                "95.0" : 1.0753434456015072,
+                "99.0" : 1.0753434456015072,
+                "99.9" : 1.0753434456015072,
+                "99.99" : 1.0753434456015072,
+                "99.999" : 1.0753434456015072,
+                "99.9999" : 1.0753434456015072,
+                "100.0" : 1.0753434456015072
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    0.9805407345049139,
+                    0.9771618517263371,
+                    1.0733278992544462,
+                    1.0753434456015072,
+                    0.9881015801131975,
+                    1.0179057180736233,
+                    1.0582348185971855,
+                    1.0480389285078486
+                ],
+                [
+                    1.0215031035742643,
+                    0.9695422098393885,
+                    0.9698448983232251,
+                    1.0498034848478488,
+                    0.9913939329368309,
+                    0.9901083514908965,
+                    0.9935154506122466,
+                    1.0169601784252875
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "RANDOM",
+            "size" : "1024"
+        },
+        "primaryMetric" : {
+            "score" : 2.376313424448054,
+            "scoreError" : 0.11679750589133557,
+            "scoreConfidence" : [
+                2.2595159185567186,
+                2.4931109303393897
+            ],
+            "scorePercentiles" : {
+                "0.0" : 2.252210883388725,
+                "50.0" : 2.3342187995395944,
+                "90.0" : 2.560957054789209,
+                "95.0" : 2.692118142699621,
+                "99.0" : 2.692118142699621,
+                "99.9" : 2.692118142699621,
+                "99.99" : 2.692118142699621,
+                "99.999" : 2.692118142699621,
+                "99.9999" : 2.692118142699621,
+                "100.0" : 2.692118142699621
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    2.2890207025645366,
+                    2.4238521036521976,
+                    2.4019426731464413,
+                    2.252210883388725,
+                    2.2809629355381844,
+                    2.399444470014047,
+                    2.4190418110714207,
+                    2.331547576080047
+                ],
+                [
+                    2.2893622140951058,
+                    2.266953719105656,
+                    2.3347772533598596,
+                    2.692118142699621,
+                    2.5047451599704607,
+                    2.494238439637807,
+                    2.3071363611254325,
+                    2.333660345719329
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "RANDOM",
+            "size" : "4096"
+        },
+        "primaryMetric" : {
+            "score" : 4.83322046772,
+            "scoreError" : 0.21095381834271767,
+            "scoreConfidence" : [
+                4.622266649377282,
+                5.044174286062718
+            ],
+            "scorePercentiles" : {
+                "0.0" : 4.617212983613809,
+                "50.0" : 4.745074085072266,
+                "90.0" : 5.205377177404489,
+                "95.0" : 5.33499044480703,
+                "99.0" : 5.33499044480703,
+                "99.9" : 5.33499044480703,
+                "99.99" : 5.33499044480703,
+                "99.999" : 5.33499044480703,
+                "99.9999" : 5.33499044480703,
+                "100.0" : 5.33499044480703
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    4.617212983613809,
+                    4.632288958699067,
+                    5.008657056176062,
+                    4.732887923417485,
+                    4.794240389914742,
+                    5.33499044480703,
+                    4.738248352750304,
+                    5.090733315010764
+                ],
+                [
+                    4.738585981467796,
+                    4.692985501670358,
+                    4.871392045205872,
+                    4.665940426263161,
+                    4.751562188676736,
+                    4.828377522016457,
+                    4.683595759598396,
+                    5.149828634231971
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "RANDOM",
+            "size" : "16384"
+        },
+        "primaryMetric" : {
+            "score" : 11.953762839357127,
+            "scoreError" : 0.47389549490252175,
+            "scoreConfidence" : [
+                11.479867344454606,
+                12.427658334259648
+            ],
+            "scorePercentiles" : {
+                "0.0" : 11.196592970420527,
+                "50.0" : 12.101572101944853,
+                "90.0" : 12.571520567740807,
+                "95.0" : 12.622845357832436,
+                "99.0" : 12.622845357832436,
+                "99.9" : 12.622845357832436,
+                "99.99" : 12.622845357832436,
+                "99.999" : 12.622845357832436,
+                "99.9999" : 12.622845357832436,
+                "100.0" : 12.622845357832436
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    11.454608714547119,
+                    12.170541887205694,
+                    11.805136683689717,
+                    11.429194075038845,
+                    12.268424341984284,
+                    12.549524229130109,
+                    12.622845357832436,
+                    12.309417532115962
+                ],
+                [
+                    12.057213752967117,
+                    11.196592970420527,
+                    11.503744861401373,
+                    11.492230374191474,
+                    11.490302839623833,
+                    12.31375444923077,
+                    12.14593045092259,
+                    12.450742909412218
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "RANDOM",
+            "size" : "32768"
+        },
+        "primaryMetric" : {
+            "score" : 20.05102179226636,
+            "scoreError" : 0.5744123580906295,
+            "scoreConfidence" : [
+                19.47660943417573,
+                20.62543415035699
+            ],
+            "scorePercentiles" : {
+                "0.0" : 19.435593770644697,
+                "50.0" : 19.86183501126545,
+                "90.0" : 20.982867318110078,
+                "95.0" : 21.303469000063675,
+                "99.0" : 21.303469000063675,
+                "99.9" : 21.303469000063675,
+                "99.99" : 21.303469000063675,
+                "99.999" : 21.303469000063675,
+                "99.9999" : 21.303469000063675,
+                "100.0" : 21.303469000063675
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    19.853768787963,
+                    20.44287781632653,
+                    21.303469000063675,
+                    19.8699012345679,
+                    19.642365742558706,
+                    20.84546659727282,
+                    20.351874941499645,
+                    19.667735248021316
+                ],
+                [
+                    20.767124425204027,
+                    19.498840690044588,
+                    20.035349385533006,
+                    19.435593770644697,
+                    19.660239206305636,
+                    19.501514338070454,
+                    20.344316884225936,
+                    19.595910607959887
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "RANDOM",
+            "size" : "65536"
+        },
+        "primaryMetric" : {
+            "score" : 15.933761386870183,
+            "scoreError" : 0.5639848859871227,
+            "scoreConfidence" : [
+                15.36977650088306,
+                16.497746272857306
+            ],
+            "scorePercentiles" : {
+                "0.0" : 15.110394855295752,
+                "50.0" : 15.942298760297442,
+                "90.0" : 16.7903665716382,
+                "95.0" : 17.22049691029558,
+                "99.0" : 17.22049691029558,
+                "99.9" : 17.22049691029558,
+                "99.99" : 17.22049691029558,
+                "99.999" : 17.22049691029558,
+                "99.9999" : 17.22049691029558,
+                "100.0" : 17.22049691029558
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    15.965999186122593,
+                    16.108364409372737,
+                    16.60602499792789,
+                    15.884523107708922,
+                    16.106022686317417,
+                    15.582006636237596,
+                    15.993408391943735,
+                    17.22049691029558
+                ],
+                [
+                    15.304114744824634,
+                    15.491219606144517,
+                    15.918598334472291,
+                    16.367441972525768,
+                    16.33541794282173,
+                    15.11297132194068,
+                    15.110394855295752,
+                    15.833177085971132
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "COMPRESSIBLE",
+            "size" : "128"
+        },
+        "primaryMetric" : {
+            "score" : 2.706695365692831,
+            "scoreError" : 0.06987512188706597,
+            "scoreConfidence" : [
+                2.636820243805765,
+                2.776570487579897
+            ],
+            "scorePercentiles" : {
+                "0.0" : 2.583780281429174,
+                "50.0" : 2.700516069245503,
+                "90.0" : 2.8059935731986347,
+                "95.0" : 2.8311894706163647,
+                "99.0" : 2.8311894706163647,
+                "99.9" : 2.8311894706163647,
+                "99.99" : 2.8311894706163647,
+                "99.999" : 2.8311894706163647,
+                "99.9999" : 2.8311894706163647,
+                "100.0" : 2.8311894706163647
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    2.6338903842813606,
+                    2.6573469991737797,
+                    2.583780281429174,
+                    2.7135356300717155,
+                    2.770986235969042,
+                    2.767149928492195,
+                    2.66547892566167,
+                    2.729449394424724
+                ],
+                [
+                    2.6662365929927745,
+                    2.6874965084192906,
+                    2.6485680701457133,
+                    2.7748141137643176,
+                    2.8311894706163647,
+                    2.735169146856588,
+                    2.7951953314481788,
+                    2.646838837338409
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "COMPRESSIBLE",
+            "size" : "1024"
+        },
+        "primaryMetric" : {
+            "score" : 6.809176561337686,
+            "scoreError" : 0.2994068819632155,
+            "scoreConfidence" : [
+                6.50976967937447,
+                7.108583443300901
+            ],
+            "scorePercentiles" : {
+                "0.0" : 6.488999404218393,
+                "50.0" : 6.7006321873235395,
+                "90.0" : 7.281174409096232,
+                "95.0" : 7.509241870603834,
+                "99.0" : 7.509241870603834,
+                "99.9" : 7.509241870603834,
+                "99.99" : 7.509241870603834,
+                "99.999" : 7.509241870603834,
+                "99.9999" : 7.509241870603834,
+                "100.0" : 7.509241870603834
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    6.617414958833449,
+                    7.1834312113072585,
+                    6.887773509158518,
+                    7.053679747826271,
+                    6.593529226967415,
+                    7.509241870603834,
+                    7.040712662771873,
+                    6.688720556773814
+                ],
+                [
+                    7.133311669792016,
+                    6.712859506905206,
+                    6.5869238586030106,
+                    6.676028091046395,
+                    6.488999404218393,
+                    6.712543817873265,
+                    6.555954739119035,
+                    6.505700149603226
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "COMPRESSIBLE",
+            "size" : "4096"
+        },
+        "primaryMetric" : {
+            "score" : 18.74391869827712,
+            "scoreError" : 0.80225857174227,
+            "scoreConfidence" : [
+                17.94166012653485,
+                19.546177270019392
+            ],
+            "scorePercentiles" : {
+                "0.0" : 17.93588440021517,
+                "50.0" : 18.53853305996151,
+                "90.0" : 20.153528109654896,
+                "95.0" : 20.79447058456677,
+                "99.0" : 20.79447058456677,
+                "99.9" : 20.79447058456677,
+                "99.99" : 20.79447058456677,
+                "99.999" : 20.79447058456677,
+                "99.9999" : 20.79447058456677,
+                "100.0" : 20.79447058456677
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    19.27774345630469,
+                    19.130049467333613,
+                    20.79447058456677,
+                    18.547181880551076,
+                    18.210066553801905,
+                    18.377075832430346,
+                    18.006796532289908,
+                    19.116816270758882
+                ],
+                [
+                    19.878838477549806,
+                    17.93588440021517,
+                    18.574161969741915,
+                    19.22151485452938,
+                    18.25263297601744,
+                    18.1070826096396,
+                    18.529884239371945,
+                    17.942499067331493
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "COMPRESSIBLE",
+            "size" : "16384"
+        },
+        "primaryMetric" : {
+            "score" : 87.43556114659671,
+            "scoreError" : 2.9182238218156917,
+            "scoreConfidence" : [
+                84.51733732478102,
+                90.3537849684124
+            ],
+            "scorePercentiles" : {
+                "0.0" : 83.57189139515455,
+                "50.0" : 87.18625121923179,
+                "90.0" : 91.92619871304518,
+                "95.0" : 94.7215966291071,
+                "99.0" : 94.7215966291071,
+                "99.9" : 94.7215966291071,
+                "99.99" : 94.7215966291071,
+                "99.999" : 94.7215966291071,
+                "99.9999" : 94.7215966291071,
+                "100.0" : 94.7215966291071
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    87.12841034122563,
+                    87.80001808127798,
+                    83.57189139515455,
+                    84.67631842772612,
+                    86.03491627267258,
+                    85.79130383329046,
+                    89.77497828817513,
+                    84.04175457906234
+                ],
+                [
+                    90.72817103473292,
+                    88.0472292051756,
+                    84.77320745310124,
+                    87.24409209723795,
+                    94.7215966291071,
+                    89.82970397630375,
+                    88.30585905921808,
+                    86.49952767208579
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "COMPRESSIBLE",
+            "size" : "32768"
+        },
+        "primaryMetric" : {
+            "score" : 113.48635567451737,
+            "scoreError" : 4.364110385526354,
+            "scoreConfidence" : [
+                109.12224528899101,
+                117.85046606004373
+            ],
+            "scorePercentiles" : {
+                "0.0" : 109.51551531728666,
+                "50.0" : 112.10663587351061,
+                "90.0" : 121.09620900863091,
+                "95.0" : 124.03935597421913,
+                "99.0" : 124.03935597421913,
+                "99.9" : 124.03935597421913,
+                "99.99" : 124.03935597421913,
+                "99.999" : 124.03935597421913,
+                "99.9999" : 124.03935597421913,
+                "100.0" : 124.03935597421913
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    111.89246532438479,
+                    112.32080642263642,
+                    112.6420449223148,
+                    110.67432964968505,
+                    109.68446939221688,
+                    109.56085839448035,
+                    117.16138362422397,
+                    113.01601487491548
+                ],
+                [
+                    110.96192712954748,
+                    117.88804867413081,
+                    124.03935597421913,
+                    109.51551531728666,
+                    110.86201018262314,
+                    115.91402907784986,
+                    119.83486030909309,
+                    109.81357152266989
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "COMPRESSIBLE",
+            "size" : "65536"
+        },
+        "primaryMetric" : {
+            "score" : 244.00330428970207,
+            "scoreError" : 9.474527439848774,
+            "scoreConfidence" : [
+                234.5287768498533,
+                253.47783172955084
+            ],
+            "scorePercentiles" : {
+                "0.0" : 230.71217085543003,
+                "50.0" : 241.0892955508803,
+                "90.0" : 263.73184020480403,
+                "95.0" : 265.8965151434644,
+                "99.0" : 265.8965151434644,
+                "99.9" : 265.8965151434644,
+                "99.99" : 265.8965151434644,
+                "99.999" : 265.8965151434644,
+                "99.9999" : 265.8965151434644,
+                "100.0" : 265.8965151434644
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    239.33548971783836,
+                    238.67171667064156,
+                    241.10807230657988,
+                    265.8965151434644,
+                    241.07051879518073,
+                    238.0236854627647,
+                    240.00073699352674,
+                    230.71217085543003
+                ],
+                [
+                    241.7323167431747,
+                    262.80412237394955,
+                    238.01990278107917,
+                    235.9572799528302,
+                    247.74696508172363,
+                    248.31445420699924,
+                    249.56321790077288,
+                    245.09570364927748
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "MC_LIKE",
+            "size" : "128"
+        },
+        "primaryMetric" : {
+            "score" : 1.1065422395242088,
+            "scoreError" : 0.031258679978067506,
+            "scoreConfidence" : [
+                1.0752835595461414,
+                1.1378009195022762
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1.0701725903749815,
+                "50.0" : 1.1009562135896462,
+                "90.0" : 1.1713413730371502,
+                "95.0" : 1.177935550769064,
+                "99.0" : 1.177935550769064,
+                "99.9" : 1.177935550769064,
+                "99.99" : 1.177935550769064,
+                "99.999" : 1.177935550769064,
+                "99.9999" : 1.177935550769064,
+                "100.0" : 1.177935550769064
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    1.0882312048682954,
+                    1.1214932957062036,
+                    1.1023836769443824,
+                    1.1057936903398666,
+                    1.0876618886125884,
+                    1.16851529686633,
+                    1.177935550769064,
+                    1.0712415455418833
+                ],
+                [
+                    1.0814466560655671,
+                    1.09952875023491,
+                    1.1138251614598058,
+                    1.0843219913449949,
+                    1.0701725903749815,
+                    1.0950865972633448,
+                    1.1133247873767784,
+                    1.1237131486183434
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "MC_LIKE",
+            "size" : "1024"
+        },
+        "primaryMetric" : {
+            "score" : 4.940788386872799,
+            "scoreError" : 0.23581208430543196,
+            "scoreConfidence" : [
+                4.704976302567367,
+                5.176600471178231
+            ],
+            "scorePercentiles" : {
+                "0.0" : 4.6135491652061615,
+                "50.0" : 4.962332425962037,
+                "90.0" : 5.344886421505024,
+                "95.0" : 5.479477916064626,
+                "99.0" : 5.479477916064626,
+                "99.9" : 5.479477916064626,
+                "99.99" : 5.479477916064626,
+                "99.999" : 5.479477916064626,
+                "99.9999" : 5.479477916064626,
+                "100.0" : 5.479477916064626
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    4.830647392760941,
+                    4.6135491652061615,
+                    5.479477916064626,
+                    5.287204352408051,
+                    5.054108695433363,
+                    5.01268783951731,
+                    4.730442831070091,
+                    4.637471189926898
+                ],
+                [
+                    4.955808924519141,
+                    5.03543689555004,
+                    4.968855927404935,
+                    4.722302017559543,
+                    4.884205020409758,
+                    5.10117288987948,
+                    4.979495413118034,
+                    4.759747719136433
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "MC_LIKE",
+            "size" : "4096"
+        },
+        "primaryMetric" : {
+            "score" : 10.880648098061641,
+            "scoreError" : 0.29605843194555376,
+            "scoreConfidence" : [
+                10.584589666116088,
+                11.176706530007195
+            ],
+            "scorePercentiles" : {
+                "0.0" : 10.542691226037498,
+                "50.0" : 10.849430995388545,
+                "90.0" : 11.308847320679309,
+                "95.0" : 11.545056379479485,
+                "99.0" : 11.545056379479485,
+                "99.9" : 11.545056379479485,
+                "99.99" : 11.545056379479485,
+                "99.999" : 11.545056379479485,
+                "99.9999" : 11.545056379479485,
+                "100.0" : 11.545056379479485
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    11.132095431483377,
+                    10.672095364097093,
+                    11.022703581303634,
+                    10.554690999081862,
+                    10.652328332996909,
+                    10.812104118473679,
+                    10.542691226037498,
+                    10.645708722260657
+                ],
+                [
+                    10.940043061991782,
+                    11.545056379479485,
+                    10.641551036258406,
+                    10.592516976385276,
+                    11.099094179694857,
+                    11.143317420230519,
+                    11.207614866907804,
+                    10.88675787230341
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "MC_LIKE",
+            "size" : "16384"
+        },
+        "primaryMetric" : {
+            "score" : 18.446741359505832,
+            "scoreError" : 0.6090773485591461,
+            "scoreConfidence" : [
+                17.837664010946686,
+                19.05581870806498
+            ],
+            "scorePercentiles" : {
+                "0.0" : 17.766357887631667,
+                "50.0" : 18.270487572900908,
+                "90.0" : 19.493524680324242,
+                "95.0" : 19.760258747061265,
+                "99.0" : 19.760258747061265,
+                "99.9" : 19.760258747061265,
+                "99.99" : 19.760258747061265,
+                "99.999" : 19.760258747061265,
+                "99.9999" : 19.760258747061265,
+                "100.0" : 19.760258747061265
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    18.057724583370867,
+                    19.367928237611526,
+                    18.858680704397777,
+                    19.37921008029409,
+                    18.028774102846018,
+                    18.611009805380867,
+                    17.885905614844212,
+                    18.022701615081296
+                ],
+                [
+                    19.760258747061265,
+                    18.349859602479004,
+                    18.280569336794386,
+                    18.098833327306913,
+                    18.26040580900743,
+                    17.766357887631667,
+                    17.946045264611467,
+                    18.473597033374535
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "MC_LIKE",
+            "size" : "32768"
+        },
+        "primaryMetric" : {
+            "score" : 27.60762351570712,
+            "scoreError" : 2.6830018665898434,
+            "scoreConfidence" : [
+                24.924621649117277,
+                30.290625382296966
+            ],
+            "scorePercentiles" : {
+                "0.0" : 25.90878636034732,
+                "50.0" : 26.951195715753165,
+                "90.0" : 31.236234269659338,
+                "95.0" : 36.818490337541874,
+                "99.0" : 36.818490337541874,
+                "99.9" : 36.818490337541874,
+                "99.99" : 36.818490337541874,
+                "99.999" : 36.818490337541874,
+                "99.9999" : 36.818490337541874,
+                "100.0" : 36.818490337541874
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    28.603529211587407,
+                    26.040524119438732,
+                    26.431908704827222,
+                    26.893433425406958,
+                    36.818490337541874,
+                    26.24938182343061,
+                    27.00895800609937,
+                    26.428502878875918
+                ],
+                [
+                    27.06969675813173,
+                    25.90878636034732,
+                    28.10991294586479,
+                    26.028640148853672,
+                    25.93244237947123,
+                    27.437121159754223,
+                    28.843838811995386,
+                    27.9168091796875
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.compressOnly",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "MC_LIKE",
+            "size" : "65536"
+        },
+        "primaryMetric" : {
+            "score" : 80.09844142112544,
+            "scoreError" : 23.777090434551898,
+            "scoreConfidence" : [
+                56.32135098657355,
+                103.87553185567734
+            ],
+            "scorePercentiles" : {
+                "0.0" : 56.176820172975404,
+                "50.0" : 73.72382442116947,
+                "90.0" : 114.94163308593056,
+                "95.0" : 115.66023945452444,
+                "99.0" : 115.66023945452444,
+                "99.9" : 115.66023945452444,
+                "99.99" : 115.66023945452444,
+                "99.999" : 115.66023945452444,
+                "99.9999" : 115.66023945452444,
+                "100.0" : 115.66023945452444
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    61.27707554331191,
+                    60.104931073853734,
+                    57.53579331341912,
+                    57.34120243077452,
+                    57.86639106791623,
+                    56.176820172975404,
+                    61.55104110516276,
+                    58.04590640594174
+                ],
+                [
+                    102.61399478154098,
+                    85.89660773717618,
+                    98.27350765629572,
+                    86.94243317732709,
+                    114.63365892796176,
+                    115.66023945452444,
+                    104.51160940438872,
+                    103.1438504854369
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "RANDOM",
+            "size" : "128"
+        },
+        "primaryMetric" : {
+            "score" : 1.7699208142696365,
+            "scoreError" : 0.5534264649469848,
+            "scoreConfidence" : [
+                1.2164943493226517,
+                2.3233472792166214
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1.2348217219059752,
+                "50.0" : 1.5102393231103872,
+                "90.0" : 2.5918077198599963,
+                "95.0" : 2.664601935504443,
+                "99.0" : 2.664601935504443,
+                "99.9" : 2.664601935504443,
+                "99.99" : 2.664601935504443,
+                "99.999" : 2.664601935504443,
+                "99.9999" : 2.664601935504443,
+                "100.0" : 2.664601935504443
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    2.664601935504443,
+                    2.282641522050557,
+                    2.560610198869519,
+                    1.4998711490558878,
+                    2.2011036648640347,
+                    2.5359313462733115,
+                    1.975844838962024,
+                    2.1089399986609645
+                ],
+                [
+                    1.2706087310453087,
+                    1.3290384578089198,
+                    1.2348217219059752,
+                    1.2919064161763851,
+                    1.2512531931395974,
+                    1.3040228885540284,
+                    1.5206074971648866,
+                    1.2869294682783499
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "RANDOM",
+            "size" : "1024"
+        },
+        "primaryMetric" : {
+            "score" : 2.7103769135097697,
+            "scoreError" : 0.07209494437988816,
+            "scoreConfidence" : [
+                2.6382819691298818,
+                2.7824718578896577
+            ],
+            "scorePercentiles" : {
+                "0.0" : 2.6005854872170833,
+                "50.0" : 2.714531718760936,
+                "90.0" : 2.808731595068517,
+                "95.0" : 2.825335176509813,
+                "99.0" : 2.825335176509813,
+                "99.9" : 2.825335176509813,
+                "99.99" : 2.825335176509813,
+                "99.999" : 2.825335176509813,
+                "99.9999" : 2.825335176509813,
+                "100.0" : 2.825335176509813
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    2.8009351913763822,
+                    2.7185154747640854,
+                    2.6657974988205755,
+                    2.7353264328902283,
+                    2.618277720372197,
+                    2.6278119827219273,
+                    2.825335176509813,
+                    2.70493634510245
+                ],
+                [
+                    2.797973636513429,
+                    2.722741901452491,
+                    2.8016157744508186,
+                    2.6005854872170833,
+                    2.7105479627577873,
+                    2.649606183415182,
+                    2.733522229145487,
+                    2.652501618646382
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "RANDOM",
+            "size" : "4096"
+        },
+        "primaryMetric" : {
+            "score" : 5.405983659627314,
+            "scoreError" : 0.18788037734564797,
+            "scoreConfidence" : [
+                5.218103282281666,
+                5.5938640369729615
+            ],
+            "scorePercentiles" : {
+                "0.0" : 5.099126490126953,
+                "50.0" : 5.386130594444426,
+                "90.0" : 5.683452213641545,
+                "95.0" : 5.797612233188638,
+                "99.0" : 5.797612233188638,
+                "99.9" : 5.797612233188638,
+                "99.99" : 5.797612233188638,
+                "99.999" : 5.797612233188638,
+                "99.9999" : 5.797612233188638,
+                "100.0" : 5.797612233188638
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    5.3854367829087995,
+                    5.275631188392956,
+                    5.228896383779264,
+                    5.301581837929482,
+                    5.386824405980052,
+                    5.391877222961937,
+                    5.634526490978505,
+                    5.424675403827071
+                ],
+                [
+                    5.099126490126953,
+                    5.2709165002292355,
+                    5.280270764215978,
+                    5.605499445719724,
+                    5.797612233188638,
+                    5.573077707013468,
+                    5.264620858192073,
+                    5.575164838592875
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "RANDOM",
+            "size" : "16384"
+        },
+        "primaryMetric" : {
+            "score" : 12.90771848091354,
+            "scoreError" : 0.395851634923382,
+            "scoreConfidence" : [
+                12.511866845990157,
+                13.303570115836921
+            ],
+            "scorePercentiles" : {
+                "0.0" : 12.299391333218564,
+                "50.0" : 12.850608132367258,
+                "90.0" : 13.497646910548328,
+                "95.0" : 13.63023811145005,
+                "99.0" : 13.63023811145005,
+                "99.9" : 13.63023811145005,
+                "99.99" : 13.63023811145005,
+                "99.999" : 13.63023811145005,
+                "99.9999" : 13.63023811145005,
+                "100.0" : 13.63023811145005
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    12.9865411311054,
+                    13.302433527933296,
+                    13.440822110161877,
+                    12.442032479164075,
+                    12.558880550917149,
+                    12.299391333218564,
+                    13.355230812354842,
+                    12.752689898578055
+                ],
+                [
+                    13.63023811145005,
+                    13.136484128130705,
+                    12.500826797916329,
+                    12.598217984406293,
+                    12.903307373771254,
+                    12.797908890963262,
+                    13.0512145195581,
+                    12.767276044987376
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "RANDOM",
+            "size" : "32768"
+        },
+        "primaryMetric" : {
+            "score" : 22.001093914343514,
+            "scoreError" : 0.7950960430880226,
+            "scoreConfidence" : [
+                21.20599787125549,
+                22.796189957431537
+            ],
+            "scorePercentiles" : {
+                "0.0" : 21.07252916763225,
+                "50.0" : 21.732206142785095,
+                "90.0" : 23.295533876267346,
+                "95.0" : 23.532439815577145,
+                "99.0" : 23.532439815577145,
+                "99.9" : 23.532439815577145,
+                "99.99" : 23.532439815577145,
+                "99.999" : 23.532439815577145,
+                "99.9999" : 23.532439815577145,
+                "100.0" : 23.532439815577145
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    23.532439815577145,
+                    22.977903930532264,
+                    21.57010611278519,
+                    23.19400275942029,
+                    21.586910634900082,
+                    21.07252916763225,
+                    22.160114451558588,
+                    21.877501650670105
+                ],
+                [
+                    22.58549709860236,
+                    21.338560941266827,
+                    22.041212973163532,
+                    22.720934244584715,
+                    21.096770202446226,
+                    21.3685037002282,
+                    21.31909421705163,
+                    21.57542072907679
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "RANDOM",
+            "size" : "65536"
+        },
+        "primaryMetric" : {
+            "score" : 18.64208065221752,
+            "scoreError" : 0.6874804110982082,
+            "scoreConfidence" : [
+                17.954600241119312,
+                19.329561063315726
+            ],
+            "scorePercentiles" : {
+                "0.0" : 17.87992397347205,
+                "50.0" : 18.490055282946237,
+                "90.0" : 19.85758504934748,
+                "95.0" : 20.68179968985837,
+                "99.0" : 20.68179968985837,
+                "99.9" : 20.68179968985837,
+                "99.99" : 20.68179968985837,
+                "99.999" : 20.68179968985837,
+                "99.9999" : 20.68179968985837,
+                "100.0" : 20.68179968985837
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    18.122779094417567,
+                    17.87992397347205,
+                    18.292605599546476,
+                    18.364789214696216,
+                    19.504350203414244,
+                    18.534835384245294,
+                    18.89133324523814,
+                    18.120040110099055
+                ],
+                [
+                    18.582958050792353,
+                    18.595534088162566,
+                    18.26402687406434,
+                    20.68179968985837,
+                    18.55043253718058,
+                    18.44527518164718,
+                    18.31484929250032,
+                    19.12775789614561
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "COMPRESSIBLE",
+            "size" : "128"
+        },
+        "primaryMetric" : {
+            "score" : 4.436539679604746,
+            "scoreError" : 0.15510616367159796,
+            "scoreConfidence" : [
+                4.281433515933148,
+                4.591645843276344
+            ],
+            "scorePercentiles" : {
+                "0.0" : 4.263225752302272,
+                "50.0" : 4.400757925436757,
+                "90.0" : 4.7200605429297475,
+                "95.0" : 4.832378929383316,
+                "99.0" : 4.832378929383316,
+                "99.9" : 4.832378929383316,
+                "99.99" : 4.832378929383316,
+                "99.999" : 4.832378929383316,
+                "99.9999" : 4.832378929383316,
+                "100.0" : 4.832378929383316
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    4.467146095515402,
+                    4.832378929383316,
+                    4.278044870917521,
+                    4.492202975476791,
+                    4.263225752302272,
+                    4.456430845718047,
+                    4.385796412461699,
+                    4.671924091592503
+                ],
+                [
+                    4.270984787221779,
+                    4.533030782199622,
+                    4.344459024476749,
+                    4.410137526455027,
+                    4.3838830489311915,
+                    4.391378324418487,
+                    4.503566838659715,
+                    4.300044567945808
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "COMPRESSIBLE",
+            "size" : "1024"
+        },
+        "primaryMetric" : {
+            "score" : 9.089467840481616,
+            "scoreError" : 0.2438405815275328,
+            "scoreConfidence" : [
+                8.845627258954083,
+                9.333308422009148
+            ],
+            "scorePercentiles" : {
+                "0.0" : 8.843726538546498,
+                "50.0" : 9.044777938884149,
+                "90.0" : 9.565411449350004,
+                "95.0" : 9.737770717936238,
+                "99.0" : 9.737770717936238,
+                "99.9" : 9.737770717936238,
+                "99.99" : 9.737770717936238,
+                "99.999" : 9.737770717936238,
+                "99.9999" : 9.737770717936238,
+                "100.0" : 9.737770717936238
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    9.737770717936238,
+                    8.90567237096329,
+                    8.896864007115855,
+                    8.890379165703926,
+                    9.10339944575686,
+                    9.111186274241886,
+                    8.844242877845327,
+                    9.491543191384475
+                ],
+                [
+                    9.060322291966704,
+                    9.029233585801594,
+                    9.200135415804336,
+                    9.208007254448873,
+                    8.986854286253267,
+                    9.018025619336434,
+                    9.104122404600295,
+                    8.843726538546498
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "COMPRESSIBLE",
+            "size" : "4096"
+        },
+        "primaryMetric" : {
+            "score" : 25.250993991829024,
+            "scoreError" : 0.960333364470981,
+            "scoreConfidence" : [
+                24.290660627358044,
+                26.211327356300004
+            ],
+            "scorePercentiles" : {
+                "0.0" : 23.899817273921872,
+                "50.0" : 25.154784909267242,
+                "90.0" : 26.852825919058688,
+                "95.0" : 27.09896112164725,
+                "99.0" : 27.09896112164725,
+                "99.9" : 27.09896112164725,
+                "99.99" : 27.09896112164725,
+                "99.999" : 27.09896112164725,
+                "99.9999" : 27.09896112164725,
+                "100.0" : 27.09896112164725
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    25.405601168402338,
+                    25.18843476618569,
+                    24.09284821041476,
+                    25.12113505234879,
+                    24.769424918308744,
+                    24.34994644465542,
+                    26.118848365364528,
+                    25.485668185984924
+                ],
+                [
+                    23.899817273921872,
+                    26.057764497473038,
+                    25.103002075,
+                    27.09896112164725,
+                    24.56491581325671,
+                    25.831490741458122,
+                    24.18070583117856,
+                    26.74733940366359
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "COMPRESSIBLE",
+            "size" : "16384"
+        },
+        "primaryMetric" : {
+            "score" : 119.61144169729445,
+            "scoreError" : 5.32603830991443,
+            "scoreConfidence" : [
+                114.28540338738003,
+                124.93748000720888
+            ],
+            "scorePercentiles" : {
+                "0.0" : 111.76399932960894,
+                "50.0" : 118.68108998544986,
+                "90.0" : 127.8619812468414,
+                "95.0" : 129.5926223287139,
+                "99.0" : 129.5926223287139,
+                "99.9" : 129.5926223287139,
+                "99.99" : 129.5926223287139,
+                "99.999" : 129.5926223287139,
+                "99.9999" : 129.5926223287139,
+                "100.0" : 129.5926223287139
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    119.08982013279582,
+                    127.12027792603888,
+                    129.5926223287139,
+                    116.87876980602945,
+                    126.661603102535,
+                    119.38567330867438,
+                    124.9911938303984,
+                    117.2686144196952
+                ],
+                [
+                    112.01631024062675,
+                    111.76399932960894,
+                    114.35119789642162,
+                    118.01123619631902,
+                    118.2988632923368,
+                    117.3022806894126,
+                    119.06331667856293,
+                    121.98728797854181
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "COMPRESSIBLE",
+            "size" : "32768"
+        },
+        "primaryMetric" : {
+            "score" : 140.03987760960038,
+            "scoreError" : 3.8353574972800115,
+            "scoreConfidence" : [
+                136.20452011232038,
+                143.87523510688038
+            ],
+            "scorePercentiles" : {
+                "0.0" : 134.00470506295204,
+                "50.0" : 138.9691729620886,
+                "90.0" : 145.71667319010555,
+                "95.0" : 150.0243877185119,
+                "99.0" : 150.0243877185119,
+                "99.9" : 150.0243877185119,
+                "99.99" : 150.0243877185119,
+                "99.999" : 150.0243877185119,
+                "99.9999" : 150.0243877185119,
+                "100.0" : 150.0243877185119
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    137.96272551724138,
+                    138.8282963219986,
+                    137.94743450082737,
+                    141.6653442228822,
+                    139.15495952149118,
+                    138.91212970420776,
+                    134.00470506295204,
+                    138.58535701426396
+                ],
+                [
+                    139.02621621996946,
+                    143.7812517944301,
+                    143.87050982078853,
+                    140.31676321323425,
+                    150.0243877185119,
+                    142.99388294983564,
+                    136.8804476203501,
+                    136.68363055062167
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "COMPRESSIBLE",
+            "size" : "65536"
+        },
+        "primaryMetric" : {
+            "score" : 303.5850789525835,
+            "scoreError" : 11.936379427856378,
+            "scoreConfidence" : [
+                291.64869952472714,
+                315.52145838043987
+            ],
+            "scorePercentiles" : {
+                "0.0" : 288.618097497843,
+                "50.0" : 301.5386976860918,
+                "90.0" : 324.8239857754724,
+                "95.0" : 335.33301944351325,
+                "99.0" : 335.33301944351325,
+                "99.9" : 335.33301944351325,
+                "99.99" : 335.33301944351325,
+                "99.999" : 335.33301944351325,
+                "99.9999" : 335.33301944351325,
+                "100.0" : 335.33301944351325
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    301.6296201386795,
+                    297.4372494796313,
+                    304.87487484774664,
+                    295.652525974026,
+                    335.33301944351325,
+                    296.20129396092364,
+                    311.7686403864132,
+                    288.618097497843
+                ],
+                [
+                    312.32692446941326,
+                    291.3555232964473,
+                    320.3201142034549,
+                    301.44777523350405,
+                    302.2839701807229,
+                    298.42021145243064,
+                    295.66924756277695,
+                    304.0221751138088
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "MC_LIKE",
+            "size" : "128"
+        },
+        "primaryMetric" : {
+            "score" : 1.7081405952206488,
+            "scoreError" : 0.05966266114116165,
+            "scoreConfidence" : [
+                1.648477934079487,
+                1.7678032563618105
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1.5815582950707698,
+                "50.0" : 1.7113295999610596,
+                "90.0" : 1.7841202624008239,
+                "95.0" : 1.8306172075664995,
+                "99.0" : 1.8306172075664995,
+                "99.9" : 1.8306172075664995,
+                "99.99" : 1.8306172075664995,
+                "99.999" : 1.8306172075664995,
+                "99.9999" : 1.8306172075664995,
+                "100.0" : 1.8306172075664995
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    1.726791299230671,
+                    1.7211373143830548,
+                    1.6111207984512854,
+                    1.728270239066995,
+                    1.6815274128392248,
+                    1.5815582950707698,
+                    1.7011708126403158,
+                    1.8306172075664995
+                ],
+                [
+                    1.67853609728186,
+                    1.759140704224609,
+                    1.7405857153795554,
+                    1.6757098999267839,
+                    1.7307337999564054,
+                    1.7015218855390644,
+                    1.6976350417863229,
+                    1.7641930001869628
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "MC_LIKE",
+            "size" : "1024"
+        },
+        "primaryMetric" : {
+            "score" : 7.726464880580556,
+            "scoreError" : 0.21331476076498743,
+            "scoreConfidence" : [
+                7.513150119815569,
+                7.9397796413455435
+            ],
+            "scorePercentiles" : {
+                "0.0" : 7.412296856473796,
+                "50.0" : 7.706330775920636,
+                "90.0" : 8.112626140568013,
+                "95.0" : 8.212320713242892,
+                "99.0" : 8.212320713242892,
+                "99.9" : 8.212320713242892,
+                "99.99" : 8.212320713242892,
+                "99.999" : 8.212320713242892,
+                "99.9999" : 8.212320713242892,
+                "100.0" : 8.212320713242892
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    7.5837762495450685,
+                    7.5370464783427495,
+                    7.635950476931171,
+                    7.615722588857487,
+                    8.212320713242892,
+                    7.878321024606951,
+                    7.542877137170944,
+                    8.06989989513592
+                ],
+                [
+                    7.710532351422383,
+                    7.818869130244482,
+                    7.819275845625884,
+                    7.412296856473796,
+                    7.723178345031001,
+                    7.702129200418887,
+                    7.838731571605461,
+                    7.522510224633814
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "MC_LIKE",
+            "size" : "4096"
+        },
+        "primaryMetric" : {
+            "score" : 17.933638383534035,
+            "scoreError" : 0.33588836481477,
+            "scoreConfidence" : [
+                17.597750018719264,
+                18.269526748348806
+            ],
+            "scorePercentiles" : {
+                "0.0" : 17.25742554953587,
+                "50.0" : 18.01599174105021,
+                "90.0" : 18.34076417241801,
+                "95.0" : 18.383222138512707,
+                "99.0" : 18.383222138512707,
+                "99.9" : 18.383222138512707,
+                "99.99" : 18.383222138512707,
+                "99.999" : 18.383222138512707,
+                "99.9999" : 18.383222138512707,
+                "100.0" : 18.383222138512707
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    18.383222138512707,
+                    18.200657331586417,
+                    18.036917545662718,
+                    17.703095661098526,
+                    17.659410668312468,
+                    17.605418734818883,
+                    17.995065936437705,
+                    18.197036875329733
+                ],
+                [
+                    17.446857456752234,
+                    18.222897473266173,
+                    18.064832406370762,
+                    17.99362299888477,
+                    18.135462244139458,
+                    17.713723214601536,
+                    17.25742554953587,
+                    18.322567901234567
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "MC_LIKE",
+            "size" : "16384"
+        },
+        "primaryMetric" : {
+            "score" : 31.19663242293624,
+            "scoreError" : 0.5901025998163594,
+            "scoreConfidence" : [
+                30.60652982311988,
+                31.786735022752598
+            ],
+            "scorePercentiles" : {
+                "0.0" : 30.204690481942265,
+                "50.0" : 31.102473950905242,
+                "90.0" : 32.0113296276447,
+                "95.0" : 32.33115190691661,
+                "99.0" : 32.33115190691661,
+                "99.9" : 32.33115190691661,
+                "99.99" : 32.33115190691661,
+                "99.999" : 32.33115190691661,
+                "99.9999" : 32.33115190691661,
+                "100.0" : 32.33115190691661
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    30.667815921770583,
+                    30.204690481942265,
+                    31.85243484766483,
+                    31.36665236751333,
+                    30.679480018359854,
+                    30.648135927374984,
+                    30.901063762119435,
+                    30.866506842559488
+                ],
+                [
+                    31.62860349024691,
+                    31.648128076947415,
+                    30.695470602675833,
+                    31.87426293652817,
+                    32.33115190691661,
+                    31.124334837264296,
+                    31.08061306454619,
+                    31.5767736825497
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "MC_LIKE",
+            "size" : "32768"
+        },
+        "primaryMetric" : {
+            "score" : 45.53114872790073,
+            "scoreError" : 1.802820728551832,
+            "scoreConfidence" : [
+                43.7283279993489,
+                47.33396945645256
+            ],
+            "scorePercentiles" : {
+                "0.0" : 43.67516012401205,
+                "50.0" : 44.82028313113022,
+                "90.0" : 48.619823880642585,
+                "95.0" : 50.35631786145792,
+                "99.0" : 50.35631786145792,
+                "99.9" : 50.35631786145792,
+                "99.99" : 50.35631786145792,
+                "99.999" : 50.35631786145792,
+                "99.9999" : 50.35631786145792,
+                "100.0" : 50.35631786145792
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    44.05283925127126,
+                    46.07335323108102,
+                    45.136658800216175,
+                    44.29172648777896,
+                    45.93960400623396,
+                    44.584485403574455,
+                    47.08198112587446,
+                    44.72992858739883
+                ],
+                [
+                    43.67516012401205,
+                    44.890482992281456,
+                    44.60975141519946,
+                    47.87561217457887,
+                    43.73111360858938,
+                    50.35631786145792,
+                    44.75008326997898,
+                    46.71928130688448
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "dev.velozip.benchmark.CompressionBenchmark.ctxRoundTrip",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/env/zulu25/bin/java",
+        "jvmArgs" : [
+            "-Xms128m",
+            "-Xmx384m",
+            "-XX:MaxDirectMemorySize=128m",
+            "-XX:ActiveProcessorCount=2",
+            "-XX:+UseG1GC",
+            "-Dio.netty.leakDetection.level=simple"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 8,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "dataset" : "MC_LIKE",
+            "size" : "65536"
+        },
+        "primaryMetric" : {
+            "score" : 99.22692594739974,
+            "scoreError" : 3.902547691441504,
+            "scoreConfidence" : [
+                95.32437825595824,
+                103.12947363884123
+            ],
+            "scorePercentiles" : {
+                "0.0" : 93.60820820895522,
+                "50.0" : 99.07570047975977,
+                "90.0" : 104.82664198255323,
+                "95.0" : 109.30905911922194,
+                "99.0" : 109.30905911922194,
+                "99.9" : 109.30905911922194,
+                "99.99" : 109.30905911922194,
+                "99.999" : 109.30905911922194,
+                "99.9999" : 109.30905911922194,
+                "100.0" : 109.30905911922194
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    95.99358784625707,
+                    100.7054015906574,
+                    101.10704189325277,
+                    101.24820101214574,
+                    99.54037089248486,
+                    96.98182900348972,
+                    97.23511008550331,
+                    94.55055695245298
+                ],
+                [
+                    98.13020239379966,
+                    109.30905911922194,
+                    100.17394764240665,
+                    102.90560606683805,
+                    93.60820820895522,
+                    95.64558507690838,
+                    101.88507730698717,
+                    98.6110300670347
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    }
+]
+
+
