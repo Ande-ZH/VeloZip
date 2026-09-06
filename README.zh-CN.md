@@ -2,9 +2,9 @@
 
 [English](README.md) | **中文**
 
-[![build](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml) [![Release](https://img.shields.io/badge/release-v0.2.0-blue)](https://github.com/Ande-ZH/VeloZip/releases)
+[![build](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml) [![Release](https://img.shields.io/badge/release-v0.3.0-blue)](https://github.com/Ande-ZH/VeloZip/releases)
 
-在 **Velocity 3.4.0–4.1.1** 与 **Purpur 26.1.2 / 26.2** 后端服务器之间的高性能 Zstd（Level 1）传输压缩 —— 对客户端 ↔ 代理链路**零改动**。
+在 **Velocity 3.4.0–4.1.1** 与 **Paper/Purpur 1.21.11 / 26.1.2** 后端服务器之间的高性能 Zstd（Level 1）传输压缩 —— 对客户端 ↔ 代理链路**零改动**。
 
 ## VeloZip 是什么？
 
@@ -29,7 +29,7 @@ Velocity 等 Minecraft 代理使用原版 zlib 编解码器压缩与后端服务
                        │  → 协议切换 → VeloZip 分帧
                        │  批处理（≤64 KiB / 500 µs）→ Zstd level 1
                        ▼
-           Purpur 26.1.2 或 26.2
+           Paper/Purpur 1.21.11 或 26.1.2
               VeloZip-Backend.jar
 ```
 
@@ -42,20 +42,16 @@ Velocity 等 Minecraft 代理使用原版 zlib 编解码器压缩与后端服务
 | 组件 | 要求 |
 |---|---|
 | 代理 | Velocity 3.4.0–4.1.1（一个插件 jar 覆盖全区间） |
-| 后端 | Purpur 26.1.2 或 26.2 |
+| 后端 | Paper/Purpur 1.21.11 或 26.1.2 |
 | Java（代理） | 17+（Velocity 3.x）、21+（3.5.x）、25（Velocity 4.x） |
-| Java（后端） | 25（Purpur 26.1.2 / 26.2 要求） |
+| Java（后端） | 1.21.11 使用 21；26.x 使用 25 |
 | 客户端 | 取决于你的代理 —— 无需安装任何东西 |
 
-> **客户端版本范围 = 你的 Velocity 的协议注册表。** VeloZip 从不检查客户端协议版本；它在包层
-> 之下压缩代理 ↔ 后端链路。推荐使用 **Velocity 4.1.1** 时，**1.7.2 至 26.2** 的客户端均可原生直连
-> —— 两端都不需要 ViaVersion。使用 Velocity 3.4.0（协议注册仅到 1.21.11）时，桥接 26.1+ 客户端
-> 需要在代理和后端安装 [ViaVersion](https://github.com/ViaVersion/ViaVersion)（后端还需
-> ViaBackwards）；该路径与 VeloZip 正交，且已在 v0.2.0 中重新验证（见下方兼容性）。
+> 客户端与后端协议必须匹配，否则需要另行验证的协议转换插件。代理支持某协议不等于能转换后端版本。
 
 ## 安装
 
-1. 从 [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases) 下载 `VeloZip-Velocity-0.2.0.jar` 和 `VeloZip-Backend-0.2.0.jar`（每个 Release 附带两个 jar 以及 SHA-256 `checksums.txt`），或从源码自行构建。
+1. 从 [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases) 下载 `VeloZip-Velocity-0.3.0.jar` 和 `VeloZip-Backend-0.3.0.jar`（每个 Release 附带两个 jar 以及 SHA-256 `checksums.txt`），或从源码自行构建。
 2. 将 `VeloZip-Velocity-x.x.x.jar` 放入 Velocity 的 `plugins/` 目录。
 3. 将 `VeloZip-Backend-x.x.x.jar` 放入 Purpur 的 `plugins/` 目录。
 4. 重启。两端在启动时记录各自的版本和平台；每条连接的激活记录为 `VeloZip transport enabled for <server>`。未知/未验证的平台版本会打印警告，但仍会尝试协商（故障安全）。
@@ -86,26 +82,21 @@ Velocity 端还支持按服务器禁用（`servers: { lobby: { enabled: false } 
 
 ## 兼容性
 
-已验证组合（v0.2.0 使用协议 bot 进行的真实 E2E）：
+v0.3.0 新鲜隔离测试（不是对整个版本区间的保证），代理均为 Velocity 4.1.1 build 24：
 
-| # | 代理 | 后端 | Via | Bot | 结果 |
-|---|---|---|---|---|---|
-| A | Velocity 4.1.1 | Purpur 26.1.2 | 无 | 26.1 | ✅ 双端激活，**降低 82.1%** |
-| B | Velocity 3.4.0 | Purpur 26.1.2 | 5.11.0 ×3 | 26.1 | ✅ 双端激活，**降低 82.6%**（bot 随后被已知的 Via 5.11.0 上游翻译 bug 踢出 —— 非 VeloZip 问题） |
-| C | Velocity 4.1.1 | Purpur 26.2 | 5.12.0-SNAPSHOT ×2 | 26.1 | ✅ 9/10 次会话，**降低 79.2%** |
-| D | Velocity 4.1.1 | Purpur 26.1.2 | 5.11.0 ×2 | **1.21.11** | ✅ 双端激活，**降低 83.4%**（bot 侧经 Via 桥的包解码错误 —— 非 VeloZip 问题） |
+| 后端 | 后端 Java | 结果 |
+|---|---|---|
+| Purpur 26.1.2 build 2592 | 25 | 登录、保持连接、双端激活通过 |
+| Paper 26.1.2 build 74 | 25 | 通过 |
+| Paper 1.21.11 build 132 | 21、25 | 通过 |
+| Purpur 1.21.11 build 2568 | 21 | 通过 |
+| Paper 26.2 build 121 | 25 | 后端安装 ViaVersion + ViaBackwards 5.12.0-SNAPSHOT 后通过；原生 26.1 bot 被正确拒绝 |
 
-完整的 Velocity 区间 **3.4.0 → 4.1.1** 与后端区间 **26.1.2 / 26.2** 均由每端同一个插件 jar 支持：
-VeloZip 挂钩的网络内部结构（管道处理器名、分帧解码器类、插件消息 API）在该区间内完全一致 ——
-已对照 Velocity commit `6b1ea78`（3.4.0）与 `db0a17e`（4.1.1）、Paper `ver/26.1.2` 与 `main`（26.2）
-核验（见 [docs/ANALYSIS.md](docs/ANALYSIS.md) 附录）。较旧且已不受上游支持的版本（Velocity 3.4.0
-自 2026-08-24 起被 PaperMC 列为 UNSUPPORTED）仍然可用；推荐 4.1.1，因为它原生注册到 Minecraft 26.2
-的协议。
-
-超出已验证集合的平台版本（例如未来的 Velocity 4.2）会在启动时打印明确警告，协商仍会尝试；既有的
-类型检查保证管道布局一旦出现不兼容，连接自动保持原版。
+旧版结果保留在 CHANGELOG；未测试的构建不标记为已验证。详见 [v0.3.0 说明](docs/RELEASE-0.3.0.md)。
 
 ## 命令
+
+`/velozip config` 显示生效配置（密钥不显示，修改后重启）。代理增加 `/velozip servers` 不可变状态快照与 `/velozip retry <server>` 清除失败冷却；重连后重试。失败冷却最多 30 秒。TX/RX 分开统计；平均批次仅使用 TX 字节；压缩尝试包括回退 RAW。配置拒绝未知键、重复键、错误类型、小数、溢出和显式 null；服务器支持嵌套 enabled 或布尔简写。
 
 `/velozip status` —— 构建/协议信息和各服务器协商状态。
 `/velozip stats` —— 原始/传输/节省字节数、压缩率、RAW/ZSTD 帧计数、平均批次大小、压缩/解压缩延迟 P50/P95/P99、吞吐量。
@@ -115,7 +106,7 @@ VeloZip 挂钩的网络内部结构（管道处理器名、分帧解码器类、
 - **真实 E2E，v0.2.0 矩阵**（见兼容性）：四组组合**带宽降低 79.2–83.4%**。
 - **真实 E2E，v0.1.0 栈**（Velocity 3.4.0 build 566 ↔ Purpur 26.1.2 build 2592，Java 25）：**带宽降低 83.0%**，压缩 P50 78 µs。
 - **JMH**（MC_LIKE 数据集）：仅压缩 ~22 µs @32 KiB、~51 µs @64 KiB —— 均远低于 1 ms。
-- **测试**：43 个单元测试在 Netty `PARANOID` 泄漏检测下全部通过。
+- **测试**：49 个单元测试在 Netty `PARANOID` 泄漏检测下全部通过。
 
 JMH 方法论、完整结果表格以及 32 vs 64 KiB 批处理大小决策数据请见 [docs/BENCHMARK.md](docs/BENCHMARK.md)。
 
@@ -125,7 +116,7 @@ JMH 方法论、完整结果表格以及 32 vs 64 KiB 批处理大小决策数�
 ./gradlew build
 ```
 
-生成 `velozip-velocity/build/libs/VeloZip-Velocity-0.2.0.jar` 和 `velozip-backend/build/libs/VeloZip-Backend-0.2.0.jar`。需要 JDK 25 工具链（若缺失，Gradle 会自动下载）；生成的字节码目标为 Java 17。
+生成 `velozip-velocity/build/libs/VeloZip-Velocity-0.3.0.jar` 和 `velozip-backend/build/libs/VeloZip-Backend-0.3.0.jar`。需要 JDK 25 工具链（若缺失，Gradle 会自动下载）；后端字节码目标为 Java 21，common/proxy 为 Java 17；后端使用固定的 1.21.11 API 并声明 Mojang 映射。
 
 ## 项目结构
 
@@ -141,7 +132,6 @@ JMH 方法论、完整结果表格以及 32 vs 64 KiB 批处理大小决策数�
 
 ## 已知限制
 
-- 在**发送端**，`/velozip stats` 的 RAW/ZSTD 帧计数显示为 `0`（自 0.1.0 起存在的统计口径问题）；字节计数与压缩比是正确的。计划在 0.3.0 修复。
 - 使用 ViaVersion 桥接客户端/服务器版本差异时，存在已知的**上游**（非 VeloZip）问题 —— 详见兼容性矩阵与 [CHANGELOG](CHANGELOG.md)。
 
 ## 故障排查

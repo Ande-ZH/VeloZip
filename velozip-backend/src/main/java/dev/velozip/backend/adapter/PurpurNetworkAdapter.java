@@ -51,7 +51,7 @@ public final class PurpurNetworkAdapter implements NetworkAdapter {
      * vanilla) if the internals ever diverge.
      */
     private static final java.util.Set<String> VERIFIED_VERSIONS =
-            java.util.Set.of("26.1", "26.2");
+            java.util.Set.of("1.21.11", "26.1.2", "26.2");
 
     private final VeloZipConfig cfg;
     private final VeloZipMetrics metrics;
@@ -71,11 +71,11 @@ public final class PurpurNetworkAdapter implements NetworkAdapter {
      *                      logged at plugin startup
      */
     public void checkPlatform(String bukkitVersion) {
-        String family = PlatformVersions.majorMinor(bukkitVersion);
+        String family = bukkitVersion == null ? null : bukkitVersion.split("[-+]|\\.build\\.")[0];
         verifiedFamily = family;
         if (family == null || !VERIFIED_VERSIONS.contains(family)) {
                     logger.warn("VeloZip: {} has NOT been verified with this plugin "
-                                    + "(verified: 26.1.x, 26.2.x). Activation will still be "
+                                    + "(ABI + live smoke: 1.21.11, 26.1.2, 26.2; see exact build matrix). Activation will still be "
                                     + "attempted; if the pipeline layout differs, VeloZip skips "
                                     + "the connection and leaves it vanilla.",
                             bukkitVersion == null ? "unknown" : bukkitVersion);
@@ -119,7 +119,13 @@ public final class PurpurNetworkAdapter implements NetworkAdapter {
 
             channel.eventLoop().execute(() -> {
                 try {
-                    if (Boolean.TRUE.equals(channel.attr(ACTIVE_KEY).get())) {
+                    if (!channel.isActive() || Boolean.TRUE.equals(channel.attr(ACTIVE_KEY).get())) {
+                        return;
+                    }
+                    if (!(pipeline.get(SPLITTER) instanceof Varint21FrameDecoder)
+                            || pipeline.get(ENCODER) == null
+                            || (pipeline.get(PREPENDER) == null && pipeline.get(COMPRESS) == null)) {
+                        logger.warn("VeloZip: missing required pipeline anchors, skipping");
                         return;
                     }
                     pipeline.replace(SPLITTER, SPLITTER, new VeloZipBackendFrameDecoder(cfg, metrics, logger));

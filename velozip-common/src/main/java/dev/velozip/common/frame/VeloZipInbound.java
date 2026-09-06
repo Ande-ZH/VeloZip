@@ -135,7 +135,6 @@ public final class VeloZipInbound {
                                 "decompressed size mismatch: declared=" + origLen + " produced=" + produced
                                         + " (corrupted frame or decompression bomb)");
                     }
-                    metrics.zstdFrames.increment();
                 } finally {
                     if (copied) {
                         zstdSrc.release();
@@ -143,7 +142,6 @@ public final class VeloZipInbound {
                 }
             } else {
                 content = payload.retain(); // RAW payload is the content itself
-                metrics.rawFrames.increment();
             }
             try {
                 splitMinecraftFrames(content, out, cfg);
@@ -154,8 +152,7 @@ public final class VeloZipInbound {
             payload.release();
         }
 
-        metrics.wireBytes.add(in.readerIndex() - start);
-        metrics.originalBytes.add(origLen);
+        metrics.recordFrame(false, origLen, in.readerIndex() - start, flags == VeloZip.FLAG_ZSTD);
         return true;
     }
 

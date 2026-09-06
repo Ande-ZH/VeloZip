@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public final class VeloZipBackendPlugin extends JavaPlugin implements org.bukkit.plugin.messaging.PluginMessageListener {
 
-    public static final String PLUGIN_VERSION = "0.2.0";
+    public static final String PLUGIN_VERSION = "0.3.0";
 
     private VeloZipLogger logger;
     private VeloZipConfig config;
@@ -47,10 +47,6 @@ public final class VeloZipBackendPlugin extends JavaPlugin implements org.bukkit
             });
             return;
         }
-        if (!config.enabled) {
-            jul.info("VeloZip is disabled by configuration (enabled: false)");
-            return;
-        }
 
         this.adapter = new PurpurNetworkAdapter(config, metrics, logger);
         ((PurpurNetworkAdapter) adapter).checkPlatform(getServer().getBukkitVersion());
@@ -59,7 +55,7 @@ public final class VeloZipBackendPlugin extends JavaPlugin implements org.bukkit
         getServer().getMessenger().registerOutgoingPluginChannel(this, VeloZip.CHANNEL_FULL);
 
         VeloZipBackendCommand command = new VeloZipBackendCommand(metrics,
-                getServer().getName() + " " + getServer().getBukkitVersion());
+                getServer().getName() + " " + getServer().getBukkitVersion(), config);
         getCommand("velozip").setExecutor(command);
         getCommand("velozip").setTabCompleter(command);
 

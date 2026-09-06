@@ -17,6 +17,37 @@ public final class VeloZipMetrics {
 
     private static final long HISTO_MAX = 100_000_000L; // 100 ms in nanos
 
+    public final Direction tx = new Direction();
+    public final Direction rx = new Direction();
+
+    public static final class Direction {
+        private final LongAdder original = new LongAdder(), wire = new LongAdder();
+        private final LongAdder raw = new LongAdder(), zstd = new LongAdder();
+        private void record(long originalBytes, long wireBytes, boolean compressed) {
+            original.add(originalBytes);
+            wire.add(wireBytes);
+            (compressed ? zstd : raw).increment();
+        }
+        public DirectionSnapshot snapshot() {
+            return new DirectionSnapshot(original.sum(), wire.sum(), raw.sum(), zstd.sum());
+        }
+    }
+
+    public record DirectionSnapshot(long originalBytes, long wireBytes, long rawFrames, long zstdFrames) {
+        public long totalFrames() { return rawFrames + zstdFrames; }
+        public double averageBatchBytes() {
+            return totalFrames() == 0 ? Double.NaN : (double) originalBytes / totalFrames();
+        }
+    }
+
+    public void recordFrame(boolean outbound, long original, long wire, boolean compressed) {
+        (outbound ? tx : rx).record(original, wire, compressed);
+        originalBytes.add(original);
+        wireBytes.add(wire);
+        (compressed ? zstdFrames : rawFrames).increment();
+        if (outbound) batches.increment();
+    }
+
     public final LongAdder originalBytes = new LongAdder();
     public final LongAdder wireBytes = new LongAdder();
     public final LongAdder rawFrames = new LongAdder();
@@ -51,7 +82,7 @@ public final class VeloZipMetrics {
     public Snapshot snapshot() {
         synchronized (histLock) {
             return new Snapshot(
-                    originalBytes.sum(), wireBytes.sum(),
+                    tx.snapshot(), rx.snapshot(), originalBytes.sum(), wireBytes.sum(),
                     rawFrames.sum(), zstdFrames.sum(),
                     compressionOps.sum(), decompressionOps.sum(),
                     batches.sum(), activeConnections.sum(), totalConnections.sum(),
@@ -66,6 +97,7 @@ public final class VeloZipMetrics {
 
     /** Immutable view for command output. Percentile values are in microseconds. */
     public record Snapshot(
+            DirectionSnapshot tx, DirectionSnapshot rx,
             long originalBytes, long wireBytes,
             long rawFrames, long zstdFrames,
             long compressionOps, long decompressionOps,
@@ -86,7 +118,7 @@ public final class VeloZipMetrics {
         }
 
         public double averageBatchBytes() {
-            return batches == 0 ? Double.NaN : (double) originalBytes / batches;
+            return tx.averageBatchBytes();
         }
     }
 }

@@ -10,13 +10,15 @@ import org.bukkit.command.TabCompleter;
 import java.util.List;
 import java.util.Locale;
 
-/** /velozip [status|stats] — backend side. */
+/** /velozip [status|stats|config] — backend side. */
 public final class VeloZipBackendCommand implements CommandExecutor, TabCompleter {
 
     private final VeloZipMetrics metrics;
     private final String platformDescription;
+    private final dev.velozip.common.config.VeloZipConfig config;
 
-    public VeloZipBackendCommand(VeloZipMetrics metrics, String platformDescription) {
+    public VeloZipBackendCommand(VeloZipMetrics metrics, String platformDescription, dev.velozip.common.config.VeloZipConfig config) {
+        this.config = config;
         this.metrics = metrics;
         this.platformDescription = platformDescription;
     }
@@ -34,10 +36,13 @@ public final class VeloZipBackendCommand implements CommandExecutor, TabComplete
                 sender.sendMessage("§7Active connections: " + metrics.activeConnections.sum());
                 sender.sendMessage("§7Total connections: " + metrics.totalConnections.sum());
             }
+            case "config" -> sender.sendMessage(config.diagnostics());
             case "stats" -> {
                 VeloZipMetrics.Snapshot s = metrics.snapshot();
                 sender.sendMessage("§6VeloZip " + dev.velozip.backend.VeloZipBackendPlugin.PLUGIN_VERSION
                         + " — transport statistics");
+                sender.sendMessage("§7TX: " + s.tx());
+                sender.sendMessage("§7RX: " + s.rx());
                 sender.sendMessage("§7Original:    " + human(s.originalBytes()));
                 sender.sendMessage("§7Transferred: " + human(s.wireBytes()));
                 sender.sendMessage("§7Saved:       " + human(s.savedBytes()));
@@ -53,7 +58,7 @@ public final class VeloZipBackendCommand implements CommandExecutor, TabComplete
                 sender.sendMessage("§7Compress:    " + latency(s.compressP50Us(), s.compressP95Us(), s.compressP99Us()));
                 sender.sendMessage("§7Decompress:  " + latency(s.decompressP50Us(), s.decompressP95Us(), s.decompressP99Us()));
             }
-            default -> sender.sendMessage("§cUsage: /velozip [status|stats]");
+            default -> sender.sendMessage("§cUsage: /velozip [status|stats|config]");
         }
         return true;
     }
@@ -61,7 +66,7 @@ public final class VeloZipBackendCommand implements CommandExecutor, TabComplete
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length <= 1) {
-            return List.of("status", "stats");
+            return List.of("status", "stats", "config");
         }
         return List.of();
     }

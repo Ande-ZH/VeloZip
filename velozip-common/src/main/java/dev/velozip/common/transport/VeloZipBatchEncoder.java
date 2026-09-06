@@ -175,13 +175,15 @@ public final class VeloZipBatchEncoder extends ChannelDuplexHandler {
                 ByteBuf dst = ctx.alloc().directBuffer(bound, bound);
                 int compressed;
                 long t0 = System.nanoTime();
+                metrics.compressionOps.increment();
                 try {
                     compressed = compressor.compress(dst, content);
                 } catch (Throwable t) {
                     dst.release();
                     throw new VeloZipFrameException("zstd compression failed", t);
+                } finally {
+                    metrics.recordCompress(System.nanoTime() - t0);
                 }
-                long dt = System.nanoTime() - t0;
                 if (compressed <= 0) {
                     dst.release();
                     throw new VeloZipFrameException("zstd compression produced no output (dst too small?)");
@@ -191,8 +193,6 @@ public final class VeloZipBatchEncoder extends ChannelDuplexHandler {
                     dst.release();
                     frame = rawFrame(ctx, content);
                 } else {
-                    metrics.compressionOps.increment();
-                    metrics.recordCompress(dt);
                     zstd = true;
                     content.release(); // content only served as compression source
                     frame = zstdFrame(ctx, dst, compressed, origLen);
@@ -207,9 +207,7 @@ public final class VeloZipBatchEncoder extends ChannelDuplexHandler {
         }
 
         int wireLen = frame.readableBytes();
-        metrics.originalBytes.add(origLen);
-        metrics.wireBytes.add(wireLen);
-        metrics.batches.increment();
+        metrics.recordFrame(true, origLen, wireLen, zstd);
 
         ChannelPromise writePromise;
         if (folded == null || folded.isEmpty()) {

@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] — Unreleased
+
+### Fixed
+- Count outbound RAW/ZSTD frames, separate immutable TX/RX metric views, and use TX bytes for average outgoing batch size. Count/time every compression attempt, including RAW fallback.
+- Reject malformed YAML sections, unknown/duplicate keys, wrong scalar types, fractional/overflow integers and explicit null values. Honor nested `servers.name.enabled` and boolean shorthand. Suppress secret-bearing parser causes.
+- Velocity command output now contains real line breaks. Both platforms expose redacted effective configuration, including when disabled.
+- Replace permanent failure blocking with a 30-second cooldown and `/velozip retry <server>`; expose immutable last-attempt snapshots via `/velozip servers`. Cancel close/restore timers, guard stale callbacks and null REFUSE, and preflight required encoder anchors.
+- E2E bot exits nonzero on failed login or premature disconnect.
+
+### Changed
+- Backend targets Java 21, pins Paper API `1.21.11-R0.1-20260511.115010-91`, lowers descriptor API to 1.21.11, and declares Mojang mappings. Common/proxy retain Java 17 bytecode; build toolchain remains Java 25. Protocol remains v1.
+- Add isolated loopback, fresh-world E2E harness with owned-process cleanup and pre-resolved bot classpaths.
+
+### Evidence
+- Pristine baseline: 43 tests passed. Fresh wrapper 9.7.1 regression suite and candidate runtime evidence are detailed in [release notes](docs/RELEASE-0.3.0.md).
+- Live smoke passes with Velocity 4.1.1 build 24: Purpur 26.1.2/2592, Paper 26.1.2/74, Paper 1.21.11/132, Purpur 1.21.11/2568; Paper 26.2/121 passes with backend ViaVersion/ViaBackwards 5.12.0-SNAPSHOT. Exact runtime ABI descriptors checked; no blanket version-family verification claim.
+- No release has been published. Historical performance numbers below were not re-benchmarked for this version.
+
 ## [0.2.0] — 2026-08-30
 
 Client range expansion: one plugin jar per side now covers **Velocity 3.4.0 → 4.1.1**

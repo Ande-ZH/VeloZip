@@ -10,8 +10,7 @@ import java.util.Map;
 
 /**
  * Maps a generic YAML tree (as produced by snakeyaml on either platform) onto
- * {@link VeloZipConfig}. Unknown keys are ignored so new versions stay
- * forward-compatible; known keys with wrong types/values fail with a clear
+ * {@link VeloZipConfig}. Unknown keys and wrong types/values fail with a clear
  * message (prompt §16/§17: never silently accept).
  */
 public final class YamlConfigs {
@@ -24,6 +23,7 @@ public final class YamlConfigs {
         if (root == null) {
             return b.build();
         }
+        validateKeys(root, java.util.Set.of("enabled", "compression", "batch", "limits", "authentication", "require-velozip", "debug", "servers"));
         b.enabled(bool(root, "enabled", true));
         Map<String, Object> compression = section(root, "compression");
         if (compression != null) {
@@ -53,6 +53,12 @@ public final class YamlConfigs {
             for (Map.Entry<String, Object> e : servers.entrySet()) {
                 if (e.getValue() instanceof Boolean bool) {
                     perServer.put(e.getKey(), bool);
+                } else if (e.getValue() instanceof Map<?, ?>) {
+                    Map<String, Object> entry = (Map<String, Object>) e.getValue();
+                    validateKeys(entry, java.util.Set.of("enabled"));
+                    perServer.put(e.getKey(), bool(entry, "enabled", true));
+                } else {
+                    throw new IllegalArgumentException("servers entry: expected true/false or mapping with enabled");
                 }
             }
             b.servers = perServer;
@@ -78,9 +84,25 @@ public final class YamlConfigs {
     private static Map<String, Object> section(Map<String, Object> root, String key) {
         Object value = root.get(key);
         if (value instanceof Map<?, ?> map) {
+            java.util.Set<String> allowed = switch (key) {
+                case "compression" -> java.util.Set.of("algorithm", "level", "raw-threshold");
+                case "batch" -> java.util.Set.of("max-size", "max-delay-micros");
+                case "limits" -> java.util.Set.of("max-frame-size", "max-uncompressed-size");
+                case "authentication" -> java.util.Set.of("secret");
+                default -> null;
+            };
+            for (Object k : map.keySet()) if (!(k instanceof String))
+                throw new IllegalArgumentException("configuration keys must be strings");
+            if (allowed != null) validateKeys(map, allowed);
             return (Map<String, Object>) map;
         }
-        return null;
+        if (!root.containsKey(key)) return null;
+        throw new IllegalArgumentException("configuration section: expected a mapping");
+    }
+
+    private static void validateKeys(Map<?, ?> map, java.util.Set<String> allowed) {
+        for (Object key : map.keySet()) if (!(key instanceof String) || !allowed.contains(key))
+            throw new IllegalArgumentException("unknown configuration key (value suppressed)");
     }
 
     private static boolean bool(Map<String, Object> map, String key, boolean def) {
@@ -88,26 +110,29 @@ public final class YamlConfigs {
         if (value instanceof Boolean b) {
             return b;
         }
-        if (value == null) {
-            return def;
-        }
-        throw new IllegalArgumentException(key + ": expected true/false, got " + value);
+        if (!map.containsKey(key)) return def;
+        throw new IllegalArgumentException(key + ": expected true/false");
     }
 
     private static String string(Map<String, Object> map, String key, String def) {
         Object value = map.get(key);
-        return value == null ? def : String.valueOf(value);
+        if (!map.containsKey(key)) return def;
+        if (value instanceof String s) return s;
+        throw new IllegalArgumentException(key + ": expected a string");
     }
 
-    private static double number(Map<String, Object> map, String key, double def) {
+    private static int number(Map<String, Object> map, String key, int def) {
+        if (!map.containsKey(key)) return def;
         Object value = map.get(key);
-        if (value instanceof Number n) {
-            return n.doubleValue();
+        if (value instanceof Byte || value instanceof Short || value instanceof Integer
+                || value instanceof Long || value instanceof java.math.BigInteger) {
+            try {
+                return new java.math.BigInteger(value.toString()).intValueExact();
+            } catch (ArithmeticException ignored) {
+                // Never truncate or disclose the supplied value.
+            }
         }
-        if (value == null) {
-            return def;
-        }
-        throw new IllegalArgumentException(key + ": expected a number, got " + value);
+        throw new IllegalArgumentException(key + ": expected a 32-bit integer");
     }
 
     @SuppressWarnings("unused")

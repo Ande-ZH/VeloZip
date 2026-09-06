@@ -28,6 +28,8 @@ dependencies {
     // YAML config parsing (Velocity does not bundle snakeyaml).
     implementation(libs.findLibrary("snakeyaml").get())
 
+    testImplementation(sourceSets["stubs"].output)
+    testImplementation(libs.findLibrary("velocity-api").get())
     testImplementation(project(":velozip-common"))
     testImplementation(libs.findLibrary("junit-jupiter").get())
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

@@ -32,9 +32,8 @@ dependencies {
 }
 
 tasks.withType<JavaCompile>().configureEach {
-    // paper-api 26.1.2 metadata requires a Java 25 target; the backend jar only
-    // ever loads on the Purpur JVM, which itself requires Java 25.
-    options.release.set(25)
+    // Oldest candidate API is Java 21; runtime compatibility needs separate ABI/E2E evidence.
+    options.release.set(21)
     options.encoding = "UTF-8"
 }
 
@@ -44,6 +43,7 @@ tasks.named<ShadowJar>("shadowJar") {
 
     relocate("org.hdrhistogram", "dev.velozip.shaded.hdrhistogram")
 
+    manifest.attributes["paperweight-mappings-namespace"] = "mojang"
     mergeServiceFiles()
 
     // The stub classes must never leak into the shipped jar.

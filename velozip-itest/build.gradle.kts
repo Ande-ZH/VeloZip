@@ -26,6 +26,14 @@ dependencies {
     botLegacyRuntime("org.slf4j:slf4j-simple:2.0.17")
 }
 
+tasks.register("writeBotClasspaths") {
+    dependsOn(tasks.classes)
+    doLast {
+        layout.buildDirectory.file("bot-classpath.txt").get().asFile.writeText(sourceSets["main"].runtimeClasspath.asPath)
+        layout.buildDirectory.file("botLegacy-classpath.txt").get().asFile.writeText((sourceSets["main"].output + botLegacyRuntime).asPath)
+    }
+}
+
 fun registerBotTask(name: String, description: String, classpath: FileCollection) {
     tasks.register<JavaExec>(name) {
         group = "verification"

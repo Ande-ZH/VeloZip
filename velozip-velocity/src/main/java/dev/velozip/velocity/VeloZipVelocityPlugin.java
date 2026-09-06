@@ -36,7 +36,7 @@ import java.nio.file.Path;
         authors = {"Ande-ZH"})
 public final class VeloZipVelocityPlugin {
 
-    public static final String PLUGIN_VERSION = "0.2.0";
+    public static final String PLUGIN_VERSION = "0.3.0";
 
     private final ProxyServer proxy;
     private final Logger slf4jLogger;
@@ -61,11 +61,7 @@ public final class VeloZipVelocityPlugin {
         try {
             this.config = VelocityConfigLoader.load(dataDirectory.resolve("config.yml"));
         } catch (Exception e) {
-            slf4jLogger.error("VeloZip: invalid configuration, the plugin will stay disabled", e);
-            return;
-        }
-        if (!config.enabled) {
-            slf4jLogger.info("VeloZip is disabled by configuration (enabled: false)");
+            slf4jLogger.error("VeloZip: invalid configuration, the plugin will stay disabled (details suppressed)");
             return;
         }
 
@@ -81,7 +77,7 @@ public final class VeloZipVelocityPlugin {
         proxy.getCommandManager().register(
                 proxy.getCommandManager().metaBuilder("velozip").plugin(this).build(),
                 new VeloZipCommand(metrics, PLUGIN_VERSION,
-                        "Velocity " + proxy.getVersion().getVersion()));
+                        "Velocity " + proxy.getVersion().getVersion(), config, velocityAdapter));
 
         logger.info("VeloZip {}", PLUGIN_VERSION);
         logger.info("Platform: Velocity {}", proxy.getVersion().getVersion());

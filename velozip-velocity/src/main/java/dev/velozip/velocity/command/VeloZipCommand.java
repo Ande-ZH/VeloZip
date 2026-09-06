@@ -10,14 +10,19 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import java.util.List;
 import java.util.Locale;
 
-/** /velozip [status|stats] — output layout follows prompt §23. */
+/** /velozip [status|stats|config|servers|retry] — output layout follows prompt §23. */
 public final class VeloZipCommand implements SimpleCommand {
 
     private final VeloZipMetrics metrics;
     private final String pluginVersion;
     private final String platformDescription;
+    private final dev.velozip.common.config.VeloZipConfig config;
+    private final dev.velozip.velocity.adapter.VelocityNetworkAdapter adapter;
 
-    public VeloZipCommand(VeloZipMetrics metrics, String pluginVersion, String platformDescription) {
+    public VeloZipCommand(VeloZipMetrics metrics, String pluginVersion, String platformDescription, dev.velozip.common.config.VeloZipConfig config,
+                          dev.velozip.velocity.adapter.VelocityNetworkAdapter adapter) {
+        this.config = config;
+        this.adapter = adapter;
         this.metrics = metrics;
         this.pluginVersion = pluginVersion;
         this.platformDescription = platformDescription;
@@ -31,15 +36,20 @@ public final class VeloZipCommand implements SimpleCommand {
         switch (sub) {
             case "status" -> source.sendMessage(status());
             case "stats" -> source.sendMessage(stats());
+            case "config" -> source.sendMessage(Component.text(config.diagnostics()));
+            case "servers" -> source.sendMessage(Component.text(adapter.statuses().toString()));
+            case "retry" -> source.sendMessage(Component.text(args.length == 2
+                    ? (adapter.retry(args[1]) ? "Cooldown cleared; reconnect to retry." : "No recorded status for server.")
+                    : "Usage: /velozip retry <server>"));
             default -> source.sendMessage(Component.text(
-                    "Usage: /velozip [status|stats]", NamedTextColor.RED));
+                    "Usage: /velozip [status|stats|config|servers|retry]", NamedTextColor.RED));
         }
     }
 
     @Override
     public List<String> suggest(Invocation invocation) {
         if (invocation.arguments().length <= 1) {
-            return List.of("status", "stats");
+            return List.of("status", "stats", "config", "servers", "retry");
         }
         return List.of();
     }
@@ -65,6 +75,8 @@ public final class VeloZipCommand implements SimpleCommand {
         return Component.text()
                 .append(line("VeloZip " + pluginVersion + " — transport statistics", NamedTextColor.GOLD))
                 .append(line(""))
+                .append(line("TX: " + s.tx()))
+                .append(line("RX: " + s.rx()))
                 .append(line("Original:    " + human(s.originalBytes())))
                 .append(line("Transferred: " + human(s.wireBytes())))
                 .append(line("Saved:       " + human(s.savedBytes())))
@@ -90,11 +102,11 @@ public final class VeloZipCommand implements SimpleCommand {
     }
 
     private static Component line(String text) {
-        return Component.text(text, NamedTextColor.GRAY);
+        return line(text, NamedTextColor.GRAY);
     }
 
     private static Component line(String text, NamedTextColor color) {
-        return Component.text(text, color);
+        return Component.text(text, color).append(Component.newline());
     }
 
     private static String human(long bytes) {

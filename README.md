@@ -2,9 +2,9 @@
 
 **English** | [中文](README.zh-CN.md)
 
-[![build](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml) [![Release](https://img.shields.io/badge/release-v0.2.0-blue)](https://github.com/Ande-ZH/VeloZip/releases)
+[![build](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml) [![Release](https://img.shields.io/badge/release-v0.3.0-blue)](https://github.com/Ande-ZH/VeloZip/releases)
 
-High-performance Zstd (Level 1) transport compression between **Velocity 3.4.0–4.1.1** and **Purpur 26.1.2 / 26.2** backend servers — with **zero changes** to the client ↔ proxy link.
+High-performance Zstd (Level 1) transport compression between **Velocity 3.4.0–4.1.1** and **Paper/Purpur 1.21.11 / 26.1.2** backend servers — with **zero changes** to the client ↔ proxy link.
 
 ## What is VeloZip?
 
@@ -29,7 +29,7 @@ See [docs/ANALYSIS.md](docs/ANALYSIS.md) for the full source-verified network an
                        │  → protocol switch → VeloZip framing
                        │  batch (≤64 KiB / 500 µs) → Zstd level 1
                        ▼
-           Purpur 26.1.2 or 26.2
+           Paper/Purpur 1.21.11 or 26.1.2
               VeloZip-Backend.jar
 ```
 
@@ -42,22 +42,16 @@ See [docs/ANALYSIS.md](docs/ANALYSIS.md) for the full source-verified network an
 | Component | Requirement |
 |---|---|
 | Proxy | Velocity 3.4.0–4.1.1 (one plugin jar for the whole range) |
-| Backend | Purpur 26.1.2 or 26.2 |
+| Backend | Paper/Purpur 1.21.11 or 26.1.2 |
 | Java (proxy) | 17+ for Velocity 3.x, 21+ for 3.5.x, 25 for Velocity 4.x |
-| Java (backend) | 25 (required by Purpur 26.1.2 / 26.2) |
+| Java (backend) | 21 for 1.21.11; 25 for 26.x |
 | Client | Whatever your proxy accepts — nothing to install |
 
-> **Client version range = your Velocity's protocol registry.** VeloZip never inspects client
-> protocol versions; it compresses the proxy ↔ backend link below the packet layer. With the
-> recommended **Velocity 4.1.1**, clients **1.7.2 through 26.2** connect natively — no
-> ViaVersion needed anywhere. With Velocity 3.4.0 (registers only up to 1.21.11), bridging
-> 26.1+ clients requires [ViaVersion](https://github.com/ViaVersion/ViaVersion) on the proxy
-> and backend (plus ViaBackwards on the backend); that path is orthogonal to VeloZip and was
-> re-verified in v0.2.0 (see Compatibility below).
+> Client and backend protocol versions must match, or an independently compatible translator is required. Proxy protocol support alone does not translate between backend versions.
 
 ## Installation
 
-1. Download `VeloZip-Velocity-0.2.0.jar` and `VeloZip-Backend-0.2.0.jar` from [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases) (each release ships both jars plus a SHA-256 `checksums.txt`), or build them from source.
+1. Download `VeloZip-Velocity-0.3.0.jar` and `VeloZip-Backend-0.3.0.jar` from [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases) (each release ships both jars plus a SHA-256 `checksums.txt`), or build them from source.
 2. Drop `VeloZip-Velocity-x.x.x.jar` into the Velocity `plugins/` directory.
 3. Drop `VeloZip-Backend-x.x.x.jar` into the Purpur `plugins/` directory.
 4. Restart. Both sides log their version and platform at startup; per-connection activation is logged as `VeloZip transport enabled for <server>`. Unknown/unverified platform versions log a warning but negotiation is still attempted (fail-safe).
@@ -88,28 +82,21 @@ Velocity side additionally supports per-server opt-out (`servers: { lobby: { ena
 
 ## Compatibility
 
-Verified combinations (live E2E with a protocol bot, v0.2.0):
+Fresh v0.3.0 isolated smoke tests, all with Velocity 4.1.1 build 24 (not a guarantee for entire version families):
 
-| # | Proxy | Backend | Via | Bot | Result |
-|---|---|---|---|---|---|
-| A | Velocity 4.1.1 | Purpur 26.1.2 | none | 26.1 | ✅ transport on both ends, **82.1%** |
-| B | Velocity 3.4.0 | Purpur 26.1.2 | 5.11.0 ×3 | 26.1 | ✅ transport on both ends, **82.6%** (bot later kicked by a known upstream Via 5.11.0 translation bug — not VeloZip) |
-| C | Velocity 4.1.1 | Purpur 26.2 | 5.12.0-SNAPSHOT ×2 | 26.1 | ✅ 9/10 sessions, **79.2%** |
-| D | Velocity 4.1.1 | Purpur 26.1.2 | 5.11.0 ×2 | **1.21.11** | ✅ transport on both ends, **83.4%** (bot-side packet decode error via the Via bridge — not VeloZip) |
+| Backend | Backend Java | Result |
+|---|---|---|
+| Purpur 26.1.2 build 2592 | 25 | Login, hold, bilateral activation passed |
+| Paper 26.1.2 build 74 | 25 | Passed |
+| Paper 1.21.11 build 132 | 21 and 25 | Passed |
+| Purpur 1.21.11 build 2568 | 21 | Passed |
+| Paper 26.2 build 121 | 25 | Passed with backend ViaVersion + ViaBackwards 5.12.0-SNAPSHOT; native 26.1 bot correctly rejected |
 
-Full Velocity range **3.4.0 → 4.1.1** and backend range **26.1.2 / 26.2** are supported by one
-plugin jar on each side: the network internals VeloZip hooks (pipeline handler names,
-frame-decoder classes, plugin-message API) are identical across that range — verified against
-Velocity commit `6b1ea78` (3.4.0) and `db0a17e` (4.1.1), Paper `ver/26.1.2` and `main` (26.2)
-(see [docs/ANALYSIS.md](docs/ANALYSIS.md) appendix). Older-but-unsupported Velocity versions
-(3.4.0 is UNSUPPORTED by PaperMC since 2026-08-24) still work; 4.1.1 is recommended because it
-natively registers protocols up to Minecraft 26.2.
-
-Platform versions outside the verified set (e.g. a future Velocity 4.2) log a clear warning at
-startup and negotiation is still attempted; the existing type checks keep the connection vanilla
-if the pipeline layout ever diverges.
+Historical results remain in CHANGELOG. Untested builds are not verified. See [v0.3.0 notes](docs/RELEASE-0.3.0.md).
 
 ## Commands
+
+`/velozip config` shows effective configuration, never secrets; restart after changes. Proxy adds `/velozip servers` immutable last-attempt snapshots and `/velozip retry <server>` to clear failed cooldown before reconnecting. Cooldown lasts at most 30 seconds. TX/RX counters are separate; average batch uses TX bytes only; compression attempts include RAW fallback. YAML rejects unknown/duplicate keys, wrong types, fractions, overflow and explicit null. Server overrides accept nested enabled or boolean shorthand.
 
 `/velozip status` — build/protocol info and per-server negotiation state.
 `/velozip stats` — original/transferred/saved bytes, compression ratio, RAW/ZSTD frame counts, average batch size, compression/decompression latency P50/P95/P99, throughput.
@@ -119,7 +106,7 @@ if the pipeline layout ever diverges.
 - **Live E2E, v0.2.0 matrix** (see Compatibility): **79.2–83.4% bandwidth reduction** across all four combinations.
 - **Live E2E, v0.1.0 stack** (Velocity 3.4.0 build 566 ↔ Purpur 26.1.2 build 2592, Java 25): **83.0% bandwidth reduction**, compress P50 78 µs.
 - **JMH** (MC_LIKE dataset): compress-only ~22 µs @32 KiB, ~51 µs @64 KiB — both well under 1 ms.
-- **Tests**: 43 unit tests green under Netty `PARANOID` leak detection.
+- **Tests**: 49 unit tests green under Netty `PARANOID` leak detection.
 
 See [docs/BENCHMARK.md](docs/BENCHMARK.md) for the JMH methodology, full result tables, and the 32 vs 64 KiB batch-size decision data.
 
@@ -129,7 +116,7 @@ See [docs/BENCHMARK.md](docs/BENCHMARK.md) for the JMH methodology, full result 
 ./gradlew build
 ```
 
-Produces `velozip-velocity/build/libs/VeloZip-Velocity-0.2.0.jar` and `velozip-backend/build/libs/VeloZip-Backend-0.2.0.jar`. Requires a JDK 25 toolchain (auto-provisioned by Gradle if missing); shipped bytecode targets Java 17.
+Produces `velozip-velocity/build/libs/VeloZip-Velocity-0.3.0.jar` and `velozip-backend/build/libs/VeloZip-Backend-0.3.0.jar`. Requires a JDK 25 toolchain (auto-provisioned by Gradle if missing); backend bytecode targets Java 21; common/proxy target Java 17. The backend API is pinned to 1.21.11 and declares Mojang mappings.
 
 ## Project structure
 
@@ -145,7 +132,6 @@ New platform versions are added by implementing a `NetworkAdapter` (one per side
 
 ## Known limitations
 
-- On the **sending** end, `/velozip stats` reports RAW/ZSTD frame counts of `0` (a metrics caveat present since 0.1.0); byte counters and compression ratios are correct. Fix planned for 0.3.0.
 - When bridging client/server version gaps with ViaVersion, known **upstream** (non-VeloZip) issues exist — see the Compatibility matrix and the [CHANGELOG](CHANGELOG.md) for details.
 
 ## Troubleshooting

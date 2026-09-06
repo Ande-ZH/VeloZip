@@ -20,13 +20,17 @@ public final class BackendConfigLoader {
     public static VeloZipConfig load(Path file) throws IOException {
         YamlConfigs.writeDefaultIfMissing(file, BackendConfigLoader.class);
         try (InputStream in = Files.newInputStream(file)) {
-            Object parsed = new Yaml().load(in);
+            var options = new org.yaml.snakeyaml.LoaderOptions();
+            options.setAllowDuplicateKeys(false);
+            Object parsed = new Yaml(new org.yaml.snakeyaml.constructor.SafeConstructor(options)).load(in);
+            if (parsed != null && !(parsed instanceof Map<?, ?>))
+                throw new IOException("configuration root: expected a mapping");
             Map<String, Object> root = parsed instanceof Map<?, ?> map
                     ? uncheckedCast(map)
                     : Map.of();
             return YamlConfigs.parse(root);
         } catch (YAMLException e) {
-            throw new IOException("invalid YAML in " + file, e);
+            throw new IOException("invalid YAML (details suppressed to protect secrets)");
         }
     }
 

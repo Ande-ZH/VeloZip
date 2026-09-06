@@ -46,6 +46,17 @@ public final class VeloZipConfig {
         return servers.getOrDefault(serverName, Boolean.TRUE);
     }
 
+    /** Effective values only; never includes authentication material. */
+    public String diagnostics() {
+        return "enabled=" + enabled + "\ncompression=zstd level=" + level
+                + " raw-threshold=" + rawThreshold + "\nbatch.max-size=" + batchMaxSize
+                + " max-delay-micros=" + batchMaxDelayMicros + "\nlimits.max-frame-size=" + maxFrameSize
+                + " max-uncompressed-size=" + maxUncompressedSize + "\nauthentication="
+                + (secret.isEmpty() ? "disabled" : "enabled (redacted)")
+                + "\nrequire-velozip=" + requireVelozip + " debug=" + debug
+                + "\nserver-overrides=" + servers.size() + "\nChanges require restart; no live reload.";
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -54,7 +65,7 @@ public final class VeloZipConfig {
     public static VeloZipConfig validateAndBuild(Builder b) {
         if (!"zstd".equals(b.algorithm)) {
             throw new IllegalArgumentException(
-                    "compression.algorithm: phase 1 only supports 'zstd', got '" + b.algorithm + "'");
+                    "compression.algorithm: only supports 'zstd'");
         }
         if (b.level != 1) {
             throw new IllegalArgumentException(

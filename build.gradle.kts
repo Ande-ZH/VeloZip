@@ -12,14 +12,14 @@ subprojects {
 
     configure<org.gradle.api.plugins.JavaPluginExtension> {
         toolchain {
-            // paper-api 26.1.2 is compiled with class-file major 69 (Java 25).
+            // Explicit build JDK; backend targets Java 21, common/proxy Java 17.
             languageVersion.set(JavaLanguageVersion.of(25))
         }
     }
 
     tasks.withType<JavaCompile>().configureEach {
         // Shipped bytecode stays Java 17 so both the Velocity JVM (>= 17)
-        // and the Purpur JVM (25) can load the classes.
+        // and supported backend JVMs (21 or 25) can load the classes.
         options.release.set(17)
         options.encoding = "UTF-8"
     }

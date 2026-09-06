@@ -1,7 +1,7 @@
 {
   "id": "velozip",
   "name": "VeloZip",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Zstd Level 1 transport compression for Velocity <-> Purpur backend connections",
   "authors": [
     "Ande-ZH"

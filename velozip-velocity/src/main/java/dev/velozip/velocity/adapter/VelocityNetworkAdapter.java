@@ -74,7 +74,18 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
     /** Family of the proxy version last passed to checkPlatform; null before startup. */
     private volatile String verifiedFamily;
     /** Per-server last-known negotiation failure, for require-velozip pre-checks. */
-    private final Map<String, String> failedServers = new ConcurrentHashMap<>();
+    private final Map<String, NegotiationState> latestAttempts = new ConcurrentHashMap<>();
+    private final Map<String, ServerStatus> serverStatuses = new ConcurrentHashMap<>();
+    private static final long COOLDOWN_NANOS = java.util.concurrent.TimeUnit.SECONDS.toNanos(30);
+    public record ServerStatus(String state, String reason, long retryAfterNanos) {}
+    public Map<String, ServerStatus> statuses() { return Map.copyOf(serverStatuses); }
+    public boolean retry(String serverName) {
+        ServerStatus status = serverStatuses.get(serverName);
+        return status != null && status.state().equals("FAILED") && serverStatuses.remove(serverName, status);
+    }
+    private void failed(String serverName, String reason) {
+        serverStatuses.put(serverName, new ServerStatus("FAILED", reason, System.nanoTime() + COOLDOWN_NANOS));
+    }
 
     public VelocityNetworkAdapter(VeloZipConfig cfg, VeloZipMetrics metrics,
                                   VeloZipLogger logger, String pluginVersion) {
@@ -107,7 +118,11 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
 
     /** @return a human-readable failure reason if this server failed negotiation before. */
     public String knownFailure(String serverName) {
-        return failedServers.get(serverName);
+        ServerStatus status = serverStatuses.get(serverName);
+        if (status == null || !status.state().equals("FAILED")) return null;
+        if (System.nanoTime() - status.retryAfterNanos() < 0) return status.reason();
+        serverStatuses.remove(serverName, status);
+        return null;
     }
 
     @Override
@@ -138,7 +153,7 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
             } else {
                 return;
             }
-            if (!cfg.enabledForServer(serverName)) {
+            if (!cfg.enabledForServer(serverName) || knownFailure(serverName) != null) {
                 return;
             }
             MinecraftConnection mc = conn.getConnection();
@@ -153,6 +168,8 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
             ChannelPipeline pipeline = channel.pipeline();
             Object originalDecoder = pipeline.get(FRAME_DECODER);
             if (!(originalDecoder instanceof MinecraftVarintFrameDecoder vanillaDecoder)) {
+                failed(serverName, "unexpected frame decoder");
+                if (cfg.requireVelozip) channel.close();
                 logger.warn("VeloZip: unexpected frame-decoder type {} on backend pipeline, skipping",
                         originalDecoder == null ? "null" : originalDecoder.getClass().getName());
                 return;
@@ -160,6 +177,16 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
 
             NegotiationState state = new NegotiationState(channel, serverName, player, vanillaDecoder);
             channel.attr(STATE_KEY).set(state);
+            latestAttempts.put(serverName, state);
+            serverStatuses.put(serverName, new ServerStatus("NEGOTIATING", "", 0));
+            channel.closeFuture().addListener(f -> {
+                state.finished.set(true);
+                if (state.timeout != null) state.timeout.cancel(false);
+                channel.attr(STATE_KEY).compareAndSet(state, null);
+                if (latestAttempts.remove(serverName, state))
+                    serverStatuses.computeIfPresent(serverName, (k, status) ->
+                            status.state().equals("FAILED") ? status : new ServerStatus("CLOSED", "", 0));
+            });
 
             byte[] nonce = Negotiation.newNonce();
             byte[] hmac = cfg.secret.isEmpty() ? null
@@ -170,11 +197,21 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
 
             mc.eventLoop().execute(() -> {
                 try {
+                    if (!channel.isActive() || channel.attr(STATE_KEY).get() != state || state.finished.get()) return;
+                    if (pipeline.get(MINECRAFT_ENCODER) == null
+                            || (pipeline.get(FRAME_ENCODER) == null && pipeline.get(COMPRESSION_ENCODER) == null)) {
+                        failed(serverName, "missing required pipeline anchors");
+                        restore(channel, state);
+                        if (cfg.requireVelozip) channel.close();
+                        return;
+                    }
                     pipeline.replace(FRAME_DECODER, FRAME_DECODER,
                             new VeloZipVelocityFrameDecoder(cfg, metrics, logger,
                                     () -> onTransportActive(channel, state)));
                     boolean sent = conn.sendPluginMessage(VeloZipChannelIds.IDENTIFIER, req);
                     if (!sent) {
+                        failed(serverName, "negotiation send failed");
+                        if (cfg.requireVelozip) channel.close();
                         logger.warn("VeloZip: could not send negotiation message to {}", serverName);
                         restore(channel, state);
                         return;
@@ -185,6 +222,8 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
                         logger.debug("VeloZip: negotiation sent to {}", serverName);
                     }
                 } catch (Throwable t) {
+                    failed(serverName, "negotiation startup failed");
+                    if (cfg.requireVelozip) channel.close();
                     logger.error("VeloZip: failed to start negotiation with {}", t, serverName);
                     restore(channel, state);
                 }
@@ -196,7 +235,8 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
 
     /** Runs on the channel event loop when the backend's first VeloZip frame arrives. */
     private void onTransportActive(Channel channel, NegotiationState state) {
-        if (!state.activated.compareAndSet(false, true)) {
+        if (!channel.isActive() || channel.attr(STATE_KEY).get() != state
+                || !state.finished.compareAndSet(false, true)) {
             return;
         }
         if (state.timeout != null) {
@@ -204,6 +244,9 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
         }
         try {
             ChannelPipeline pipeline = channel.pipeline();
+            if (pipeline.get(MINECRAFT_ENCODER) == null
+                    || (pipeline.get(FRAME_ENCODER) == null && pipeline.get(COMPRESSION_ENCODER) == null))
+                throw new IllegalStateException("missing required pipeline anchors");
             if (pipeline.get(COMPRESSION_DECODER) != null) {
                 pipeline.remove(COMPRESSION_DECODER);
             }
@@ -216,21 +259,24 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
             pipeline.addBefore(MINECRAFT_ENCODER, VELOZIP_ENCODER,
                     new VeloZipBatchEncoder(cfg, metrics, logger));
         } catch (Throwable t) {
+            failed(state.serverName, "activation failed");
             logger.error("VeloZip: failed to activate transport for {}", t, state.serverName);
             channel.close();
             return;
         }
+        if (latestAttempts.get(state.serverName) == state)
+            serverStatuses.put(state.serverName, new ServerStatus("ACTIVE", "", 0));
         logger.info("VeloZip transport enabled for {}", state.serverName);
     }
 
     private void onTimeout(NegotiationState state) {
-        if (state.activated.get()) {
+        if (!state.channel.isActive() || state.channel.attr(STATE_KEY).get() != state || state.finished.get()) {
             return;
         }
         logger.warn("VeloZip: no VeloZip response from {} within {} s "
                         + "(backend plugin missing, disabled, or refused)",
                 state.serverName, VeloZip.NEGOTIATION_TIMEOUT_SECONDS);
-        failedServers.put(state.serverName, "negotiation timeout");
+        if (latestAttempts.get(state.serverName) == state) failed(state.serverName, "negotiation timeout");
         restore(state.channel, state);
         if (cfg.requireVelozip) {
             state.player.disconnect(Component.text(
@@ -241,8 +287,13 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
 
     /** Called by the plugin when a REFUSE message arrives on the velozip channel. */
     public void onRefuse(Channel channel, Negotiation.Refuse refuse) {
+        if (channel == null || refuse == null) return;
+        if (!channel.eventLoop().inEventLoop()) {
+            channel.eventLoop().execute(() -> onRefuse(channel, refuse));
+            return;
+        }
         NegotiationState state = channel.attr(STATE_KEY).get();
-        if (state == null || state.activated.get()) {
+        if (state == null || state.finished.get() || !channel.isActive()) {
             return;
         }
         if (state.timeout != null) {
@@ -250,8 +301,8 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
         }
         logger.warn("VeloZip: backend refused VeloZip for {}: {} (reason code {})",
                 state.serverName, refuse.message(), refuse.reasonCode());
-        failedServers.put(state.serverName, "refused: " + refuse.message());
-        state.channel.eventLoop().execute(() -> restore(state.channel, state));
+        if (latestAttempts.get(state.serverName) == state) failed(state.serverName, "refused (code " + refuse.reasonCode() + ")");
+        restore(state.channel, state);
         if (cfg.requireVelozip) {
             state.player.disconnect(Component.text(
                     "VeloZip negotiation refused by '" + state.serverName + "': " + refuse.message()));
@@ -259,7 +310,9 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
     }
 
     private void restore(Channel channel, NegotiationState state) {
-        state.activated.set(true); // stop any late activation
+        if (channel.attr(STATE_KEY).get() != state) return;
+        state.finished.set(true);
+        if (state.timeout != null) state.timeout.cancel(false);
         try {
             ChannelPipeline pipeline = channel.pipeline();
             if (pipeline.get(FRAME_DECODER) instanceof VeloZipVelocityFrameDecoder) {
@@ -277,7 +330,7 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
         final String serverName;
         final Player player;
         final MinecraftVarintFrameDecoder originalDecoder;
-        final AtomicBoolean activated = new AtomicBoolean();
+        final AtomicBoolean finished = new AtomicBoolean();
         volatile ScheduledFuture<?> timeout;
 
         NegotiationState(Channel channel, String serverName, Player player,

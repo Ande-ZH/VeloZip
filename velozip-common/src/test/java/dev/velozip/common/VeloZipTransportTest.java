@@ -149,6 +149,8 @@ class VeloZipTransportTest {
         assertEquals(VeloZip.MAGIC_1, frame.getByte(1));
         assertEquals(VeloZip.TRANSPORT_PROTOCOL, frame.getUnsignedByte(2));
         assertEquals(VeloZip.FLAG_RAW, frame.getUnsignedByte(3));
+        assertEquals(1, metrics.snapshot().tx().rawFrames());
+        assertEquals(0, metrics.snapshot().compressionOps());
 
         // Feed the frame back through the decoder (ownership transfers).
         assertTrue(ch.writeInbound(frame));
@@ -194,6 +196,10 @@ class VeloZipTransportTest {
         assertEquals(1, frames.size());
         assertEquals(VeloZip.FLAG_RAW, frames.get(0).getUnsignedByte(3),
                 "incompressible batch must fall back to RAW");
+        assertEquals(1, metrics.snapshot().compressionOps());
+        assertEquals(1, metrics.snapshot().tx().rawFrames());
+        assertEquals(0, metrics.snapshot().rx().totalFrames());
+        assertFalse(Double.isNaN(metrics.snapshot().compressP50Us()));
         releaseFrames(frames);
     }
 
@@ -290,7 +296,9 @@ class VeloZipTransportTest {
         runTimers();
         List<ByteBuf> frames = drainOutbound(ch);
         assertEquals(1, frames.size());
-        // Feed the frame through the decoder as well: frame counters are decode-side.
+        assertEquals(1, metrics.snapshot().tx().zstdFrames());
+        assertEquals(0, metrics.snapshot().rx().totalFrames());
+        // Feed the frame through the decoder as well; directions stay independent.
         assertTrue(ch.writeInbound(frames.get(0)));
         ByteBuf decoded = ch.readInbound();
         assertNotNull(decoded);
@@ -302,7 +310,10 @@ class VeloZipTransportTest {
         // (V->B) and the decoder (B->V) each add their observation.
         assertEquals(2 * (8192 + VarInts.varIntLen(8192)), snapshot.originalBytes());
         assertEquals(1, snapshot.batches());
-        assertEquals(1, snapshot.zstdFrames());
+        assertEquals(2, snapshot.zstdFrames());
+        assertEquals(1, snapshot.tx().zstdFrames());
+        assertEquals(1, snapshot.rx().zstdFrames());
+        assertEquals(8192 + VarInts.varIntLen(8192), snapshot.averageBatchBytes());
         assertTrue(snapshot.wireBytes() > 0);
         assertEquals(1, snapshot.decompressionOps());
     }

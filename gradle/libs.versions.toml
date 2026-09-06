@@ -1,7 +1,6 @@
 [versions]
-# Bytecode target for all shipped modules (Velocity 3.4.0 minimum; runs fine on the
-# Java 25 required by Purpur 26.1.2). Compile toolchain is JDK 25 because
-# paper-api 26.1.2 classes are class-file major 69.
+# Common/proxy bytecode target. Backend overrides to Java 21.
+# Build toolchain remains Java 25; oldest candidate API is pinned below.
 javaRelease = "17"
 netty = "4.2.7.Final"
 zstdJni = "1.5.7-15"
@@ -10,7 +9,7 @@ hdrHistogram = "2.2.2"
 jmh = "1.37"
 junit = "5.13.4"
 velocityApi = "3.4.0"
-paperApi = "26.1.2.build.74-stable"
+paperApi = "1.21.11-R0.1-20260511.115010-91"
 shadow = "9.6.1"
 
 [libraries]

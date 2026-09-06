@@ -36,6 +36,8 @@ public final class BotMain {
                 .create();
 
         final Object playReached = new Object();
+        var joined = new java.util.concurrent.atomic.AtomicBoolean();
+        var disconnected = new java.util.concurrent.atomic.AtomicBoolean();
         SessionListener listener = new SessionAdapter() {
             @Override
             public void connected(ConnectedEvent event) {
@@ -45,6 +47,7 @@ public final class BotMain {
             @Override
             public void packetReceived(org.geysermc.mcprotocollib.network.Session s, Packet packet) {
                 if (packet instanceof ClientboundLoginPacket) {
+                    joined.set(true);
                     log.info("BOT reached PLAY state (join game received)");
                     synchronized (playReached) {
                         playReached.notifyAll();
@@ -54,6 +57,7 @@ public final class BotMain {
 
             @Override
             public void disconnected(DisconnectedEvent event) {
+                disconnected.set(true);
                 log.info("BOT disconnected: {}", event.getReason());
                 synchronized (playReached) {
                     playReached.notifyAll();
@@ -65,13 +69,14 @@ public final class BotMain {
 
         long deadline = System.currentTimeMillis() + seconds * 1000L;
         synchronized (playReached) {
-            while (System.currentTimeMillis() < deadline) {
+            while (System.currentTimeMillis() < deadline && !disconnected.get()) {
                 playReached.wait(1000);
             }
         }
-        log.info("BOT finished waiting, disconnecting");
+        boolean success = joined.get() && !disconnected.get();
+        log.info("BOT finished: success={}", success);
         session.disconnect(Component.text("E2E test complete"));
         Thread.sleep(1000);
-        System.exit(0);
+        System.exit(success ? 0 : 1);
     }
 }
