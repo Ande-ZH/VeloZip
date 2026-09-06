@@ -1,0 +1,8 @@
+--- backend.log (allowlisted excerpts, not full log) ---
+This server is running Paper version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+--- bot-1.log (allowlisted excerpts, not full log) ---
+BOT reached PLAY state (join game received)
+BOT healthy hold milliseconds=30002
+BOT finished: success=true
+--- proxy.log (allowlisted excerpts, not full log) ---
+Booting up Velocity 4.1.1...

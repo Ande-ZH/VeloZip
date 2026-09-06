@@ -3,6 +3,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import net from 'node:net';
+import crypto from 'node:crypto';
+import {spawnSync} from 'node:child_process';
 import {spawn} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -12,6 +14,39 @@ for (const key of ['JAVA', 'BACKEND_JAR', 'PROXY_JAR']) {
 }
 const run = fs.mkdtempSync(path.join(root, 'build/e2e-'));
 const children = [];
+const mode = process.env.E2E_MODE || 'active';
+if (!['active', 'missing', 'required-missing', 'auth-refusal', 'disabled', 'baseline', 'outdated'].includes(mode)) throw Error('invalid E2E_MODE');
+const seconds = Number(process.env.BOT_SECONDS || 30);
+const repeats = Number(process.env.BOT_REPEATS || 1);
+if (!Number.isInteger(seconds) || seconds < 15 || seconds > 120 || !Number.isInteger(repeats) || repeats < 1 || repeats > 5) throw Error('invalid bot bounds');
+const result = {case: process.env.E2E_CASE || mode, mode, started: new Date().toISOString(), seconds, repeats, bots: [], snapshots: [], passed: false, inputs: {}};
+for (const key of ['BACKEND_JAR', 'PROXY_JAR', 'VIA_JARS']) for (const file of (process.env[key] || '').split(':').filter(Boolean)) result.inputs[path.basename(file)] = crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+for (const [name, executable] of [['proxy', java], ['backend', process.env.BACKEND_JAVA || java]]) {
+  result[`${name}JavaVersion`] = spawnSync(executable, ['-version'], {encoding:'utf8'}).stderr.trim();
+  result[`${name}JavaExecutableSha256`] = crypto.createHash('sha256').update(fs.readFileSync(executable)).digest('hex');
+}
+const logText = name => fs.readFileSync(path.join(run, `${name}.log`), 'utf8').replace(/\x1b\[[0-9;]*m/g, '');
+async function diagnostics(b, p, phase) {
+  const offsets = {backend: logText('backend').length, proxy: logText('proxy').length};
+  if (!['missing','required-missing','baseline'].includes(mode)) b.stdin.write('velozip status\nvelozip stats\nvelozip config\n');
+  if (mode !== 'baseline') p.stdin.write('velozip status\nvelozip stats\nvelozip config\nvelozip servers\n');
+  await sleep(1500);
+  const snapshot = {phase};
+  for (const name of ['backend','proxy']) {
+    const text = logText(name).slice(offsets[name]);
+    snapshot[name] = {active: Number(text.match(/Active connections: (\d+)/)?.[1] ?? -1), directions: {}};
+    for (const match of text.matchAll(/(TX|RX): DirectionSnapshot\[originalBytes=(\d+), wireBytes=(\d+), rawFrames=(\d+), zstdFrames=(\d+)\]/g)) {
+      const [direction, originalBytes, wireBytes, rawFrames, zstdFrames] = match.slice(1);
+      snapshot[name].directions[direction] = Object.fromEntries(Object.entries({originalBytes,wireBytes,rawFrames,zstdFrames}).map(([k,v])=>[k,Number(v)]));
+    }
+    snapshot[name].serverState = text.match(/backend=ServerStatus\[([^\]]+)/)?.[1] || null;
+    snapshot[name].effectiveEnabled = text.match(/(?:^|\n|]: )enabled=(true|false)/)?.[1] ?? null;
+    snapshot[name].effectiveRequired = text.match(/require-velozip=(true|false)/)?.[1] ?? null;
+    snapshot[name].authentication = text.match(/authentication=(disabled|enabled \(redacted\))/)?.[1] ?? null;
+  }
+  result.snapshots.push(snapshot);
+  return snapshot;
+}
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function port() {
   const server = net.createServer();
@@ -53,11 +88,19 @@ try {
     const src = path.join(process.env.BACKEND_SEED,dir);
     if (fs.existsSync(src)) fs.cpSync(src,path.join(backend,dir),{recursive:true});
   }
-  fs.copyFileSync(path.join(root,'velozip-backend/build/libs/VeloZip-Backend-0.3.0.jar'),path.join(backend,'plugins/VeloZip.jar'));
-  fs.copyFileSync(path.join(root,'velozip-velocity/build/libs/VeloZip-Velocity-0.3.0.jar'),path.join(proxy,'plugins/VeloZip.jar'));
+  for (const [side, destination, installed] of [['backend',backend,!['missing','required-missing','baseline'].includes(mode)], ['velocity',proxy,mode !== 'baseline']]) {
+    const artifact = path.join(root,`velozip-${side}/build/libs/VeloZip-${side === 'backend' ? 'Backend' : 'Velocity'}-0.3.0.jar`);
+    result.inputs[path.basename(artifact)] = crypto.createHash('sha256').update(fs.readFileSync(artifact)).digest('hex');
+    if (installed) fs.copyFileSync(artifact,path.join(destination,'plugins/VeloZip.jar'));
+  }
+  const authSecret = crypto.randomBytes(32).toString('hex');
+  for (const [side, directory] of [['backend',path.join(backend,'plugins/VeloZip')],['proxy',path.join(proxy,'plugins/velozip')]]) {
+    fs.mkdirSync(directory,{recursive:true});
+    fs.writeFileSync(path.join(directory,'config.yml'),`enabled: ${!(mode === 'disabled' && side === 'proxy')}\nrequire-velozip: ${mode === 'required-missing'}\nauthentication:\n  secret: "${mode === 'auth-refusal' ? (side === 'backend' ? authSecret : crypto.randomBytes(32).toString('hex')) : ''}"\n`);
+  }
   fs.writeFileSync(path.join(backend,'eula.txt'),'eula=true\n');
   fs.writeFileSync(path.join(backend,'server.properties'),`server-ip=127.0.0.1\nserver-port=${backendPort}\nonline-mode=false\nlevel-name=fresh-world\nlevel-type=minecraft:flat\ngenerate-structures=false\nview-distance=3\nsimulation-distance=3\nspawn-protection=0\n`);
-  const secret = 'isolated-e2e-only-not-production';
+  const secret = crypto.randomBytes(32).toString('hex');
   fs.writeFileSync(path.join(backend,'config/paper-global.yml'),`_version: 31\nproxies:\n  velocity:\n    enabled: true\n    online-mode: false\n    secret: '${secret}'\n`);
   fs.writeFileSync(path.join(proxy,'forwarding.secret'),secret);
   fs.writeFileSync(path.join(proxy,'velocity.toml'),`config-version = "2.7"\nbind = "127.0.0.1:${proxyPort}"\nonline-mode = false\nplayer-info-forwarding-mode = "modern"\nforwarding-secret-file = "forwarding.secret"\n[servers]\nbackend = "127.0.0.1:${backendPort}"\ntry = ["backend"]\n[forced-hosts]\n"lobby.example.com" = ["backend"]\n"factions.example.com" = ["backend"]\n"minigames.example.com" = ["backend"]\n`);
@@ -67,16 +110,52 @@ try {
   await ready(p,'proxy',/Done \(/);
   const task = process.env.BOT_TASK || "bot";
   const cp = fs.readFileSync(path.join(root, `velozip-itest/build/${task}-classpath.txt`), "utf8");
-  const bot = start(java,[`-Dbot.port=${proxyPort}`, "-Dbot.host=127.0.0.1", "-Dbot.seconds=15", "-cp", cp, "dev.velozip.itest.BotMain"],root,"bot");
-  const code = await new Promise(r => { bot.once('exit',r); bot.once('error',()=>r(1)); });
-  if (code !== 0) throw Error(`bot failed with exit ${code}`);
-  for (const name of ['backend','proxy']) if (!fs.readFileSync(path.join(run,`${name}.log`),'utf8').includes('VeloZip transport enabled')) throw Error(`${name}: no transport activation evidence`);
-  console.log(`PASS: join, hold and bilateral activation; evidence ${run}`);
+  const initial = await diagnostics(b,p,'before');
+  if (mode !== 'baseline') {
+    if (initial.proxy.effectiveEnabled !== String(mode !== 'disabled')) throw Error('effective enabled configuration mismatch');
+    if (initial.proxy.effectiveRequired !== String(mode === 'required-missing')) throw Error('effective require-velozip configuration mismatch');
+  }
+  if (mode === 'auth-refusal' && [initial.backend,initial.proxy].some(s=>s.authentication !== 'enabled (redacted)')) throw Error('effective authentication configuration mismatch');
+  for (let i=1;i<=repeats;i++) {
+    const name = `bot-${i}`;
+    const bot = start(java,[`-Dbot.port=${proxyPort}`, '-Dbot.host=127.0.0.1', `-Dbot.seconds=${seconds}`, '-cp', cp.trim(), 'dev.velozip.itest.BotMain'],root,name);
+    const exit = new Promise(r => { bot.once('exit',r); bot.once('error',()=>r(1)); });
+    const watchdog = setTimeout(()=>bot.kill('SIGKILL'),(seconds+45)*1000);
+    await sleep(10000);
+    const live = await diagnostics(b,p,`live-${i}`);
+    const code = await exit;
+    clearTimeout(watchdog);
+    const text = logText(name);
+    const play = text.includes('BOT reached PLAY state');
+    const healthy = text.includes('BOT finished: success=true');
+    const holdMilliseconds = Number(text.match(/BOT healthy hold milliseconds=(\d+)/)?.[1] || 0);
+    result.bots.push({iteration:i,exit:code,play,healthy,holdMilliseconds});
+    await sleep(2000);
+    await diagnostics(b,p,`after-${i}`);
+    if (['required-missing','outdated'].includes(mode)) {
+      if (code !== 1 || healthy) throw Error('expected bot failure with exit 1');
+    } else if (code !== 0 || !play || !healthy || holdMilliseconds < seconds*1000) throw Error(`bot failed healthy-hold criteria with exit ${code}`);
+    if (mode === 'active' && (live.backend.active !== 1 || live.proxy.active !== 1)) throw Error('live active connections must be 1 bilaterally');
+  }
+  for (const name of ['backend','proxy']) {
+    const count = (logText(name).match(/VeloZip transport enabled/g) || []).length;
+    if (mode === 'active' ? count !== repeats : count !== 0) throw Error(`${name}: unexpected activation count ${count}`);
+  }
+  const proxyText = logText('proxy');
+  if (['missing','required-missing'].includes(mode) && !proxyText.includes('negotiation timeout')) throw Error('no timeout status evidence');
+  if (mode === 'auth-refusal' && !proxyText.includes('refused (code')) throw Error('no refusal status evidence');
+  result.passed = true;
+  console.log(`PASS: ${result.case}; evidence ${run}`);
 } catch (e) {
+  result.error = e.message;
   console.error(`FAIL: ${e.message}; evidence ${run}`);
   process.exitCode=1;
 } finally {
   for (const child of children) if (child.exitCode === null) child.kill('SIGTERM');
   await sleep(5000);
-  for (const child of children) if (child.exitCode === null) child.kill('SIGKILL');
+  for (const child of children) if (child.exitCode === null && child.signalCode === null) child.kill('SIGKILL');
+  await sleep(1000);
+  result.cleanup = children.every(c => c.exitCode !== null || c.signalCode !== null);
+  result.finished = new Date().toISOString();
+  fs.writeFileSync(path.join(run,'result.json'), JSON.stringify(result,null,2)+'\n');
 }

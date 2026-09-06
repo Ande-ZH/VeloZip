@@ -67,10 +67,19 @@ public final class BotMain {
         session.addListener(listener);
         session.connect();
 
-        long deadline = System.currentTimeMillis() + seconds * 1000L;
+        long loginDeadline = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(30);
         synchronized (playReached) {
-            while (System.currentTimeMillis() < deadline && !disconnected.get()) {
-                playReached.wait(1000);
+            while (!joined.get() && !disconnected.get() && System.nanoTime() < loginDeadline) {
+                playReached.wait(100);
+            }
+            if (joined.get() && !disconnected.get()) {
+                long holdStart = System.nanoTime();
+                long holdDeadline = holdStart + java.util.concurrent.TimeUnit.SECONDS.toNanos(seconds);
+                while (!disconnected.get() && System.nanoTime() < holdDeadline) {
+                    playReached.wait(100);
+                }
+                log.info("BOT healthy hold milliseconds={}",
+                        java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - holdStart));
             }
         }
         boolean success = joined.get() && !disconnected.get();

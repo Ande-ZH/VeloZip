@@ -1,0 +1,72 @@
+--- backend.log (allowlisted excerpts, not full log) ---
+This server is running Paper version 26.2-121-main@a2a42c5 (2026-08-29T11:32:25Z) (Implementing API version 26.2.build.121-stable)
+Loading server plugin VeloZip v0.3.0
+VeloZip 0.3.0
+VeloZip 0.3.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 0
+VeloZip 0.3.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+VeloZip 0.3.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 0
+VeloZip 0.3.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+VeloZip 0.3.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 0
+VeloZip 0.3.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+--- bot-1.log (allowlisted excerpts, not full log) ---
+BOT finished: success=false
+Outdated client! Please use 26.2", style=StyleImpl{obfuscated=not_set, bold=not_set, strikethrough=not_set, underlined=not_set, italic=not_set, color=NamedTextColor{name="red", value="#FF5555"}, shadowColor=null, clickEvent=null, hoverEvent=null, insertion=null, font=null}, children=[]}
+--- proxy.log (allowlisted excerpts, not full log) ---
+Booting up Velocity 4.1.1...
+VeloZip 0.3.0
+VeloZip 0.3.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 0
+VeloZip 0.3.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+Outdated client! Please use 26.2
+Outdated client! Please use 26.2
+VeloZip 0.3.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 0
+VeloZip 0.3.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+VeloZip 0.3.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 0
+VeloZip 0.3.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false

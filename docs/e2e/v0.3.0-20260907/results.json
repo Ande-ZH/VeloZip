@@ -1,0 +1,2539 @@
+{
+  "schema": 1,
+  "date": "2026-09-07",
+  "transportProtocol": 1,
+  "pluginVersion": "0.3.0",
+  "metric": "application frame bytes; not TCP capture",
+  "results": [
+    {
+      "case": "auth-refusal-invalid-fixture",
+      "mode": "auth-refusal",
+      "started": "2026-09-06T21:31:10.890Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30072
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=255664417505783"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=255664417505783"
+          }
+        }
+      ],
+      "passed": false,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "error": "no refusal status evidence",
+      "cleanup": true,
+      "finished": "2026-09-06T21:32:40.986Z",
+      "excluded": "Proxy configuration written to unused plugins/velozip-velocity; rerun uses actual plugins/velozip",
+      "rawLogSha256": {
+        "backend.log": "9a9af65f1eb58b80f019eeddf1380c063af42ca72defdde8fb61049a50225bdd",
+        "bot-1.log": "23e3e8f4f0c83edaa05aea9193d658d18d05555edfb5a8c66934da566aff1403",
+        "proxy.log": "f9758f5ab0109110709dfefa21b0f7b136b69d292cc8964d602a00e84e281c5c"
+      }
+    },
+    {
+      "case": "missing-fallback",
+      "mode": "missing",
+      "started": "2026-09-06T21:28:14.298Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30062
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=255485989670685"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=255485989670685"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "cleanup": true,
+      "finished": "2026-09-06T21:29:42.650Z",
+      "rawLogSha256": {
+        "backend.log": "16a4123b3d2b595c9806880ec75aed395c35909085df1a9cc617746785c27ee5",
+        "bot-1.log": "cdacda73aeafce5928304096aa2c84be103caf56c694adc929e59d17e301f900",
+        "proxy.log": "273568930e94d747f011e856a2ee949c919ee2622ceede8f1b1ac76ebf0d20d6"
+      }
+    },
+    {
+      "case": "missing-required-invalid-fixture",
+      "mode": "required-missing",
+      "started": "2026-09-06T21:29:42.716Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30057
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=255574269672301"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=255574269672301"
+          }
+        }
+      ],
+      "passed": false,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "error": "expected bot failure with exit 1",
+      "cleanup": true,
+      "finished": "2026-09-06T21:31:10.825Z",
+      "excluded": "Proxy configuration written to unused plugins/velozip-velocity; rerun uses actual plugins/velozip",
+      "rawLogSha256": {
+        "backend.log": "eaf499598183c0e6f018ffc657706a8ba265af34baf81815305cf373d40bdb4f",
+        "bot-1.log": "9e6dff47c85aa1e174c97bf6601246b2ccda58b8c80cc9777c9a7a2acbe1617e",
+        "proxy.log": "8e7e6990a3a4a04bd086795b561e6adb29d2b6e77a0da4014e38cec48809237c"
+      }
+    },
+    {
+      "case": "paper121-baseline",
+      "mode": "baseline",
+      "started": "2026-09-06T21:16:06.197Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30002
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          },
+          "proxy": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          },
+          "proxy": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          },
+          "proxy": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "cleanup": true,
+      "finished": "2026-09-06T21:17:33.951Z",
+      "rawLogSha256": {
+        "backend.log": "e39f40d3ad172dfa9cc24e1e044a614140e3508ad865de2f1a741736c647f7cc",
+        "bot-1.log": "a4abbfad1a2c66b4b5fad84aa537941df06872fe0bb45864f7956a531e6ed01f",
+        "proxy.log": "ddf312f5d919d576bc6cb066fd0719fac28cf850b9d6c050e26b640469291c5b"
+      }
+    },
+    {
+      "case": "paper121-reconnect",
+      "mode": "active",
+      "started": "2026-09-06T21:17:34.026Z",
+      "seconds": 30,
+      "repeats": 3,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30061
+        },
+        {
+          "iteration": 2,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30052
+        },
+        {
+          "iteration": 3,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30048
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 589697,
+                "wireBytes": 7404,
+                "rawFrames": 33,
+                "zstdFrames": 32
+              },
+              "RX": {
+                "originalBytes": 70,
+                "wireBytes": 105,
+                "rawFrames": 7,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 70,
+                "wireBytes": 105,
+                "rawFrames": 7,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 589697,
+                "wireBytes": 7404,
+                "rawFrames": 33,
+                "zstdFrames": 32
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 617471,
+                "wireBytes": 36095,
+                "rawFrames": 424,
+                "zstdFrames": 64
+              },
+              "RX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 617471,
+                "wireBytes": 36095,
+                "rawFrames": 424,
+                "zstdFrames": 64
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0"
+          }
+        },
+        {
+          "phase": "live-2",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 1226587,
+                "wireBytes": 61749,
+                "rawFrames": 561,
+                "zstdFrames": 120
+              },
+              "RX": {
+                "originalBytes": 380,
+                "wireBytes": 570,
+                "rawFrames": 38,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 380,
+                "wireBytes": 570,
+                "rawFrames": 38,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 1226395,
+                "wireBytes": 61546,
+                "rawFrames": 559,
+                "zstdFrames": 120
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0"
+          }
+        },
+        {
+          "phase": "after-2",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 1276869,
+                "wireBytes": 113293,
+                "rawFrames": 948,
+                "zstdFrames": 194
+              },
+              "RX": {
+                "originalBytes": 590,
+                "wireBytes": 885,
+                "rawFrames": 59,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 590,
+                "wireBytes": 885,
+                "rawFrames": 59,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 1276869,
+                "wireBytes": 113293,
+                "rawFrames": 948,
+                "zstdFrames": 194
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0"
+          }
+        },
+        {
+          "phase": "live-3",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 1885716,
+                "wireBytes": 138870,
+                "rawFrames": 1106,
+                "zstdFrames": 249
+              },
+              "RX": {
+                "originalBytes": 680,
+                "wireBytes": 1020,
+                "rawFrames": 68,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 680,
+                "wireBytes": 1020,
+                "rawFrames": 68,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 1885599,
+                "wireBytes": 138748,
+                "rawFrames": 1105,
+                "zstdFrames": 249
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0"
+          }
+        },
+        {
+          "phase": "after-3",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 1938199,
+                "wireBytes": 192040,
+                "rawFrames": 1480,
+                "zstdFrames": 327
+              },
+              "RX": {
+                "originalBytes": 880,
+                "wireBytes": 1320,
+                "rawFrames": 88,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 880,
+                "wireBytes": 1320,
+                "rawFrames": 88,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 1938199,
+                "wireBytes": 192040,
+                "rawFrames": 1480,
+                "zstdFrames": 327
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "cleanup": true,
+      "finished": "2026-09-06T21:20:15.429Z",
+      "rawLogSha256": {
+        "backend.log": "5c5571fadf79c7e19fe359cb16fbde6ef8168630dc46303153ac4d01eee7f853",
+        "bot-1.log": "fb9556a5f12359b92165cdddd2fb973740fbaa75e9fa9f78e6c3cf68ccbb1c35",
+        "bot-2.log": "a7989725799918f47ca2f563095591a734cced15edd97c3c843a3d82fe4a3089",
+        "bot-3.log": "a0a2257e9e5b5dbe7d0bbdf85475daf50f4d5b3e91f97143b8f3cae8d4673b40",
+        "proxy.log": "5767bac75ff6d06f52158b0dd0a0f8af2c1b9731c56b7642bd83e08ac90345f8"
+      },
+      "applicationFrameBytes": {
+        "backend": {
+          "originalBytes": 1939079,
+          "wireBytes": 193360,
+          "savingsPercent": 90.02825568220788
+        },
+        "proxy": {
+          "originalBytes": 1939079,
+          "wireBytes": 193360,
+          "savingsPercent": 90.02825568220788
+        }
+      },
+      "finalBilateralCountersEqual": true
+    },
+    {
+      "case": "paper261",
+      "mode": "active",
+      "started": "2026-09-06T21:21:46.173Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30064
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 590829,
+                "wireBytes": 5909,
+                "rawFrames": 20,
+                "zstdFrames": 27
+              },
+              "RX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 590829,
+                "wireBytes": 5909,
+                "rawFrames": 20,
+                "zstdFrames": 27
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 602550,
+                "wireBytes": 17621,
+                "rawFrames": 263,
+                "zstdFrames": 36
+              },
+              "RX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 602550,
+                "wireBytes": 17621,
+                "rawFrames": 263,
+                "zstdFrames": 36
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-26.1.2-74.jar": "1d70b1dab9cf4a6de615209a536f3a45a2186240253c428213ce2188ab95e5f7",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "cleanup": true,
+      "finished": "2026-09-06T21:23:06.134Z",
+      "rawLogSha256": {
+        "backend.log": "23a9c7db766baac93ce10e0f46027fe5a3a693eb68103f2630121b79d9efbde5",
+        "bot-1.log": "6c3ed9d052832b034c3f12c1e9c493d03d7fa7218a11b46d050b4c88f1368d05",
+        "proxy.log": "e5eb804e3decdf9f34d397f456be9a139d6bdb9ffe663fab709a7305782e746b"
+      },
+      "applicationFrameBytes": {
+        "backend": {
+          "originalBytes": 602850,
+          "wireBytes": 18071,
+          "savingsPercent": 97.00240524176826
+        },
+        "proxy": {
+          "originalBytes": 602850,
+          "wireBytes": 18071,
+          "savingsPercent": 97.00240524176826
+        }
+      },
+      "finalBilateralCountersEqual": true
+    },
+    {
+      "case": "paper262-native-outdated",
+      "mode": "outdated",
+      "started": "2026-09-06T21:27:19.185Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 1,
+          "play": false,
+          "healthy": false,
+          "holdMilliseconds": 0
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-26.2-121.jar": "0de30efb024bc8b83c9c7d507d11802897ad8056b6110ec09fe1a91d126ccb54",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "cleanup": true,
+      "finished": "2026-09-06T21:28:14.245Z",
+      "rawLogSha256": {
+        "backend.log": "06a89993edf79decda87a0c8a56bc957338b924b7c81eac56fcf92624ce33e02",
+        "bot-1.log": "ba2f5573ac921e9e0b9c9f1ee03a77ea30f071d65b98475988afbdf2192866e9",
+        "proxy.log": "0e6c50b536bc068eabbf48b6028a1c2846b66f37fd1b57abcefd27e333136df3"
+      }
+    },
+    {
+      "case": "paper262-via",
+      "mode": "active",
+      "started": "2026-09-06T21:25:57.570Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30053
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 596835,
+                "wireBytes": 13173,
+                "rawFrames": 92,
+                "zstdFrames": 42
+              },
+              "RX": {
+                "originalBytes": 70,
+                "wireBytes": 105,
+                "rawFrames": 7,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 70,
+                "wireBytes": 105,
+                "rawFrames": 7,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 596594,
+                "wireBytes": 12917,
+                "rawFrames": 89,
+                "zstdFrames": 42
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 679566,
+                "wireBytes": 94353,
+                "rawFrames": 496,
+                "zstdFrames": 197
+              },
+              "RX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 679566,
+                "wireBytes": 94353,
+                "rawFrames": 496,
+                "zstdFrames": 197
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-26.2-121.jar": "0de30efb024bc8b83c9c7d507d11802897ad8056b6110ec09fe1a91d126ccb54",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "ViaVersion-5.12.0-SNAPSHOT.jar": "fc96d1919c1ccc9edb713e45390f9032c35365252f0c1c4c9a3af3dce5defb71",
+        "ViaBackwards-5.12.0-SNAPSHOT.jar": "df9a40a85f4be4416c7405e8091ece175d00ee4ac23aee040766c25cf3362280",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "cleanup": true,
+      "finished": "2026-09-06T21:27:19.130Z",
+      "rawLogSha256": {
+        "backend.log": "2ae39b4ad2fb90c2e66336d419076f6a679d4f00eb20a9495e203313cd323bfb",
+        "bot-1.log": "7ef7998a6e010c7790edc607378330c83961d848d84b138a227cad44e99c127b",
+        "proxy.log": "4327c31a6d6097daf1a153ec8059fbaf3eed7fc058cb79f8e6f8a9c69b0df020"
+      },
+      "applicationFrameBytes": {
+        "backend": {
+          "originalBytes": 679866,
+          "wireBytes": 94803,
+          "savingsPercent": 86.05563449267943
+        },
+        "proxy": {
+          "originalBytes": 679866,
+          "wireBytes": 94803,
+          "savingsPercent": 86.05563449267943
+        }
+      },
+      "finalBilateralCountersEqual": true
+    },
+    {
+      "case": "proxy-disabled-invalid-fixture",
+      "mode": "disabled",
+      "started": "2026-09-06T21:32:41.051Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30065
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "cleanup": true,
+      "finished": "2026-09-06T21:34:11.492Z",
+      "excluded": "Proxy configuration written to unused plugins/velozip-velocity; rerun uses actual plugins/velozip",
+      "rawLogSha256": {
+        "backend.log": "f6c9ec473261e5e531fff8ddef15d9b91cec7fa089f37d51dacb6f6d99e82ea2",
+        "bot-1.log": "b0494372a60586c4221f49a27274e846f150b0f0009a37bfea27ef0fb136a8eb",
+        "proxy.log": "128c567ea803ddbbcf5a4de72a852ac6155c938a5ba5175d8c967145e53f858d"
+      }
+    },
+    {
+      "case": "purpur121",
+      "mode": "active",
+      "started": "2026-09-06T21:20:15.490Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30059
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 591860,
+                "wireBytes": 10702,
+                "rawFrames": 71,
+                "zstdFrames": 39
+              },
+              "RX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 591860,
+                "wireBytes": 10702,
+                "rawFrames": 71,
+                "zstdFrames": 39
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 659006,
+                "wireBytes": 78405,
+                "rawFrames": 539,
+                "zstdFrames": 127
+              },
+              "RX": {
+                "originalBytes": 290,
+                "wireBytes": 435,
+                "rawFrames": 29,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 290,
+                "wireBytes": 435,
+                "rawFrames": 29,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 659006,
+                "wireBytes": 78405,
+                "rawFrames": 539,
+                "zstdFrames": 127
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.21.11-2568.jar": "ee199511bf0a970ee8459fe3a351703fec37293f00bc2de1c5cb746c7e4acc34",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "cleanup": true,
+      "finished": "2026-09-06T21:21:46.110Z",
+      "rawLogSha256": {
+        "backend.log": "f7308de095306b900cad31e5e7933aca5f914aa2e578bd5e243d51c261dc2d9e",
+        "bot-1.log": "509dfe4369be2c5321e88cfa5dc37853acabacf739c7fbcfaefd89350f1f5134",
+        "proxy.log": "f272e95898e48a9ee96a3d41cca11592f0a3cbdf7bfc0b6a69b17da3810a1d94"
+      },
+      "applicationFrameBytes": {
+        "backend": {
+          "originalBytes": 659296,
+          "wireBytes": 78840,
+          "savingsPercent": 88.04179003057807
+        },
+        "proxy": {
+          "originalBytes": 659296,
+          "wireBytes": 78840,
+          "savingsPercent": 88.04179003057807
+        }
+      },
+      "finalBilateralCountersEqual": true
+    },
+    {
+      "case": "purpur261",
+      "mode": "active",
+      "started": "2026-09-06T21:23:06.206Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30057
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 598333,
+                "wireBytes": 11754,
+                "rawFrames": 67,
+                "zstdFrames": 38
+              },
+              "RX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 598275,
+                "wireBytes": 11691,
+                "rawFrames": 66,
+                "zstdFrames": 38
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 685764,
+                "wireBytes": 98020,
+                "rawFrames": 476,
+                "zstdFrames": 192
+              },
+              "RX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 685764,
+                "wireBytes": 98020,
+                "rawFrames": 476,
+                "zstdFrames": 192
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "server.jar": "d88e3826a7f3ad3cb4b07be02fc732ba732bf1a1b113d96b605e9f8d1d119608",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "cleanup": true,
+      "finished": "2026-09-06T21:24:28.409Z",
+      "rawLogSha256": {
+        "backend.log": "15b3803ab74c8d2beff99ed3842f54bed0cb3c40feb926c034d3fb755b7fefc0",
+        "bot-1.log": "9e6dff47c85aa1e174c97bf6601246b2ccda58b8c80cc9777c9a7a2acbe1617e",
+        "proxy.log": "d7469d9cf80b0b9ccb06c9514165479f5ee7f7d0f50b19342c53ce02273b12a4"
+      },
+      "applicationFrameBytes": {
+        "backend": {
+          "originalBytes": 686064,
+          "wireBytes": 98470,
+          "savingsPercent": 85.6471116397304
+        },
+        "proxy": {
+          "originalBytes": 686064,
+          "wireBytes": 98470,
+          "savingsPercent": 85.6471116397304
+        }
+      },
+      "finalBilateralCountersEqual": true
+    },
+    {
+      "case": "velocity340-paper121",
+      "mode": "active",
+      "started": "2026-09-06T21:24:28.489Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30068
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 595519,
+                "wireBytes": 14673,
+                "rawFrames": 100,
+                "zstdFrames": 47
+              },
+              "RX": {
+                "originalBytes": 70,
+                "wireBytes": 105,
+                "rawFrames": 7,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 70,
+                "wireBytes": 105,
+                "rawFrames": 7,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 594727,
+                "wireBytes": 14333,
+                "rawFrames": 100,
+                "zstdFrames": 46
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 670046,
+                "wireBytes": 89319,
+                "rawFrames": 529,
+                "zstdFrames": 172
+              },
+              "RX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 670046,
+                "wireBytes": 89319,
+                "rawFrames": 529,
+                "zstdFrames": 172
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "velocity-3.4.0-563.jar": "fe53021f3168322cb6cb68f78699866fd098df3c306e4359847a10b0d02689ef",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "cleanup": true,
+      "finished": "2026-09-06T21:25:57.506Z",
+      "rawLogSha256": {
+        "backend.log": "14978d3fe1d4deca1c9183e70a31bf108ad1a8a5f19dda5e2a71b32c726e6969",
+        "bot-1.log": "8a57d0f13f77f4c75718dacc1d79a6152cca2bf4285ba9d03f72c5534d93170a",
+        "proxy.log": "10de248f1b88bab1325b56a9295a42cc8b14fab782add154ec9c3b542d0d1be2"
+      },
+      "applicationFrameBytes": {
+        "backend": {
+          "originalBytes": 670346,
+          "wireBytes": 89769,
+          "savingsPercent": 86.60855737186468
+        },
+        "proxy": {
+          "originalBytes": 670346,
+          "wireBytes": 89769,
+          "savingsPercent": 86.60855737186468
+        }
+      },
+      "finalBilateralCountersEqual": true
+    },
+    {
+      "case": "auth-refusal",
+      "mode": "auth-refusal",
+      "started": "2026-09-06T21:36:36.142Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30063
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=255989738236906"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=255989738236906"
+          }
+        }
+      ],
+      "passed": false,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "error": "no refusal status evidence",
+      "cleanup": true,
+      "finished": "2026-09-06T21:38:06.274Z",
+      "rawLogSha256": {
+        "backend.log": "6d79b97ccfea0db1a6c363105b78129f363d484b79ed4c98c987ceab6ef2ab60",
+        "bot-1.log": "d1efd3bcf475dd62d3f38d116f973b698c922dd17cc2801708d803e362aaa6d5",
+        "proxy.log": "3f31e90d065ba311d04e7a3bc86e4dcfa9fbef0f4f724474651acfbc9d63b1a3"
+      }
+    },
+    {
+      "case": "missing-required",
+      "mode": "required-missing",
+      "started": "2026-09-06T21:35:31.505Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 1,
+          "play": true,
+          "healthy": false,
+          "holdMilliseconds": 4905
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=255923544380960"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=255923544380960"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "cleanup": true,
+      "finished": "2026-09-06T21:36:36.074Z",
+      "rawLogSha256": {
+        "backend.log": "a348f42c6bc9bb7c832c762d30704efe2e95285c151c3883df0368dcbb429dba",
+        "bot-1.log": "cf0522bf9fdf3264ca314ad98f743cad5832534ec5ed34ab2862e77377e4f702",
+        "proxy.log": "64af143ac2acc67b05cbb1d421bf799b30985a35a99b25c57d073e5d4c9ec0ad"
+      }
+    },
+    {
+      "case": "proxy-disabled",
+      "mode": "disabled",
+      "started": "2026-09-06T21:38:06.340Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30058
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "cleanup": true,
+      "finished": "2026-09-06T21:39:36.670Z",
+      "rawLogSha256": {
+        "backend.log": "73e8d1e994a08622172ceea4c8871605cce30dea1a55d9b336a0d912c762ab25",
+        "bot-1.log": "57cc038e463b4e2d3ef84f19c983230fe758b3f7dc96463d1f66cb1fd37a8a7c",
+        "proxy.log": "f9c34d87ea0cf71159ea4847454de44605dee48b6e0582209323a8721184f327"
+      }
+    },
+    {
+      "case": "proxy-disabled-guard-verification",
+      "mode": "disabled",
+      "started": "2026-09-06T21:53:42.634Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30074
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "false",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "false",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "false",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-0.3.0.jar": "9c4bfd5e8d53897478b9444d17e034afdc10df294bde7a658a1b9a674b142614",
+        "VeloZip-Velocity-0.3.0.jar": "ac6df75fbd9bd38c96f47cff791c1e9aa732fd9c68ddbde1a5e0c93c99962477"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "cleanup": true,
+      "finished": "2026-09-06T21:55:14.174Z",
+      "supplemental": true,
+      "rawLogSha256": {
+        "backend.log": "e2d89339a63e5dba47f579293eb4128badc3ce63603d848edc75e75dc0410653",
+        "bot-1.log": "39c695da9e567a3007567388fcb929df541f6e9da584dd41c73da9042bf5e136",
+        "proxy.log": "e913e2167c04f1e1d40191b6d4d1c5daa79cba9c97534cc801d97fef9f0e08a1"
+      }
+    }
+  ]
+}
