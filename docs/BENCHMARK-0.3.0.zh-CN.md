@@ -24,7 +24,7 @@
 | JMH | 1.37；compiler blackhole 自动检测 |
 | Zstd JNI / 压缩级别 | 1.5.7-15 / level 1 |
 | Netty | 4.2.7.Final |
-| CPU | Intel Xeon Processor (Skylake, IBRS)，2 vCPU，1 socket × 2 cores，无 SMT |
+| CPU | Intel Xeon Processor (Skylake, IBRS)，2 vCPU，1 socket × 2 cores，无 SMT，限制CPU主频最高2.0GHz |
 | 虚拟化 | Microsoft hypervisor；共享运行环境，未绑核、未隔离后台负载 |
 | OS | Linux 6.12.94+deb13-cloud-amd64，x86_64 |
 | 内存 | 主机约 7.8 GiB，无 swap；开始时 available 约 2.5 GiB |
