@@ -36,7 +36,7 @@ import java.nio.file.Path;
         authors = {"Ande-ZH"})
 public final class VeloZipVelocityPlugin {
 
-    public static final String PLUGIN_VERSION = "0.3.0";
+    public static final String PLUGIN_VERSION = "1.0.0";
 
     private final ProxyServer proxy;
     private final Logger slf4jLogger;

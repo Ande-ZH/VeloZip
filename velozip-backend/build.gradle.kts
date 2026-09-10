@@ -7,41 +7,29 @@ plugins {
 
 val libs = the<VersionCatalogsExtension>().named("libs")
 
-// Compile-only stubs of paper-server / vanilla NMS classes (no maven artifact
-// for paper-server; the vanilla jar is unobfuscated but not published as a
-// compile dependency). Signatures verified against Purpur 26.1.2 — see
-// docs/STUBS.md. Never packaged; runtime links against the real server classes.
-sourceSets {
-    create("stubs")
-}
-
 dependencies {
-    "stubsCompileOnly"(project(":velozip-common"))
-    "stubsCompileOnly"(libs.findLibrary("paper-api").get())
-
     api(project(":velozip-common"))
 
-    compileOnly(sourceSets["stubs"].output)
     compileOnly(libs.findLibrary("paper-api").get())
 
-    // snakeyaml is provided by the server (bukkit) at runtime.
+    // Isolate YAML from the incompatible versions bundled by old servers.
+    implementation(libs.findLibrary("snakeyaml").get())
 
     testImplementation(project(":velozip-common"))
+    testImplementation(libs.findLibrary("paper-api").get())
+    testImplementation(libs.findLibrary("netty-handler").get())
     testImplementation(libs.findLibrary("junit-jupiter").get())
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
-
-tasks.withType<JavaCompile>().configureEach {
-    // Oldest candidate API is Java 21; runtime compatibility needs separate ABI/E2E evidence.
-    options.release.set(21)
-    options.encoding = "UTF-8"
 }
 
 tasks.named<ShadowJar>("shadowJar") {
     archiveBaseName.set("VeloZip-Backend")
     archiveClassifier.set("")
 
-    relocate("org.hdrhistogram", "dev.velozip.shaded.hdrhistogram")
+    relocate("org.HdrHistogram", "dev.velozip.shaded.hdrhistogram")
+    relocate("org.yaml.snakeyaml", "dev.velozip.shaded.snakeyaml")
+
+    dependencies { exclude(dependency("io.netty:.*")) }
 
     manifest.attributes["paperweight-mappings-namespace"] = "mojang"
     mergeServiceFiles()

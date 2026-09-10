@@ -26,3 +26,4 @@ velozip-benchmark/results/
 jmh-result*.json
 .zcode/
 cache/mojang_*.jar
+node_modules/

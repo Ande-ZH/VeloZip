@@ -1,0 +1,2 @@
+--- backend.log (allowlisted excerpts) ---
+This server is running Purpur version git-Purpur-1632 (MC: 1.18.2) (Implementing API version 1.18.2-R0.1-SNAPSHOT) (Git: dc4a29b on HEAD)

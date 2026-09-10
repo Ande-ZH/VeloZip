@@ -1,0 +1,491 @@
+{
+  "pluginVersion": "1.0.0",
+  "java": 25,
+  "netty": "4.2.7.Final",
+  "leakDetection": "PARANOID",
+  "description": "相同源码构建的 JUnit 报告，Gradle 可能从缓存恢复；时间戳保留原始值。",
+  "totals": {
+    "tests": 64,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "module": "common",
+      "name": "dev.velozip.common.HardeningTest",
+      "timestamp": "2026-09-09T23:33:40.500Z",
+      "seconds": 0.755,
+      "reportSha256": "964cfbfae2ae2a04ed9a63127d302563c53583c31c004c33e6070543611c8b93",
+      "cases": [
+        {
+          "name": "pendingPromisesFailOnClose()",
+          "className": "dev.velozip.common.HardeningTest",
+          "seconds": 0.509
+        },
+        {
+          "name": "malformedFrameIsolatesFailure()",
+          "className": "dev.velozip.common.HardeningTest",
+          "seconds": 0.007
+        },
+        {
+          "name": "oversizePacketFailsOnlyThisConnection()",
+          "className": "dev.velozip.common.HardeningTest",
+          "seconds": 0.014
+        },
+        {
+          "name": "reconnectStartsFresh()",
+          "className": "dev.velozip.common.HardeningTest",
+          "seconds": 0.068
+        },
+        {
+          "name": "shutdownDropsPendingBatch()",
+          "className": "dev.velozip.common.HardeningTest",
+          "seconds": 0.001
+        },
+        {
+          "name": "repeatedOutboundActivationIsIdempotent()",
+          "className": "dev.velozip.common.HardeningTest",
+          "seconds": 0.089
+        }
+      ],
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "common",
+      "name": "dev.velozip.common.NegotiationTest",
+      "timestamp": "2026-09-09T23:33:41.259Z",
+      "seconds": 0.072,
+      "reportSha256": "534de388be016d70def12d9f199c9e8eb39db2ffef0d31c08497c8ca3828fe50",
+      "cases": [
+        {
+          "name": "refuseOnTamperedHmac()",
+          "className": "dev.velozip.common.NegotiationTest",
+          "seconds": 0.033
+        },
+        {
+          "name": "reqRoundTripWithHmac()",
+          "className": "dev.velozip.common.NegotiationTest",
+          "seconds": 0.005
+        },
+        {
+          "name": "reqRoundTripWithoutHmac()",
+          "className": "dev.velozip.common.NegotiationTest",
+          "seconds": 0.001
+        },
+        {
+          "name": "refuseReasonParamMismatch()",
+          "className": "dev.velozip.common.NegotiationTest",
+          "seconds": 0.002
+        },
+        {
+          "name": "refuseWhenOneSideHasSecret()",
+          "className": "dev.velozip.common.NegotiationTest",
+          "seconds": 0.001
+        },
+        {
+          "name": "refuseReasonProtoMismatch()",
+          "className": "dev.velozip.common.NegotiationTest",
+          "seconds": 0.002
+        },
+        {
+          "name": "malformedReqRejected()",
+          "className": "dev.velozip.common.NegotiationTest",
+          "seconds": 0.004
+        },
+        {
+          "name": "hmacDeterministic()",
+          "className": "dev.velozip.common.NegotiationTest",
+          "seconds": 0.004
+        },
+        {
+          "name": "refuseReasonDisabled()",
+          "className": "dev.velozip.common.NegotiationTest",
+          "seconds": 0.001
+        },
+        {
+          "name": "wrongSecretRejected()",
+          "className": "dev.velozip.common.NegotiationTest",
+          "seconds": 0.006
+        },
+        {
+          "name": "refuseRoundTrip()",
+          "className": "dev.velozip.common.NegotiationTest",
+          "seconds": 0.001
+        }
+      ],
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "common",
+      "name": "dev.velozip.common.VarIntsTest",
+      "timestamp": "2026-09-09T23:33:41.332Z",
+      "seconds": 0.007,
+      "reportSha256": "4aced6dd8958ac032a4b0322ab4d8a809a0006f936e83e4c77baa648ef14e10d",
+      "cases": [
+        {
+          "name": "roundTrip()",
+          "className": "dev.velozip.common.VarIntsTest",
+          "seconds": 0.001
+        },
+        {
+          "name": "valueCapThrows()",
+          "className": "dev.velozip.common.VarIntsTest",
+          "seconds": 0.002
+        },
+        {
+          "name": "tryReadReturnsMinusOneWhenTruncated()",
+          "className": "dev.velozip.common.VarIntsTest",
+          "seconds": 0.001
+        },
+        {
+          "name": "widthCapThrows()",
+          "className": "dev.velozip.common.VarIntsTest",
+          "seconds": 0.001
+        }
+      ],
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "common",
+      "name": "dev.velozip.common.VeloZipTransportTest",
+      "timestamp": "2026-09-09T23:33:41.341Z",
+      "seconds": 0.319,
+      "reportSha256": "0d9c1f999c0e94422afce4c276fda8f8ca0315edbd51390fdb88e35efb35c6c8",
+      "cases": [
+        {
+          "name": "emptyPacketIsSkipped()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.023
+        },
+        {
+          "name": "vanillaFramesPassThroughDualDecoder()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.003
+        },
+        {
+          "name": "badMagicRejected()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.002
+        },
+        {
+          "name": "promisesCompleteWhenFrameWritten()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.019
+        },
+        {
+          "name": "garbageZstdPayloadRejected()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.003
+        },
+        {
+          "name": "oversizedUncompressedLengthRejected()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.009
+        },
+        {
+          "name": "truncatedFrameWaitsForMoreData()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.003
+        },
+        {
+          "name": "metricsAccumulate()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.029
+        },
+        {
+          "name": "roundTripSmallBatchIsRawFrame()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.022
+        },
+        {
+          "name": "decompressionBombRejected()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.009
+        },
+        {
+          "name": "sizeCapSplitsIntoMultipleFrames()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.02
+        },
+        {
+          "name": "oversizeSinglePacketClosesConnection()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.013
+        },
+        {
+          "name": "dualModeSwitchIsPermanent()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.024
+        },
+        {
+          "name": "roundTripLargeCompressibleBatch()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.033
+        },
+        {
+          "name": "badFlagsRejected()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.002
+        },
+        {
+          "name": "coalescedVeloZipFramesParseCompletely()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.031
+        },
+        {
+          "name": "oversizedFrameLengthRejectedBeforeAllocation()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.006
+        },
+        {
+          "name": "incompressibleBatchFallsBackToRaw()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.026
+        },
+        {
+          "name": "badVersionRejected()",
+          "className": "dev.velozip.common.VeloZipTransportTest",
+          "seconds": 0.005
+        }
+      ],
+      "tests": 19,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "common",
+      "name": "dev.velozip.common.YamlConfigsTest",
+      "timestamp": "2026-09-09T23:33:41.661Z",
+      "seconds": 0.017,
+      "reportSha256": "96e696c4feed8785682cbd729a1f85dc425a4cb2ae96ab1ee2d710f05ccfe320",
+      "cases": [
+        {
+          "name": "nestedAndShorthandServers()",
+          "className": "dev.velozip.common.YamlConfigsTest",
+          "seconds": 0.001
+        },
+        {
+          "name": "rejectsFractionalOverflowAndExplicitNull()",
+          "className": "dev.velozip.common.YamlConfigsTest",
+          "seconds": 0.014
+        },
+        {
+          "name": "rejectsWrongTypesWithoutDisclosingValues()",
+          "className": "dev.velozip.common.YamlConfigsTest",
+          "seconds": 0.001
+        }
+      ],
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "common",
+      "name": "dev.velozip.common.util.PlatformVersionsTest",
+      "timestamp": "2026-09-09T23:33:41.679Z",
+      "seconds": 0.01,
+      "reportSha256": "a99057266a2914b1a4872557368687374117d9ec498d896e6cd93dc48a4a5dce",
+      "cases": [
+        {
+          "name": "rejectsNonVersionStrings()",
+          "className": "dev.velozip.common.util.PlatformVersionsTest",
+          "seconds": 0.002
+        },
+        {
+          "name": "parsesPlainVersions()",
+          "className": "dev.velozip.common.util.PlatformVersionsTest",
+          "seconds": 0.001
+        },
+        {
+          "name": "stripsBuildSuffixes()",
+          "className": "dev.velozip.common.util.PlatformVersionsTest",
+          "seconds": 0.001
+        }
+      ],
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "backend",
+      "name": "dev.velozip.backend.adapter.BackendTransportTest",
+      "timestamp": "2026-09-09T23:33:40.123Z",
+      "seconds": 0.815,
+      "reportSha256": "2c97ac2c757bcf4134fbd065b045aaaa597d24e9b3a9325b2ea015c764cc9061",
+      "cases": [
+        {
+          "name": "malformedAndOversizedPrefixesCloseConnection()",
+          "className": "dev.velozip.backend.adapter.BackendTransportTest",
+          "seconds": 0.42
+        },
+        {
+          "name": "delayedBatchBypassesVanillaAndCloseReleasesResources()",
+          "className": "dev.velozip.backend.adapter.BackendTransportTest",
+          "seconds": 0.269
+        },
+        {
+          "name": "replacementPreservesAlreadyBufferedPartialVanillaFrame()",
+          "className": "dev.velozip.backend.adapter.BackendTransportTest",
+          "seconds": 0.017
+        },
+        {
+          "name": "handlesEveryFragmentAndUncompressedVanillaBeforeSwitch()",
+          "className": "dev.velozip.backend.adapter.BackendTransportTest",
+          "seconds": 0.003
+        },
+        {
+          "name": "sharedNativeResourceSurvivesOutboundActivationAndCoalescedInboundSwitch()",
+          "className": "dev.velozip.backend.adapter.BackendTransportTest",
+          "seconds": 0.023
+        },
+        {
+          "name": "recognizesOldAndCurrentBackendFamiliesWithoutClaimingFutureOnes()",
+          "className": "dev.velozip.backend.adapter.BackendTransportTest",
+          "seconds": 0.005
+        },
+        {
+          "name": "missingAnchorsLeavePipelineUntouched()",
+          "className": "dev.velozip.backend.adapter.BackendTransportTest",
+          "seconds": 0.005
+        }
+      ],
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "backend",
+      "name": "dev.velozip.backend.adapter.PaperForwardingTest",
+      "timestamp": "2026-09-09T23:33:40.952Z",
+      "seconds": 0.024,
+      "reportSha256": "7f69b9c38e9eaa09b92b009c0992efb3bd3ae7b09238840634d1db8622a59696",
+      "cases": [
+        {
+          "name": "readsLiveModernValueWithoutFallingBackToLegacy()",
+          "className": "dev.velozip.backend.adapter.PaperForwardingTest",
+          "seconds": 0.011
+        },
+        {
+          "name": "readsLegacyOnlyWhenModernConfigurationClassIsAbsent()",
+          "className": "dev.velozip.backend.adapter.PaperForwardingTest",
+          "seconds": 0.001
+        },
+        {
+          "name": "brokenModernConfigurationCannotFallBackToLegacyEnabledFlag()",
+          "className": "dev.velozip.backend.adapter.PaperForwardingTest",
+          "seconds": 0.01
+        }
+      ],
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "backend",
+      "name": "dev.velozip.backend.adapter.PlayerChannelsTest",
+      "timestamp": "2026-09-09T23:33:40.995Z",
+      "seconds": 0.016,
+      "reportSha256": "b8eaea8bed7c024e298b2ac0da4dca47500ddfd8748c3fcfa860dfea30530602",
+      "cases": [
+        {
+          "name": "findsInheritedPrivateFieldByTypeIgnoringStatics()",
+          "className": "dev.velozip.backend.adapter.PlayerChannelsTest",
+          "seconds": 0.009
+        },
+        {
+          "name": "refusesAmbiguousOrMissingConnectionInsteadOfGuessing()",
+          "className": "dev.velozip.backend.adapter.PlayerChannelsTest",
+          "seconds": 0.003
+        }
+      ],
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "backend",
+      "name": "dev.velozip.backend.config.BackendConfigLoaderTest",
+      "timestamp": "2026-09-09T23:33:41.018Z",
+      "seconds": 0.127,
+      "reportSha256": "92da15e48bdf6c861b0468b5682ee963acda2caccdc276e9ed7a09f9bdffabad",
+      "cases": [
+        {
+          "name": "isolatedYamlRejectsDuplicatesAndUnsafeTagsWithoutLeakingSecrets()",
+          "className": "dev.velozip.backend.config.BackendConfigLoaderTest",
+          "seconds": 0.104
+        },
+        {
+          "name": "createsDefaultsAndReadsExistingSettings()",
+          "className": "dev.velozip.backend.config.BackendConfigLoaderTest",
+          "seconds": 0.021
+        }
+      ],
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "velocity",
+      "name": "dev.velozip.velocity.adapter.VelocityNetworkAdapterTest",
+      "timestamp": "2026-09-10T23:36:43.503Z",
+      "seconds": 0.395,
+      "reportSha256": "fb1d59cc0613b7205c452ab8ad8b89995d36235679fb421c823159b20339d349",
+      "cases": [
+        {
+          "name": "cooldownRetryAndImmutableSnapshots()",
+          "className": "dev.velozip.velocity.adapter.VelocityNetworkAdapterTest",
+          "seconds": 0.094
+        },
+        {
+          "name": "refusalKeepsInstalledDecoderInsteadOfReaddingNonSharableOriginal()",
+          "className": "dev.velozip.velocity.adapter.VelocityNetworkAdapterTest",
+          "seconds": 0.264
+        }
+      ],
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "velocity",
+      "name": "dev.velozip.velocity.config.VelocityConfigLoaderTest",
+      "timestamp": "2026-09-10T23:36:43.910Z",
+      "seconds": 0.124,
+      "reportSha256": "ca263502c9841e28baf95c9bc284092bd816339c1f549879ce229b5f69467fa6",
+      "cases": [
+        {
+          "name": "honorsNestedAndShorthandAndRejectsDecimal()",
+          "className": "dev.velozip.velocity.config.VelocityConfigLoaderTest",
+          "seconds": 0.109
+        },
+        {
+          "name": "rejectsDuplicateKeysRootScalarsAndUnsafeTagsWithoutSecretCauses()",
+          "className": "dev.velozip.velocity.config.VelocityConfigLoaderTest",
+          "seconds": 0.011
+        }
+      ],
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ]
+}

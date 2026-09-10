@@ -32,6 +32,7 @@ public final class VeloZipVelocityFrameDecoder extends MinecraftVarintFrameDecod
     private final Runnable onTransportActive;
     private final ZstdDecompressor decompressor = new ZstdDecompressor();
     private boolean velozipMode;
+    private boolean vanillaOnly;
 
     public VeloZipVelocityFrameDecoder(VeloZipConfig cfg, VeloZipMetrics metrics,
                                        VeloZipLogger logger, Runnable onTransportActive) {
@@ -44,6 +45,10 @@ public final class VeloZipVelocityFrameDecoder extends MinecraftVarintFrameDecod
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+        if (vanillaOnly) {
+            super.decode(ctx, in, out);
+            return;
+        }
         if (!velozipMode) {
             if (!in.isReadable()) {
                 return;
@@ -67,6 +72,13 @@ public final class VeloZipVelocityFrameDecoder extends MinecraftVarintFrameDecod
             return;
         }
         VeloZipInbound.parseFrames(ctx, in, out, cfg, decompressor, metrics);
+    }
+
+    /** Abandons negotiation without replacing a non-sharable decoder or losing its state. */
+    public void fallbackToVanilla() {
+        if (velozipMode) throw new IllegalStateException("Cannot revert an active VeloZip transport");
+        vanillaOnly = true;
+        decompressor.close();
     }
 
     @Override

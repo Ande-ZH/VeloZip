@@ -11,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
 
-/** Loads plugins/VeloZip/config.yml (snakeyaml is provided by the server). */
+/** Loads plugins/VeloZip/config.yml using the plugin's isolated SnakeYAML. */
 public final class BackendConfigLoader {
 
     private BackendConfigLoader() {

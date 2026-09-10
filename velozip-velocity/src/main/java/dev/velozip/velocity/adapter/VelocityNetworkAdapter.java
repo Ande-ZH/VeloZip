@@ -42,7 +42,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *   <li>backend's first VeloZip frame (magic) triggers onTransportActive -&gt;
  *       remove compression-decoder/compression-encoder (or frame-encoder) and
  *       addBefore minecraft-encoder the VeloZip batch encoder</li>
- *   <li>REFUSE plugin message or 5 s timeout restores the original decoder</li>
+ *   <li>REFUSE or timeout puts the installed decoder into vanilla-only mode</li>
  * </ol>
  */
 public final class VelocityNetworkAdapter implements NetworkAdapter {
@@ -208,7 +208,12 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
                     pipeline.replace(FRAME_DECODER, FRAME_DECODER,
                             new VeloZipVelocityFrameDecoder(cfg, metrics, logger,
                                     () -> onTransportActive(channel, state)));
-                    boolean sent = conn.sendPluginMessage(VeloZipChannelIds.IDENTIFIER, req);
+                    // Old CraftPlayer.sendPluginMessage silently drops REFUSE
+                    // unless the remote side has advertised this channel. Only
+                    // the backend connection is registered, before REQ in TCP order.
+                    boolean sent = conn.sendPluginMessage(VeloZipChannelIds.REGISTER,
+                            VeloZip.CHANNEL_FULL.getBytes(StandardCharsets.UTF_8))
+                            && conn.sendPluginMessage(VeloZipChannelIds.IDENTIFIER, req);
                     if (!sent) {
                         failed(serverName, "negotiation send failed");
                         if (cfg.requireVelozip) channel.close();
@@ -315,8 +320,10 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
         if (state.timeout != null) state.timeout.cancel(false);
         try {
             ChannelPipeline pipeline = channel.pipeline();
-            if (pipeline.get(FRAME_DECODER) instanceof VeloZipVelocityFrameDecoder) {
-                pipeline.replace(FRAME_DECODER, FRAME_DECODER, state.originalDecoder);
+            if (pipeline.get(FRAME_DECODER) instanceof VeloZipVelocityFrameDecoder decoder) {
+                // ByteToMessageDecoder is not sharable: removed instances cannot
+                // be added again. Keep this instance and its pending bytes/state.
+                decoder.fallbackToVanilla();
             }
         } catch (Throwable t) {
             logger.error("VeloZip: failed to restore vanilla decoder", t);

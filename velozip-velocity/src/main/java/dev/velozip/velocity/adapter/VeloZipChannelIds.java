@@ -8,6 +8,8 @@ public final class VeloZipChannelIds {
 
     public static final MinecraftChannelIdentifier IDENTIFIER =
             MinecraftChannelIdentifier.create(VeloZip.CHANNEL_NAMESPACE, VeloZip.CHANNEL_NAME);
+    public static final MinecraftChannelIdentifier REGISTER =
+            MinecraftChannelIdentifier.create("minecraft", "register");
 
     private VeloZipChannelIds() {
     }

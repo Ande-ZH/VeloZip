@@ -1,0 +1,4121 @@
+{
+  "schema": 2,
+  "date": "2026-09-11",
+  "pluginVersion": "1.0.0",
+  "transportProtocol": 1,
+  "summary": {
+    "cases": 13,
+    "passed": 13,
+    "failed": 0,
+    "supersededFailures": 5
+  },
+  "metric": "application frame bytes; not TCP capture",
+  "results": [
+    {
+      "case": "purpur1182-java17",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18.2",
+      "started": "2026-09-09T23:29:06.740Z",
+      "seconds": 15,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 15002
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 1457781,
+                "wireBytes": 343362,
+                "rawFrames": 91,
+                "zstdFrames": 97
+              },
+              "RX": {
+                "originalBytes": 38,
+                "wireBytes": 43,
+                "rawFrames": 1,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 38,
+                "wireBytes": 43,
+                "rawFrames": 1,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 1457472,
+                "wireBytes": 343063,
+                "rawFrames": 91,
+                "zstdFrames": 96
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 3461131,
+                "wireBytes": 801085,
+                "rawFrames": 147,
+                "zstdFrames": 293
+              },
+              "RX": {
+                "originalBytes": 48,
+                "wireBytes": 58,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 48,
+                "wireBytes": 58,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 3461131,
+                "wireBytes": 801085,
+                "rawFrames": 147,
+                "zstdFrames": 293
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.18.2-1632.jar": "d95e92082a83ac999695e07968f2acbf288243bc410cdd807b8f043b17fbe39e",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "835dca81ef7af9cb7d99ada801ffd321cc0fa2e60e41780e53330a8f0701f6f2"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-09T23:30:17.350Z",
+      "attempt": 1,
+      "rawLogSha256": {
+        "backend.log": "18224361f06c56a782cd516164147c0687e3d39fd82c115ff5cd77bb0c356c85",
+        "bot-1.log": "cc65b3a5d5670b6c4e0ff95cb5038061c5e5db796f8972104c1a5b5ab31b193b",
+        "proxy.log": "c2ac2e7971c35bb782ccd883e31f45a59c00dc38b24f57dc4e9a2ab5f7fab78a"
+      },
+      "finalBilateralCountersEqual": true,
+      "finalCountersSettled": true,
+      "bilateralTraffic": true,
+      "evidenceFile": "purpur1182-java17-attempt-1.txt",
+      "superseded": true
+    },
+    {
+      "case": "purpur118-java17-reconnect",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18",
+      "started": "2026-09-09T23:33:45.676Z",
+      "seconds": 30,
+      "repeats": 2,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30004
+        },
+        {
+          "iteration": 2,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30017
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 8020,
+                "wireBytes": 5797,
+                "rawFrames": 46,
+                "zstdFrames": 10
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 8020,
+                "wireBytes": 5797,
+                "rawFrames": 46,
+                "zstdFrames": 10
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 1201925,
+                "wireBytes": 263132,
+                "rawFrames": 564,
+                "zstdFrames": 215
+              },
+              "RX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 1201877,
+                "wireBytes": 263079,
+                "rawFrames": 563,
+                "zstdFrames": 215
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-2",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 1224388,
+                "wireBytes": 284857,
+                "rawFrames": 682,
+                "zstdFrames": 256
+              },
+              "RX": {
+                "originalBytes": 58,
+                "wireBytes": 73,
+                "rawFrames": 3,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 58,
+                "wireBytes": 73,
+                "rawFrames": 3,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 1224100,
+                "wireBytes": 284579,
+                "rawFrames": 681,
+                "zstdFrames": 255
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-2",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 1290916,
+                "wireBytes": 349260,
+                "rawFrames": 1097,
+                "zstdFrames": 383
+              },
+              "RX": {
+                "originalBytes": 78,
+                "wireBytes": 103,
+                "rawFrames": 5,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 78,
+                "wireBytes": 103,
+                "rawFrames": 5,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 1290868,
+                "wireBytes": 349207,
+                "rawFrames": 1096,
+                "zstdFrames": 383
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.18-1433.jar": "ee2625b06e9c3788c8f3b6b0856552dcef659298008c9466bd073bd0b3371264",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "835dca81ef7af9cb7d99ada801ffd321cc0fa2e60e41780e53330a8f0701f6f2"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-09T23:36:13.766Z",
+      "attempt": 1,
+      "rawLogSha256": {
+        "backend.log": "0e37caa1b304b3bf72024d0486bed6f4f4333794b5c2de623ff2e18c2776d04b",
+        "bot-1.log": "10c5ad1f3dbe3773f07912718151f7ba95f620fb3bb8ba7b6081100ce7ed9625",
+        "bot-2.log": "70776df7e3a3230e8be87a84a8725c018c0415d0282f5b87c068f8643964bca9",
+        "proxy.log": "2e94698f5016a1453e7b4453b0fb8f18c625e1f9caf27df48635112587be2829"
+      },
+      "finalBilateralCountersEqual": false,
+      "finalCountersSettled": false,
+      "bilateralTraffic": true,
+      "evidenceFile": "purpur118-java17-reconnect-attempt-1.txt",
+      "superseded": true
+    },
+    {
+      "case": "purpur1182-java17",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18.2",
+      "started": "2026-09-09T23:36:14.058Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30000
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 866773,
+                "wireBytes": 137019,
+                "rawFrames": 89,
+                "zstdFrames": 41
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 866850,
+                "wireBytes": 137101,
+                "rawFrames": 90,
+                "zstdFrames": 41
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 3630978,
+                "wireBytes": 574778,
+                "rawFrames": 375,
+                "zstdFrames": 403
+              },
+              "RX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 3630978,
+                "wireBytes": 574778,
+                "rawFrames": 375,
+                "zstdFrames": 403
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.18.2-1632.jar": "d95e92082a83ac999695e07968f2acbf288243bc410cdd807b8f043b17fbe39e",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "835dca81ef7af9cb7d99ada801ffd321cc0fa2e60e41780e53330a8f0701f6f2"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-09T23:37:50.811Z",
+      "attempt": 2,
+      "rawLogSha256": {
+        "backend.log": "92998695c07d5c61ad31f06d860c8afdb87beb45a87ba100db1f7ece76368722",
+        "bot-1.log": "225bbaee04adf9d5f82be6b090a1d75fabfab974e70f166564881b6c55244803",
+        "proxy.log": "e9d062b1c06cb2983cd9d2e955fddc016e7c43e0e2a0c3a5ba8ba37d0048173b"
+      },
+      "finalBilateralCountersEqual": true,
+      "finalCountersSettled": true,
+      "bilateralTraffic": true,
+      "evidenceFile": "purpur1182-java17-attempt-2.txt",
+      "superseded": true
+    },
+    {
+      "case": "purpur1194-java17",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.19.4",
+      "started": "2026-09-09T23:37:50.927Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30005
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 544005,
+                "wireBytes": 21838,
+                "rawFrames": 89,
+                "zstdFrames": 83
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 543885,
+                "wireBytes": 21713,
+                "rawFrames": 88,
+                "zstdFrames": 83
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 585235,
+                "wireBytes": 62790,
+                "rawFrames": 512,
+                "zstdFrames": 126
+              },
+              "RX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 585235,
+                "wireBytes": 62790,
+                "rawFrames": 512,
+                "zstdFrames": 126
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.19.4-1985.jar": "424f51086c9e9090287812a4c21b65d8d69245e7e7dc3729970f12fbf5b366ad",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "835dca81ef7af9cb7d99ada801ffd321cc0fa2e60e41780e53330a8f0701f6f2"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-09T23:40:27.273Z",
+      "attempt": 1,
+      "rawLogSha256": {
+        "backend.log": "0e9ab8942778409bbe1c2a5d2d2359951cb36342cb4404da0d0a60f2b5464d27",
+        "bot-1.log": "4294a1f161bae87d5639c823fe8fae85231cf904370599b0e1a39d7e21ea26e2",
+        "proxy.log": "7fdfce25ff10c037d67f78e6ee164c152aa6219d755933e9243e3c4754d585b3"
+      },
+      "finalBilateralCountersEqual": true,
+      "finalCountersSettled": true,
+      "bilateralTraffic": true,
+      "evidenceFile": "purpur1194-java17-attempt-1.txt",
+      "superseded": true
+    },
+    {
+      "case": "purpur1204-java17",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.20.4",
+      "started": "2026-09-09T23:40:27.499Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [],
+      "snapshots": [],
+      "passed": false,
+      "inputs": {
+        "purpur-1.20.4-2176.jar": "c8593c0b2760f6ea5bea5a633dfa91eb79005e81453ffd0383ab626f087b5441",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "835dca81ef7af9cb7d99ada801ffd321cc0fa2e60e41780e53330a8f0701f6f2"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "error": "backend startup timed out",
+      "cleanup": true,
+      "finished": "2026-09-09T23:48:33.218Z",
+      "attempt": 1,
+      "rawLogSha256": {
+        "backend.log": "99808e25a28e251b09ee4f44fdfb6531a40698537429e8cf062bddbb7e4a5ec3"
+      },
+      "evidenceFile": "purpur1204-java17-attempt-1.txt",
+      "superseded": true
+    },
+    {
+      "case": "velocity340-purpur118",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18",
+      "started": "2026-09-09T23:48:33.500Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30000
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 1438143,
+                "wireBytes": 227678,
+                "rawFrames": 153,
+                "zstdFrames": 106
+              },
+              "RX": {
+                "originalBytes": 38,
+                "wireBytes": 43,
+                "rawFrames": 1,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 38,
+                "wireBytes": 43,
+                "rawFrames": 1,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 1438143,
+                "wireBytes": 227678,
+                "rawFrames": 153,
+                "zstdFrames": 106
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 1505475,
+                "wireBytes": 295075,
+                "rawFrames": 582,
+                "zstdFrames": 197
+              },
+              "RX": {
+                "originalBytes": 58,
+                "wireBytes": 73,
+                "rawFrames": 3,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 58,
+                "wireBytes": 73,
+                "rawFrames": 3,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 1505475,
+                "wireBytes": 295075,
+                "rawFrames": 582,
+                "zstdFrames": 197
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.18-1433.jar": "ee2625b06e9c3788c8f3b6b0856552dcef659298008c9466bd073bd0b3371264",
+        "velocity-3.4.0-563.jar": "fe53021f3168322cb6cb68f78699866fd098df3c306e4359847a10b0d02689ef",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "835dca81ef7af9cb7d99ada801ffd321cc0fa2e60e41780e53330a8f0701f6f2"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-09T23:49:51.994Z",
+      "attempt": 1,
+      "rawLogSha256": {
+        "backend.log": "c0ab4cabacfbcf2c0afb90ec240662fc038b1be62b263139955ef6c10dea8029",
+        "bot-1.log": "d18c47d3314b20ca57dae54122eb1343df1435be31f4a5826474d0ece63512b8",
+        "proxy.log": "fee1086fc1606471f89457a48f1eb0bdfffbad30cc220bfd662d04c0dbb2e155"
+      },
+      "finalBilateralCountersEqual": true,
+      "finalCountersSettled": true,
+      "bilateralTraffic": true,
+      "evidenceFile": "velocity340-purpur118-attempt-1.txt",
+      "superseded": true
+    },
+    {
+      "case": "paper121-java21",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "botLegacy",
+      "started": "2026-09-09T23:33:45.862Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {},
+            "serverState": null,
+            "effectiveEnabled": null,
+            "effectiveRequired": null,
+            "authentication": null
+          }
+        }
+      ],
+      "passed": false,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "835dca81ef7af9cb7d99ada801ffd321cc0fa2e60e41780e53330a8f0701f6f2"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "error": "effective enabled configuration mismatch",
+      "cleanup": true,
+      "finished": "2026-09-09T23:35:08.697Z",
+      "attempt": 1,
+      "rawLogSha256": {
+        "backend.log": "9195df1ed40cbb9b379583d5fb93c9e07e1093ba9a296aec9aa0c4dee4e8e86e",
+        "proxy.log": "6b06246a5aa363b9645aaa6a0ad3751791aa2ca8d9f0321ff040f32536f206a4"
+      },
+      "evidenceFile": "paper121-java21-attempt-1.txt",
+      "superseded": true
+    },
+    {
+      "case": "paper261-java25",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "bot",
+      "started": "2026-09-09T23:35:08.940Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30072
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 593903,
+                "wireBytes": 7830,
+                "rawFrames": 39,
+                "zstdFrames": 30
+              },
+              "RX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 593856,
+                "wireBytes": 7778,
+                "rawFrames": 38,
+                "zstdFrames": 30
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 618061,
+                "wireBytes": 33685,
+                "rawFrames": 461,
+                "zstdFrames": 47
+              },
+              "RX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 617963,
+                "wireBytes": 33582,
+                "rawFrames": 460,
+                "zstdFrames": 47
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-26.1.2-74.jar": "1d70b1dab9cf4a6de615209a536f3a45a2186240253c428213ce2188ab95e5f7",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "835dca81ef7af9cb7d99ada801ffd321cc0fa2e60e41780e53330a8f0701f6f2"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "cleanup": true,
+      "finished": "2026-09-09T23:36:37.553Z",
+      "attempt": 1,
+      "rawLogSha256": {
+        "backend.log": "5aa5172dc3139f074564ace25f3cbc2fee593f16132c70b21536684ebeb045f2",
+        "bot-1.log": "23e3e8f4f0c83edaa05aea9193d658d18d05555edfb5a8c66934da566aff1403",
+        "proxy.log": "472a4684ea6c73a8883dfddc8b9ab8d2106b1ee871fed2893e6145b8630d04d6"
+      },
+      "finalBilateralCountersEqual": false,
+      "finalCountersSettled": false,
+      "bilateralTraffic": true,
+      "evidenceFile": "paper261-java25-attempt-1.txt",
+      "superseded": true
+    },
+    {
+      "case": "purpur1182-auth-refusal",
+      "mode": "auth-refusal",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18.2",
+      "started": "2026-09-09T23:39:24.817Z",
+      "seconds": 15,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 15001
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "enabled (redacted)"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "enabled (redacted)"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "enabled (redacted)"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=522567452098657",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "enabled (redacted)"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "enabled (redacted)"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=522567452098657",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "enabled (redacted)"
+          }
+        }
+      ],
+      "passed": false,
+      "inputs": {
+        "purpur-1.18.2-1632.jar": "d95e92082a83ac999695e07968f2acbf288243bc410cdd807b8f043b17fbe39e",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "835dca81ef7af9cb7d99ada801ffd321cc0fa2e60e41780e53330a8f0701f6f2"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "error": "no refusal status evidence",
+      "cleanup": true,
+      "finished": "2026-09-09T23:40:48.021Z",
+      "attempt": 1,
+      "rawLogSha256": {
+        "backend.log": "1824598813972e82420a6e9b43a59feb42f2cc9051f0b03b715f1b84be4232c1",
+        "bot-1.log": "608bf5d98fca253589f62d780eb69970eacc900da8b02fb4eb60903cf692645a",
+        "proxy.log": "0a9fc28c22857ce6a9d6ec5bcdf4294046827f77b7c44c2c34d0506b909695fd"
+      },
+      "evidenceFile": "purpur1182-auth-refusal-attempt-1.txt",
+      "superseded": true
+    },
+    {
+      "case": "purpur1182-disabled",
+      "mode": "disabled",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18.2",
+      "started": "2026-09-09T23:40:48.244Z",
+      "seconds": 15,
+      "repeats": 1,
+      "bots": [],
+      "snapshots": [],
+      "passed": false,
+      "inputs": {
+        "purpur-1.18.2-1632.jar": "d95e92082a83ac999695e07968f2acbf288243bc410cdd807b8f043b17fbe39e",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "835dca81ef7af9cb7d99ada801ffd321cc0fa2e60e41780e53330a8f0701f6f2"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "error": "backend startup timed out",
+      "cleanup": true,
+      "finished": "2026-09-09T23:48:33.226Z",
+      "attempt": 1,
+      "rawLogSha256": {
+        "backend.log": "269cc4675d317499ac037b3b2b41d0a9fb0f0ef0b0d77600af9a112753ea350a"
+      },
+      "evidenceFile": "purpur1182-disabled-attempt-1.txt",
+      "superseded": true
+    },
+    {
+      "case": "purpur1182-missing",
+      "mode": "missing",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18.2",
+      "started": "2026-09-09T23:36:37.630Z",
+      "seconds": 15,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 15002
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null,
+            "effectiveEnabled": null,
+            "effectiveRequired": null,
+            "authentication": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null,
+            "effectiveEnabled": null,
+            "effectiveRequired": null,
+            "authentication": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=522420085045199",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null,
+            "effectiveEnabled": null,
+            "effectiveRequired": null,
+            "authentication": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=522420085045199",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.18.2-1632.jar": "d95e92082a83ac999695e07968f2acbf288243bc410cdd807b8f043b17fbe39e",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "835dca81ef7af9cb7d99ada801ffd321cc0fa2e60e41780e53330a8f0701f6f2"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-09T23:38:20.634Z",
+      "attempt": 1,
+      "rawLogSha256": {
+        "backend.log": "b02f36870056f07cb5749056e28d9f4b8750ef00a092f73131d33f836d509b16",
+        "bot-1.log": "cc65b3a5d5670b6c4e0ff95cb5038061c5e5db796f8972104c1a5b5ab31b193b",
+        "proxy.log": "252329d8acf90db96b8f2d4e8c23d3edc0b41774f05a0e588208a5eb3301ce0e"
+      },
+      "evidenceFile": "purpur1182-missing-attempt-1.txt",
+      "superseded": true
+    },
+    {
+      "case": "purpur1182-required-missing",
+      "mode": "required-missing",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18.2",
+      "started": "2026-09-09T23:38:20.706Z",
+      "seconds": 15,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 1,
+          "play": true,
+          "healthy": false,
+          "holdMilliseconds": 0
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null,
+            "effectiveEnabled": null,
+            "effectiveRequired": null,
+            "authentication": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "true",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null,
+            "effectiveEnabled": null,
+            "effectiveRequired": null,
+            "authentication": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=522491363959464",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "true",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null,
+            "effectiveEnabled": null,
+            "effectiveRequired": null,
+            "authentication": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=522491363959464",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "true",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.18.2-1632.jar": "d95e92082a83ac999695e07968f2acbf288243bc410cdd807b8f043b17fbe39e",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "835dca81ef7af9cb7d99ada801ffd321cc0fa2e60e41780e53330a8f0701f6f2"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-09T23:39:24.765Z",
+      "attempt": 1,
+      "rawLogSha256": {
+        "backend.log": "9d799d90853ee7b0eb7de56c0e64bd82948f611ac39e59effc846a7e1c47374c",
+        "bot-1.log": "591a0561f7ca8ff2b3a5250bbffa88c0e29a18395bb4733e1e0f8ae0708f9b4e",
+        "proxy.log": "9d184247ff38130bbee2f24ca7dea789bba43e3be10a8fb867de704e745b3334"
+      },
+      "evidenceFile": "purpur1182-required-missing-attempt-1.txt",
+      "superseded": true
+    },
+    {
+      "case": "paper121-java21",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "botLegacy",
+      "started": "2026-09-09T23:40:26.205Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [],
+      "snapshots": [],
+      "passed": false,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "835dca81ef7af9cb7d99ada801ffd321cc0fa2e60e41780e53330a8f0701f6f2"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "error": "timed out waiting for backend diagnostics (before)",
+      "cleanup": true,
+      "finished": "2026-09-09T23:48:42.031Z",
+      "attempt": 2,
+      "rawLogSha256": {
+        "backend.log": "746d5b2635fe858a8c0df0cf4c7df6aafc2b6412bb5d2918fb06d5413eba93cf",
+        "proxy.log": "b6a20cb82d4d3c912aee7f583125bb40544fa9ae13c50ce15a508fac4e057698"
+      },
+      "evidenceFile": "paper121-java21-attempt-2.txt",
+      "superseded": true
+    },
+    {
+      "case": "paper121-java21",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "botLegacy",
+      "started": "2026-09-10T23:35:50.468Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30057
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 595911,
+                "wireBytes": 15515,
+                "rawFrames": 119,
+                "zstdFrames": 48
+              },
+              "RX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 595911,
+                "wireBytes": 15515,
+                "rawFrames": 119,
+                "zstdFrames": 48
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 730438,
+                "wireBytes": 144250,
+                "rawFrames": 456,
+                "zstdFrames": 309
+              },
+              "RX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 730438,
+                "wireBytes": 144250,
+                "rawFrames": 456,
+                "zstdFrames": 309
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-1.21.11-132.jar": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "397f62db43e1098b971be548d49d0f83c8d0801307a0c6318f600e695ec64cb8"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu21.52+203-CRaC-CA (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "50500a84afe8092bf3b5bfb66330c0a0e822de2901017dfe641ecab3b69fdbce",
+      "cleanup": true,
+      "finished": "2026-09-10T23:37:16.418Z",
+      "attempt": 3,
+      "rawLogSha256": {
+        "backend.log": "3440d6e8db3c0e17db193e414b6b39e9f964223354fa717a6991e9bd4b829719",
+        "bot-1.log": "9e6dff47c85aa1e174c97bf6601246b2ccda58b8c80cc9777c9a7a2acbe1617e",
+        "proxy.log": "3f067a241b75c3b9bab5bef92db6a4e40ee72727dc9d13b500c3f380db25f35b"
+      },
+      "finalBilateralCountersEqual": true,
+      "finalCountersSettled": true,
+      "bilateralTraffic": true,
+      "evidenceFile": "paper121-java21-attempt-3.txt"
+    },
+    {
+      "case": "paper261-java25",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "bot",
+      "started": "2026-09-10T23:44:30.200Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30054
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 593503,
+                "wireBytes": 9479,
+                "rawFrames": 64,
+                "zstdFrames": 37
+              },
+              "RX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 593434,
+                "wireBytes": 9405,
+                "rawFrames": 63,
+                "zstdFrames": 37
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 639562,
+                "wireBytes": 56665,
+                "rawFrames": 526,
+                "zstdFrames": 93
+              },
+              "RX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 639562,
+                "wireBytes": 56665,
+                "rawFrames": 526,
+                "zstdFrames": 93
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-26.1.2-74.jar": "1d70b1dab9cf4a6de615209a536f3a45a2186240253c428213ce2188ab95e5f7",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "397f62db43e1098b971be548d49d0f83c8d0801307a0c6318f600e695ec64cb8"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "cleanup": true,
+      "finished": "2026-09-10T23:45:49.795Z",
+      "attempt": 2,
+      "rawLogSha256": {
+        "backend.log": "eefa965131f04bc7deb749e522c63dfb319abc27277c14498ecd1935b8a81f14",
+        "bot-1.log": "91804ada7549f7d59aae7fab4d57bfe13bf8cead6c022377cef7d23fab408a0f",
+        "proxy.log": "d227db4465ba2b381e876f2e83742db8c5c8d4bb13d0f535d730d8e0b500117e"
+      },
+      "finalBilateralCountersEqual": true,
+      "finalCountersSettled": true,
+      "bilateralTraffic": true,
+      "evidenceFile": "paper261-java25-attempt-2.txt"
+    },
+    {
+      "case": "purpur118-java17-reconnect",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18",
+      "started": "2026-09-10T23:38:50.280Z",
+      "seconds": 30,
+      "repeats": 2,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30001
+        },
+        {
+          "iteration": 2,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30000
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 54952,
+                "wireBytes": 5638,
+                "rawFrames": 91,
+                "zstdFrames": 10
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 54927,
+                "wireBytes": 5608,
+                "rawFrames": 90,
+                "zstdFrames": 10
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 85809,
+                "wireBytes": 36628,
+                "rawFrames": 499,
+                "zstdFrames": 31
+              },
+              "RX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 85809,
+                "wireBytes": 36628,
+                "rawFrames": 499,
+                "zstdFrames": 31
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-2",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 152181,
+                "wireBytes": 55816,
+                "rawFrames": 677,
+                "zstdFrames": 48
+              },
+              "RX": {
+                "originalBytes": 58,
+                "wireBytes": 73,
+                "rawFrames": 3,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 58,
+                "wireBytes": 73,
+                "rawFrames": 3,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 152064,
+                "wireBytes": 55694,
+                "rawFrames": 676,
+                "zstdFrames": 48
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-2",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 203329,
+                "wireBytes": 108221,
+                "rawFrames": 1067,
+                "zstdFrames": 91
+              },
+              "RX": {
+                "originalBytes": 78,
+                "wireBytes": 103,
+                "rawFrames": 5,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 78,
+                "wireBytes": 103,
+                "rawFrames": 5,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 203329,
+                "wireBytes": 108221,
+                "rawFrames": 1067,
+                "zstdFrames": 91
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.18-1433.jar": "ee2625b06e9c3788c8f3b6b0856552dcef659298008c9466bd073bd0b3371264",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "397f62db43e1098b971be548d49d0f83c8d0801307a0c6318f600e695ec64cb8"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-10T23:40:35.930Z",
+      "attempt": 2,
+      "rawLogSha256": {
+        "backend.log": "922403058fbdc7952912ccf13309ee015e22db281a49cf9304d8240c336ffe04",
+        "bot-1.log": "a0ca1db7a6fff72db52e5a4e80773c522d72c5cfcba1d52a47793029652a511d",
+        "bot-2.log": "d18c47d3314b20ca57dae54122eb1343df1435be31f4a5826474d0ece63512b8",
+        "proxy.log": "c9b0cc5a105bc530400e3bc62eb9f972569d52a5b68516abce99b8576dbda032"
+      },
+      "finalBilateralCountersEqual": true,
+      "finalCountersSettled": true,
+      "bilateralTraffic": true,
+      "evidenceFile": "purpur118-java17-reconnect-attempt-2.txt"
+    },
+    {
+      "case": "purpur1182-auth-refusal",
+      "mode": "auth-refusal",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18.2",
+      "started": "2026-09-10T23:34:51.605Z",
+      "seconds": 15,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 15003
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "enabled (redacted)"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "enabled (redacted)"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "enabled (redacted)"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=refused (code 4), retryAfterNanos=608666444560557",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "enabled (redacted)"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "enabled (redacted)"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=refused (code 4), retryAfterNanos=608666444560557",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "enabled (redacted)"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.18.2-1632.jar": "d95e92082a83ac999695e07968f2acbf288243bc410cdd807b8f043b17fbe39e",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "397f62db43e1098b971be548d49d0f83c8d0801307a0c6318f600e695ec64cb8"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-10T23:35:50.403Z",
+      "attempt": 2,
+      "rawLogSha256": {
+        "backend.log": "0301f11fd63991cfa5624f1d8cd7702a625c7c20ad1bcfc4ccfb3de346cd1897",
+        "bot-1.log": "ff2ced5156bbf0452999d717a782b6579e5c31c686bcd0f92ce486035f441a77",
+        "proxy.log": "24734b65f99e28f6e40ce7c1c5509916292ff0afdf338877f7e191945800d03c"
+      },
+      "evidenceFile": "purpur1182-auth-refusal-attempt-2.txt"
+    },
+    {
+      "case": "purpur1182-disabled",
+      "mode": "disabled",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18.2",
+      "started": "2026-09-10T23:47:28.791Z",
+      "seconds": 15,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 15001
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "false",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "false",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "false",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.18.2-1632.jar": "d95e92082a83ac999695e07968f2acbf288243bc410cdd807b8f043b17fbe39e",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "397f62db43e1098b971be548d49d0f83c8d0801307a0c6318f600e695ec64cb8"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-10T23:48:19.866Z",
+      "attempt": 2,
+      "rawLogSha256": {
+        "backend.log": "fed5f4888cd562399b94d484c12baa2b4073be1f668ae54e9503e342b4917ed9",
+        "bot-1.log": "608bf5d98fca253589f62d780eb69970eacc900da8b02fb4eb60903cf692645a",
+        "proxy.log": "3b31cdac98d84874858a607f59f5f9ca92550bd365161cb9a58f9e655eee490c"
+      },
+      "evidenceFile": "purpur1182-disabled-attempt-2.txt"
+    },
+    {
+      "case": "purpur1182-java17",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18.2",
+      "started": "2026-09-10T23:40:36.008Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30000
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 550696,
+                "wireBytes": 21175,
+                "rawFrames": 53,
+                "zstdFrames": 89
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 550677,
+                "wireBytes": 21151,
+                "rawFrames": 52,
+                "zstdFrames": 89
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 567976,
+                "wireBytes": 39237,
+                "rawFrames": 386,
+                "zstdFrames": 108
+              },
+              "RX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 567976,
+                "wireBytes": 39237,
+                "rawFrames": 386,
+                "zstdFrames": 108
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.18.2-1632.jar": "d95e92082a83ac999695e07968f2acbf288243bc410cdd807b8f043b17fbe39e",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "397f62db43e1098b971be548d49d0f83c8d0801307a0c6318f600e695ec64cb8"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-10T23:41:47.612Z",
+      "attempt": 3,
+      "rawLogSha256": {
+        "backend.log": "97437b210620bdb961b2e0aef184ea2a5c4913a382b3293a4049eac819764130",
+        "bot-1.log": "225bbaee04adf9d5f82be6b090a1d75fabfab974e70f166564881b6c55244803",
+        "proxy.log": "c4ebd9d02058b98c3b16f6677c137ae82915a522af7ea23781b9fd827e043a15"
+      },
+      "finalBilateralCountersEqual": true,
+      "finalCountersSettled": true,
+      "bilateralTraffic": true,
+      "evidenceFile": "purpur1182-java17-attempt-3.txt"
+    },
+    {
+      "case": "purpur1182-missing",
+      "mode": "missing",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18.2",
+      "started": "2026-09-10T23:45:49.854Z",
+      "seconds": 15,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 15001
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null,
+            "effectiveEnabled": null,
+            "effectiveRequired": null,
+            "authentication": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null,
+            "effectiveEnabled": null,
+            "effectiveRequired": null,
+            "authentication": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=609325786386327",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null,
+            "effectiveEnabled": null,
+            "effectiveRequired": null,
+            "authentication": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=609325786386327",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.18.2-1632.jar": "d95e92082a83ac999695e07968f2acbf288243bc410cdd807b8f043b17fbe39e",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "397f62db43e1098b971be548d49d0f83c8d0801307a0c6318f600e695ec64cb8"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-10T23:46:44.882Z",
+      "attempt": 2,
+      "rawLogSha256": {
+        "backend.log": "34334a025dbed4cc1e569065a2d6c0f4f7a5cdd760a27766ba26d9b412af7392",
+        "bot-1.log": "608bf5d98fca253589f62d780eb69970eacc900da8b02fb4eb60903cf692645a",
+        "proxy.log": "f6b3dc8a47d0427ad866f90ffe75961b058a479b1df9fe5c4f4cc9b9c3f8e4dd"
+      },
+      "evidenceFile": "purpur1182-missing-attempt-2.txt"
+    },
+    {
+      "case": "purpur1182-required-missing",
+      "mode": "required-missing",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18.2",
+      "started": "2026-09-10T23:46:44.954Z",
+      "seconds": 15,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 1,
+          "play": true,
+          "healthy": false,
+          "holdMilliseconds": 0
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null,
+            "effectiveEnabled": null,
+            "effectiveRequired": null,
+            "authentication": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "true",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null,
+            "effectiveEnabled": null,
+            "effectiveRequired": null,
+            "authentication": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=609377854884992",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "true",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": -1,
+            "directions": {},
+            "serverState": null,
+            "effectiveEnabled": null,
+            "effectiveRequired": null,
+            "authentication": null
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": "state=FAILED, reason=negotiation timeout, retryAfterNanos=609377854884992",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "true",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.18.2-1632.jar": "d95e92082a83ac999695e07968f2acbf288243bc410cdd807b8f043b17fbe39e",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "397f62db43e1098b971be548d49d0f83c8d0801307a0c6318f600e695ec64cb8"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-10T23:47:28.730Z",
+      "attempt": 2,
+      "rawLogSha256": {
+        "backend.log": "afc61c152d78d7be4ae775f0673fdf600c410770a0cee50057fa28202d72846e",
+        "bot-1.log": "591a0561f7ca8ff2b3a5250bbffa88c0e29a18395bb4733e1e0f8ae0708f9b4e",
+        "proxy.log": "e57623154a9ed04ccd6e941c145a7e2d0cdc85b401c26a4da621fe3e87c8ade5"
+      },
+      "evidenceFile": "purpur1182-required-missing-attempt-2.txt"
+    },
+    {
+      "case": "purpur1194-java17",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.19.4",
+      "started": "2026-09-10T23:41:47.683Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30001
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 540707,
+                "wireBytes": 18112,
+                "rawFrames": 42,
+                "zstdFrames": 79
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 540668,
+                "wireBytes": 18068,
+                "rawFrames": 41,
+                "zstdFrames": 79
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 548792,
+                "wireBytes": 27138,
+                "rawFrames": 273,
+                "zstdFrames": 83
+              },
+              "RX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 548792,
+                "wireBytes": 27138,
+                "rawFrames": 273,
+                "zstdFrames": 83
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.19.4-1985.jar": "424f51086c9e9090287812a4c21b65d8d69245e7e7dc3729970f12fbf5b366ad",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "397f62db43e1098b971be548d49d0f83c8d0801307a0c6318f600e695ec64cb8"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-10T23:43:18.494Z",
+      "attempt": 2,
+      "rawLogSha256": {
+        "backend.log": "23ce2fb403bead6a8133e4d70f44d239565ec3381361f574dbe8c8a68f96996b",
+        "bot-1.log": "05838f985be1702cf4471b07227d15f825ec9e9449c382a49590be22a797e554",
+        "proxy.log": "b977e258f67fa3e25d2be83c8c01b43dfc04dfb8328b8d3732d0bf957b95c4c0"
+      },
+      "finalBilateralCountersEqual": true,
+      "finalCountersSettled": true,
+      "bilateralTraffic": true,
+      "evidenceFile": "purpur1194-java17-attempt-2.txt"
+    },
+    {
+      "case": "purpur1204-java17",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.20.4",
+      "started": "2026-09-10T23:37:16.482Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30001
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 547917,
+                "wireBytes": 15876,
+                "rawFrames": 114,
+                "zstdFrames": 50
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 547888,
+                "wireBytes": 15842,
+                "rawFrames": 113,
+                "zstdFrames": 50
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 612561,
+                "wireBytes": 63675,
+                "rawFrames": 477,
+                "zstdFrames": 102
+              },
+              "RX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 20,
+                "wireBytes": 30,
+                "rawFrames": 2,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 612561,
+                "wireBytes": 63675,
+                "rawFrames": 477,
+                "zstdFrames": 102
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.20.4-2176.jar": "c8593c0b2760f6ea5bea5a633dfa91eb79005e81453ffd0383ab626f087b5441",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "397f62db43e1098b971be548d49d0f83c8d0801307a0c6318f600e695ec64cb8"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-10T23:38:50.216Z",
+      "attempt": 2,
+      "rawLogSha256": {
+        "backend.log": "79f224b0e05c74afc43e25227d7621d02514fd85e031b36f928699fc1175f567",
+        "bot-1.log": "b0cd0c028f4b8756c9304badf4a82e415216cb9db5b39922970efa9ed1c16305",
+        "proxy.log": "71abb54274d5a3943bedfd205fc1242d7d39450a693d3dc7d71c134b49870fce"
+      },
+      "finalBilateralCountersEqual": true,
+      "finalCountersSettled": true,
+      "bilateralTraffic": true,
+      "evidenceFile": "purpur1204-java17-attempt-2.txt"
+    },
+    {
+      "case": "velocity340-purpur118",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "1.18",
+      "started": "2026-09-10T23:43:18.549Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30000
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 53325,
+                "wireBytes": 4579,
+                "rawFrames": 69,
+                "zstdFrames": 7
+              },
+              "RX": {
+                "originalBytes": 38,
+                "wireBytes": 43,
+                "rawFrames": 1,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 38,
+                "wireBytes": 43,
+                "rawFrames": 1,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 53325,
+                "wireBytes": 4579,
+                "rawFrames": 69,
+                "zstdFrames": 7
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 75717,
+                "wireBytes": 26839,
+                "rawFrames": 413,
+                "zstdFrames": 23
+              },
+              "RX": {
+                "originalBytes": 58,
+                "wireBytes": 73,
+                "rawFrames": 3,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 58,
+                "wireBytes": 73,
+                "rawFrames": 3,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 75717,
+                "wireBytes": 26839,
+                "rawFrames": 413,
+                "zstdFrames": 23
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "purpur-1.18-1433.jar": "ee2625b06e9c3788c8f3b6b0856552dcef659298008c9466bd073bd0b3371264",
+        "velocity-3.4.0-563.jar": "fe53021f3168322cb6cb68f78699866fd098df3c306e4359847a10b0d02689ef",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "397f62db43e1098b971be548d49d0f83c8d0801307a0c6318f600e695ec64cb8"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu17.68+203-CA (build 17.0.20.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+203-CA (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "3e8ed9799d65837aab1d913aeeee756c68e64d462a0ac5abbcdd0c9449bab25b",
+      "cleanup": true,
+      "finished": "2026-09-10T23:44:30.138Z",
+      "attempt": 2,
+      "rawLogSha256": {
+        "backend.log": "a48dc40cd89c491816e267253ccf8b898f358f78fd1d1df2f6c94ad4c0ba29d6",
+        "bot-1.log": "d18c47d3314b20ca57dae54122eb1343df1435be31f4a5826474d0ece63512b8",
+        "proxy.log": "cb6e6dffee49786706db5cb1e8b99ccca5ac59934413bfcd0973c4f398094709"
+      },
+      "finalBilateralCountersEqual": true,
+      "finalCountersSettled": true,
+      "bilateralTraffic": true,
+      "evidenceFile": "velocity340-purpur118-attempt-2.txt"
+    },
+    {
+      "case": "paper262-via",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "bot",
+      "started": "2026-09-10T23:50:24.736Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30074
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 594482,
+                "wireBytes": 10382,
+                "rawFrames": 73,
+                "zstdFrames": 38
+              },
+              "RX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 594413,
+                "wireBytes": 10308,
+                "rawFrames": 72,
+                "zstdFrames": 38
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 664290,
+                "wireBytes": 79346,
+                "rawFrames": 515,
+                "zstdFrames": 144
+              },
+              "RX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 664290,
+                "wireBytes": 79346,
+                "rawFrames": 515,
+                "zstdFrames": 144
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "paper-26.2-121.jar": "0de30efb024bc8b83c9c7d507d11802897ad8056b6110ec09fe1a91d126ccb54",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "ViaVersion-5.12.0-SNAPSHOT.jar": "fc96d1919c1ccc9edb713e45390f9032c35365252f0c1c4c9a3af3dce5defb71",
+        "ViaBackwards-5.12.0-SNAPSHOT.jar": "df9a40a85f4be4416c7405e8091ece175d00ee4ac23aee040766c25cf3362280",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "397f62db43e1098b971be548d49d0f83c8d0801307a0c6318f600e695ec64cb8"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "cleanup": true,
+      "finished": "2026-09-10T23:51:42.774Z",
+      "attempt": 1,
+      "rawLogSha256": {
+        "backend.log": "74e82bc68a870c06909e2b18b5837093361f4d1ca5de499fab568be53eb0e4a2",
+        "bot-1.log": "39c695da9e567a3007567388fcb929df541f6e9da584dd41c73da9042bf5e136",
+        "proxy.log": "dee0447cf6ceef8efbb40c612d8c930b15acaf7dc877cfcc042c9feaa05a4a2e"
+      },
+      "finalBilateralCountersEqual": true,
+      "finalCountersSettled": true,
+      "bilateralTraffic": true,
+      "evidenceFile": "paper262-via-attempt-1.txt"
+    },
+    {
+      "case": "purpur261-java25",
+      "mode": "active",
+      "pluginVersion": "1.0.0",
+      "botVersion": "bot",
+      "started": "2026-09-10T23:49:13.982Z",
+      "seconds": 30,
+      "repeats": 1,
+      "bots": [
+        {
+          "iteration": 1,
+          "exit": 0,
+          "play": true,
+          "healthy": true,
+          "holdMilliseconds": 30057
+        }
+      ],
+      "snapshots": [
+        {
+          "phase": "before",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 0,
+                "wireBytes": 0,
+                "rawFrames": 0,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "live-1",
+          "backend": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 591678,
+                "wireBytes": 7918,
+                "rawFrames": 40,
+                "zstdFrames": 35
+              },
+              "RX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 1,
+            "directions": {
+              "TX": {
+                "originalBytes": 60,
+                "wireBytes": 90,
+                "rawFrames": 6,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 591678,
+                "wireBytes": 7918,
+                "rawFrames": 40,
+                "zstdFrames": 35
+              }
+            },
+            "serverState": "state=ACTIVE, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        },
+        {
+          "phase": "after-1",
+          "backend": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 656304,
+                "wireBytes": 71701,
+                "rawFrames": 443,
+                "zstdFrames": 146
+              },
+              "RX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              }
+            },
+            "serverState": null,
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          },
+          "proxy": {
+            "active": 0,
+            "directions": {
+              "TX": {
+                "originalBytes": 300,
+                "wireBytes": 450,
+                "rawFrames": 30,
+                "zstdFrames": 0
+              },
+              "RX": {
+                "originalBytes": 656304,
+                "wireBytes": 71701,
+                "rawFrames": 443,
+                "zstdFrames": 146
+              }
+            },
+            "serverState": "state=CLOSED, reason=, retryAfterNanos=0",
+            "effectiveEnabled": "true",
+            "effectiveRequired": "false",
+            "authentication": "disabled"
+          }
+        }
+      ],
+      "passed": true,
+      "inputs": {
+        "server.jar": "d88e3826a7f3ad3cb4b07be02fc732ba732bf1a1b113d96b605e9f8d1d119608",
+        "proxy.jar": "846411d2d0560fed0f23496ffb89681be528d2c0650ecdcf21724d2d7bd9c1ee",
+        "VeloZip-Backend-1.0.0.jar": "193bfae9d1d2534515dc5fa09a74c44e80be118b483a639d2405e75200578a6b",
+        "VeloZip-Velocity-1.0.0.jar": "397f62db43e1098b971be548d49d0f83c8d0801307a0c6318f600e695ec64cb8"
+      },
+      "proxyJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "proxyJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "backendJavaVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Zulu25.36+205-CA (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Zulu25.36+205-CA (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+      "backendJavaExecutableSha256": "8f9f0c7b13e49d6c360d5d952000ce57c958e5b8d6d0507f57d88bafadd767a5",
+      "cleanup": true,
+      "finished": "2026-09-10T23:50:24.666Z",
+      "attempt": 1,
+      "rawLogSha256": {
+        "backend.log": "ee90638e742e92315acfc012b167452dd43997dbc8b3a5eca9b1dab419399dee",
+        "bot-1.log": "9e6dff47c85aa1e174c97bf6601246b2ccda58b8c80cc9777c9a7a2acbe1617e",
+        "proxy.log": "5d627723c180f910c81d2fc8de92b7b415420c5e093430518f6b17ee1e5cf93b"
+      },
+      "finalBilateralCountersEqual": true,
+      "finalCountersSettled": true,
+      "bilateralTraffic": true,
+      "evidenceFile": "purpur261-java25-attempt-1.txt"
+    }
+  ]
+}

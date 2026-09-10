@@ -1,0 +1,19 @@
+{
+  "java": "/path/to/jdk25/bin/java",
+  "proxyJar": "/path/to/velocity.jar",
+  "cases": [
+    {
+      "id": "purpur118-java17",
+      "backendJar": "/path/to/purpur-1.18-1433.jar",
+      "backendJava": "/path/to/jdk17/bin/java",
+      "botVersion": "1.18",
+      "repeats": 2
+    },
+    {
+      "id": "paper121-java21",
+      "backendJar": "/path/to/paper-1.21.11-132.jar",
+      "backendJava": "/path/to/jdk21/bin/java",
+      "botTask": "botLegacy"
+    }
+  ]
+}

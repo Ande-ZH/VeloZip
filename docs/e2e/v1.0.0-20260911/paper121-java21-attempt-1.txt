@@ -1,0 +1,29 @@
+--- backend.log (allowlisted excerpts) ---
+This server is running Paper version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+Loading server plugin VeloZip v1.0.0
+VeloZip 1.0.0
+Transport protocol: 1
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 0
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+--- proxy.log (allowlisted excerpts) ---
+Booting up Velocity 4.1.1...
+VeloZip 1.0.0
+Transport protocol: 1
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 0
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false

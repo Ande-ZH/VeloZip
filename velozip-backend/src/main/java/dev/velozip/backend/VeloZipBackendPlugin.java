@@ -9,7 +9,7 @@ import dev.velozip.common.config.VeloZipConfig;
 import dev.velozip.common.logging.VeloZipLogger;
 import dev.velozip.common.metrics.VeloZipMetrics;
 import dev.velozip.common.protocol.Negotiation;
-import io.papermc.paper.configuration.GlobalConfiguration;
+import dev.velozip.backend.adapter.PaperForwarding;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public final class VeloZipBackendPlugin extends JavaPlugin implements org.bukkit.plugin.messaging.PluginMessageListener {
 
-    public static final String PLUGIN_VERSION = "0.3.0";
+    public static final String PLUGIN_VERSION = "1.0.0";
 
     private VeloZipLogger logger;
     private VeloZipConfig config;
@@ -97,8 +97,8 @@ public final class VeloZipBackendPlugin extends JavaPlugin implements org.bukkit
             // Velocity modern forwarding: with forwarding enabled, a direct
             // connection cannot pass login HMAC verification.
             if (!velocityForwardingEnabled()) {
-                logger.warn("VeloZip: ignoring REQ from {} because paper-global.yml "
-                        + "proxies.velocity.enabled is false (direct connections cannot be verified)", player.getName());
+                logger.warn("VeloZip: ignoring REQ from {} because Velocity modern forwarding "
+                        + "is not enabled (direct connections cannot be verified)", player.getName());
                 refuse(player, new Negotiation.Refuse(Negotiation.REASON_NOT_PROXY,
                         "backend does not enforce Velocity modern forwarding"));
                 return;
@@ -118,7 +118,7 @@ public final class VeloZipBackendPlugin extends JavaPlugin implements org.bukkit
 
     private boolean velocityForwardingEnabled() {
         try {
-            return GlobalConfiguration.get().proxies.velocity.enabled;
+            return PaperForwarding.enabled(getServer().getClass().getClassLoader());
         } catch (Throwable t) {
             logger.warn("VeloZip: could not read paper-global configuration, assuming no forwarding: {}", t.toString());
             return false;

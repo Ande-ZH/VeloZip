@@ -8,6 +8,8 @@ import {spawnSync} from 'node:child_process';
 import {spawn} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const pluginVersion = fs.readFileSync(path.join(root, 'gradle.properties'), 'utf8').match(/^version=(.+)$/m)?.[1].trim();
+if (!pluginVersion) throw Error('missing project version');
 const java = process.env.JAVA;
 for (const key of ['JAVA', 'BACKEND_JAR', 'PROXY_JAR']) {
   if (!path.isAbsolute(process.env[key] || '') || !fs.existsSync(process.env[key])) throw Error(`${key} must be an existing absolute path`);
@@ -19,7 +21,7 @@ if (!['active', 'missing', 'required-missing', 'auth-refusal', 'disabled', 'base
 const seconds = Number(process.env.BOT_SECONDS || 30);
 const repeats = Number(process.env.BOT_REPEATS || 1);
 if (!Number.isInteger(seconds) || seconds < 15 || seconds > 120 || !Number.isInteger(repeats) || repeats < 1 || repeats > 5) throw Error('invalid bot bounds');
-const result = {case: process.env.E2E_CASE || mode, mode, started: new Date().toISOString(), seconds, repeats, bots: [], snapshots: [], passed: false, inputs: {}};
+const result = {case: process.env.E2E_CASE || mode, mode, pluginVersion, botVersion: process.env.BOT_VERSION || process.env.BOT_TASK || 'bot', started: new Date().toISOString(), seconds, repeats, bots: [], snapshots: [], passed: false, inputs: {}};
 for (const key of ['BACKEND_JAR', 'PROXY_JAR', 'VIA_JARS']) for (const file of (process.env[key] || '').split(':').filter(Boolean)) result.inputs[path.basename(file)] = crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 for (const [name, executable] of [['proxy', java], ['backend', process.env.BACKEND_JAVA || java]]) {
   result[`${name}JavaVersion`] = spawnSync(executable, ['-version'], {encoding:'utf8'}).stderr.trim();
@@ -30,7 +32,22 @@ async function diagnostics(b, p, phase) {
   const offsets = {backend: logText('backend').length, proxy: logText('proxy').length};
   if (!['missing','required-missing','baseline'].includes(mode)) b.stdin.write('velozip status\nvelozip stats\nvelozip config\n');
   if (mode !== 'baseline') p.stdin.write('velozip status\nvelozip stats\nvelozip config\nvelozip servers\n');
-  await sleep(1500);
+  // Console commands are asynchronous (especially during JVM warmup). Wait for
+  // the complete response instead of mistaking late output for a bad config.
+  const queried = [];
+  if (!['missing','required-missing','baseline'].includes(mode)) queried.push('backend');
+  if (mode !== 'baseline') queried.push('proxy');
+  for (let attempt = 0; attempt < 150; attempt++) {
+    const pending = queried.filter(name => {
+      const text = logText(name).slice(offsets[name]);
+      return !text.includes('Changes require restart; no live reload.')
+        || !text.includes('RX: DirectionSnapshot[') || !text.includes('Active connections:')
+        || (name === 'proxy' && !/\{(?:backend=ServerStatus\[[^\]]*\])?\}/.test(text));
+    });
+    if (!pending.length) break;
+    if (attempt === 149) throw Error(`timed out waiting for ${pending.join(',')} diagnostics (${phase})`);
+    await sleep(100);
+  }
   const snapshot = {phase};
   for (const name of ['backend','proxy']) {
     const text = logText(name).slice(offsets[name]);
@@ -89,7 +106,7 @@ try {
     if (fs.existsSync(src)) fs.cpSync(src,path.join(backend,dir),{recursive:true});
   }
   for (const [side, destination, installed] of [['backend',backend,!['missing','required-missing','baseline'].includes(mode)], ['velocity',proxy,mode !== 'baseline']]) {
-    const artifact = path.join(root,`velozip-${side}/build/libs/VeloZip-${side === 'backend' ? 'Backend' : 'Velocity'}-0.3.0.jar`);
+    const artifact = path.join(root,`velozip-${side}/build/libs/VeloZip-${side === 'backend' ? 'Backend' : 'Velocity'}-${pluginVersion}.jar`);
     result.inputs[path.basename(artifact)] = crypto.createHash('sha256').update(fs.readFileSync(artifact)).digest('hex');
     if (installed) fs.copyFileSync(artifact,path.join(destination,'plugins/VeloZip.jar'));
   }
@@ -99,17 +116,20 @@ try {
     fs.writeFileSync(path.join(directory,'config.yml'),`enabled: ${!(mode === 'disabled' && side === 'proxy')}\nrequire-velozip: ${mode === 'required-missing'}\nauthentication:\n  secret: "${mode === 'auth-refusal' ? (side === 'backend' ? authSecret : crypto.randomBytes(32).toString('hex')) : ''}"\n`);
   }
   fs.writeFileSync(path.join(backend,'eula.txt'),'eula=true\n');
-  fs.writeFileSync(path.join(backend,'server.properties'),`server-ip=127.0.0.1\nserver-port=${backendPort}\nonline-mode=false\nlevel-name=fresh-world\nlevel-type=minecraft:flat\ngenerate-structures=false\nview-distance=3\nsimulation-distance=3\nspawn-protection=0\n`);
+  fs.writeFileSync(path.join(backend,'server.properties'),`server-ip=127.0.0.1\nserver-port=${backendPort}\nonline-mode=false\nlevel-name=fresh-world\nlevel-type=flat\ngenerator-settings={"layers":[{"block":"minecraft:bedrock","height":1},{"block":"minecraft:dirt","height":2},{"block":"minecraft:grass_block","height":1}],"biome":"minecraft:plains","structures":{}}\ngenerate-structures=false\nview-distance=3\nsimulation-distance=3\nspawn-protection=0\n`);
   const secret = crypto.randomBytes(32).toString('hex');
+  // 1.18 uses paper.yml; 1.19+ uses config/paper-global.yml. Seed both so the
+  // server consumes its native configuration. Never copy a production secret.
+  fs.writeFileSync(path.join(backend,'paper.yml'),`config-version: 27\nsettings:\n  velocity-support:\n    enabled: true\n    online-mode: false\n    secret: '${secret}'\n`);
   fs.writeFileSync(path.join(backend,'config/paper-global.yml'),`_version: 31\nproxies:\n  velocity:\n    enabled: true\n    online-mode: false\n    secret: '${secret}'\n`);
   fs.writeFileSync(path.join(proxy,'forwarding.secret'),secret);
   fs.writeFileSync(path.join(proxy,'velocity.toml'),`config-version = "2.7"\nbind = "127.0.0.1:${proxyPort}"\nonline-mode = false\nplayer-info-forwarding-mode = "modern"\nforwarding-secret-file = "forwarding.secret"\n[servers]\nbackend = "127.0.0.1:${backendPort}"\ntry = ["backend"]\n[forced-hosts]\n"lobby.example.com" = ["backend"]\n"factions.example.com" = ["backend"]\n"minigames.example.com" = ["backend"]\n`);
-  const b = start(process.env.BACKEND_JAVA || java,['-Xms256M','-Xmx1200M','-jar','server.jar','--nogui'],backend,'backend');
+  const b = start(process.env.BACKEND_JAVA || java,['-XX:ActiveProcessorCount=2','-Xms256M','-Xmx1200M','-jar','server.jar','--nogui'],backend,'backend');
   await ready(b,'backend',/Done \(/);
-  const p = start(java,['-Xms128M','-Xmx512M','-jar','proxy.jar'],proxy,'proxy');
+  const p = start(java,['-XX:ActiveProcessorCount=2','-Xms128M','-Xmx512M','-jar','proxy.jar'],proxy,'proxy');
   await ready(p,'proxy',/Done \(/);
   const task = process.env.BOT_TASK || "bot";
-  const cp = fs.readFileSync(path.join(root, `velozip-itest/build/${task}-classpath.txt`), "utf8");
+  const cp = process.env.BOT_VERSION ? null : fs.readFileSync(path.join(root, `velozip-itest/build/${task}-classpath.txt`), "utf8");
   const initial = await diagnostics(b,p,'before');
   if (mode !== 'baseline') {
     if (initial.proxy.effectiveEnabled !== String(mode !== 'disabled')) throw Error('effective enabled configuration mismatch');
@@ -118,7 +138,10 @@ try {
   if (mode === 'auth-refusal' && [initial.backend,initial.proxy].some(s=>s.authentication !== 'enabled (redacted)')) throw Error('effective authentication configuration mismatch');
   for (let i=1;i<=repeats;i++) {
     const name = `bot-${i}`;
-    const bot = start(java,[`-Dbot.port=${proxyPort}`, '-Dbot.host=127.0.0.1', `-Dbot.seconds=${seconds}`, '-cp', cp.trim(), 'dev.velozip.itest.BotMain'],root,name);
+    process.env.BOT_PORT = String(proxyPort);
+    const bot = process.env.BOT_VERSION
+      ? start(process.execPath, [path.join(root, 'scripts/legacy-bot.mjs')], root, name)
+      : start(java,[`-Dbot.port=${proxyPort}`, '-Dbot.host=127.0.0.1', `-Dbot.seconds=${seconds}`, '-cp', cp.trim(), 'dev.velozip.itest.BotMain'],root,name);
     const exit = new Promise(r => { bot.once('exit',r); bot.once('error',()=>r(1)); });
     const watchdog = setTimeout(()=>bot.kill('SIGKILL'),(seconds+45)*1000);
     await sleep(10000);
@@ -144,6 +167,16 @@ try {
   const proxyText = logText('proxy');
   if (['missing','required-missing'].includes(mode) && !proxyText.includes('negotiation timeout')) throw Error('no timeout status evidence');
   if (mode === 'auth-refusal' && !proxyText.includes('refused (code')) throw Error('no refusal status evidence');
+  if (proxyText.includes('failed to restore vanilla decoder')) throw Error('vanilla fallback failed');
+  if (mode === 'active') {
+    const final = result.snapshots.at(-1);
+    if (final.backend.active !== 0 || final.proxy.active !== 0) throw Error('active connection counter leaked');
+    if (JSON.stringify(final.backend.directions.TX) !== JSON.stringify(final.proxy.directions.RX)
+        || JSON.stringify(final.backend.directions.RX) !== JSON.stringify(final.proxy.directions.TX)) throw Error('final bilateral counters differ');
+    for (const side of ['backend','proxy']) for (const direction of ['TX','RX']) {
+      if (!(final[side].directions[direction].originalBytes > 0)) throw Error('missing bilateral traffic');
+    }
+  }
   result.passed = true;
   console.log(`PASS: ${result.case}; evidence ${run}`);
 } catch (e) {

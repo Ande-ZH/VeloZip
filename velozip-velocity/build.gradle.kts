@@ -42,7 +42,9 @@ tasks.named<ShadowJar>("shadowJar") {
     // zstd-jni MUST NOT be relocated: the JNI binding resolves the native
     // library through the exact class name (see zstd-jni README, "Limitations").
     relocate("org.yaml.snakeyaml", "dev.velozip.shaded.snakeyaml")
-    relocate("org.hdrhistogram", "dev.velozip.shaded.hdrhistogram")
+    relocate("org.HdrHistogram", "dev.velozip.shaded.hdrhistogram")
+
+    dependencies { exclude(dependency("io.netty:.*")) }
 
     mergeServiceFiles()
 

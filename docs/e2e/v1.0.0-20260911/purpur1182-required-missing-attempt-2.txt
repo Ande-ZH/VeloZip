@@ -1,0 +1,42 @@
+--- backend.log (allowlisted excerpts) ---
+This server is running Purpur version git-Purpur-1632 (MC: 1.18.2) (Implementing API version 1.18.2-R0.1-SNAPSHOT) (Git: dc4a29b on HEAD)
+--- bot-1.log (allowlisted excerpts) ---
+BOT reached PLAY state (1.18.2)
+BOT finished: success=false
+--- proxy.log (allowlisted excerpts) ---
+Booting up Velocity 4.1.1...
+VeloZip 1.0.0
+Transport protocol: 1
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 0
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=true debug=false
+VeloZip: no VeloZip response from backend within 5 s (backend plugin missing, disabled, or refused)
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 0
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=true debug=false
+{backend=ServerStatus[state=FAILED, reason=negotiation timeout, retryAfterNanos=609377854884992]}
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 0
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=true debug=false
+{backend=ServerStatus[state=FAILED, reason=negotiation timeout, retryAfterNanos=609377854884992]}

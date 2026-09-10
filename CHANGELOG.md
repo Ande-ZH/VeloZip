@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] — 待发布
+
+### 新增
+- 后端支持扩展到 Paper/Purpur 1.18（包含 1.18 本体），单个 Java 17 插件包兼容旧版 Spigot 与新版 Mojang 运行时映射。
+- 兼容 `paper.yml`（1.18）和 `paper-global.yml`（1.19+）的已加载转发配置；配置不存在或读取失败时拒绝信任直连。
+- 后端回归测试覆盖原生资源生命周期、在途原版包、拆包合包、管道替换、反射和 YAML 隔离。
+- 原生 1.18–1.20 测试客户端、可移植 JSON fixture、Java 17/25 与 Netty 4.1/4.2 CI 矩阵及成品包检查。
+
+### 调整
+- 后端固定编译 API 为 Paper 1.18，描述文件声明 `api-version: '1.18'`；所有插件字节码目标为 Java 17，构建 JDK 保持 25。移除旧后端 NMS 编译占位类。
+- 按已核验的唯一字段类型查找后端连接，兼容继承字段和旧版混淆名称。
+- 两端不再打包 Netty，隔离 SnakeYAML / HdrHistogram，保留 zstd-jni 原包名。
+- 发布校验和与上传仅包含两个可部署 jar，排除 thin jar。
+
+### 修复
+- 在首个入站 VeloZip 帧到达前保留旧 Paper 共用的原生压缩资源；新的出站帧跳过原版处理器，避免双重压缩。
+- 同一次 TCP 读取包含原版和 VeloZip 帧时，先交付原版包再移除解压处理器。
+- 修正 HdrHistogram 重定位包名的大小写。
+- REQ 前注册协商通道，确保旧版 Bukkit 可以发送 REFUSE；代理使用原地回退，避免重复添加不可共享的 Netty 解码器。
+
+### 验证
+- 64 项单元测试覆盖 Java 17 / Netty 4.1.68 和 Java 25 / Netty 4.2.7；检查实际成品包的 Java 17 字节码与依赖隔离。
+- 源码及接口依据见[兼容说明](docs/COMPATIBILITY-1.0.0.md)，精确实测用例见 [E2E 报告](docs/E2E-1.0.0.zh-CN.md)。
+- 最终 13 个真实 E2E 用例全部通过，保留包含初轮失败在内的 26 次脱敏尝试记录及校验和。
+- 传输协议保持 1，握手与帧格式不变；代码更新本身不创建 Release 或版本标签。
+
 ## [0.3.0] — Unreleased
 
 ### Fixed

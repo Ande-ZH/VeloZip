@@ -1,0 +1,124 @@
+--- backend.log (allowlisted excerpts) ---
+This server is running Purpur version git-Purpur-1433 (MC: 1.18) (Implementing API version 1.18-R0.1-SNAPSHOT) (Git: 26e5f08 on HEAD)
+VeloZip 1.0.0
+Transport protocol: 1
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 0
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+VeloZip transport enabled for VeloZipBot
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 1
+Total connections: 1
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=54952, wireBytes=5638, rawFrames=91, zstdFrames=10]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 1
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=85809, wireBytes=36628, rawFrames=499, zstdFrames=31]
+RX: DirectionSnapshot[originalBytes=20, wireBytes=30, rawFrames=2, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+VeloZip transport enabled for VeloZipBot
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 1
+Total connections: 2
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=152181, wireBytes=55816, rawFrames=677, zstdFrames=48]
+RX: DirectionSnapshot[originalBytes=58, wireBytes=73, rawFrames=3, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 2
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=203329, wireBytes=108221, rawFrames=1067, zstdFrames=91]
+RX: DirectionSnapshot[originalBytes=78, wireBytes=103, rawFrames=5, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+--- bot-1.log (allowlisted excerpts) ---
+BOT reached PLAY state (1.18)
+BOT healthy hold milliseconds=30001
+BOT finished: success=true
+--- bot-2.log (allowlisted excerpts) ---
+BOT reached PLAY state (1.18)
+BOT healthy hold milliseconds=30000
+BOT finished: success=true
+--- proxy.log (allowlisted excerpts) ---
+Booting up Velocity 4.1.1...
+VeloZip 1.0.0
+Transport protocol: 1
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 0
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+VeloZip transport enabled for backend
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 1
+Total connections: 1
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=0, wireBytes=0, rawFrames=0, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=54927, wireBytes=5608, rawFrames=90, zstdFrames=10]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+{backend=ServerStatus[state=ACTIVE, reason=, retryAfterNanos=0]}
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 1
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=20, wireBytes=30, rawFrames=2, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=85809, wireBytes=36628, rawFrames=499, zstdFrames=31]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+{backend=ServerStatus[state=CLOSED, reason=, retryAfterNanos=0]}
+VeloZip transport enabled for backend
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 1
+Total connections: 2
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=58, wireBytes=73, rawFrames=3, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=152064, wireBytes=55694, rawFrames=676, zstdFrames=48]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+{backend=ServerStatus[state=ACTIVE, reason=, retryAfterNanos=0]}
+VeloZip 1.0.0
+Transport Protocol: 1
+Active connections: 0
+Total connections: 2
+VeloZip 1.0.0 — transport statistics
+TX: DirectionSnapshot[originalBytes=78, wireBytes=103, rawFrames=5, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=203329, wireBytes=108221, rawFrames=1067, zstdFrames=91]
+enabled=true
+authentication=disabled
+require-velozip=false debug=false
+{backend=ServerStatus[state=CLOSED, reason=, retryAfterNanos=0]}

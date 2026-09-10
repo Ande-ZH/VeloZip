@@ -1,15 +1,15 @@
 [versions]
-# Common/proxy bytecode target. Backend overrides to Java 21.
-# Build toolchain remains Java 25; oldest candidate API is pinned below.
+# All shipped classes target Java 17. Build toolchain remains Java 25.
 javaRelease = "17"
-netty = "4.2.7.Final"
+# Compile against the 1.18 runtime ABI. Netty is supplied by the platform, never bundled.
+netty = "4.1.68.Final"
 zstdJni = "1.5.7-15"
 snakeyaml = "2.6"
 hdrHistogram = "2.2.2"
 jmh = "1.37"
 junit = "5.13.4"
 velocityApi = "3.4.0"
-paperApi = "1.21.11-R0.1-20260511.115010-91"
+paperApi = "1.18-R0.1-20211210.020702-61"
 shadow = "9.6.1"
 
 [libraries]

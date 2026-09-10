@@ -40,6 +40,7 @@ public final class VeloZipBatchEncoder extends ChannelDuplexHandler {
     private final VeloZipConfig cfg;
     private final VeloZipMetrics metrics;
     private final VeloZipLogger logger;
+    private final String bypassBefore;
     private final ZstdCompressor compressor = new ZstdCompressor();
 
     private ByteBuf batch;                 // null when no batch in progress
@@ -48,9 +49,20 @@ public final class VeloZipBatchEncoder extends ChannelDuplexHandler {
     private boolean closed;
 
     public VeloZipBatchEncoder(VeloZipConfig cfg, VeloZipMetrics metrics, VeloZipLogger logger) {
+        this(cfg, metrics, logger, null);
+    }
+
+    /**
+     * Optionally writes frames before a temporary vanilla outbound chain, keeping
+     * shared native resources alive until inbound switches. Once the anchor is
+     * removed, normal context writes resume.
+     */
+    public VeloZipBatchEncoder(VeloZipConfig cfg, VeloZipMetrics metrics, VeloZipLogger logger,
+                              String bypassBefore) {
         this.cfg = cfg;
         this.metrics = metrics;
         this.logger = logger;
+        this.bypassBefore = bypassBefore;
     }
 
     @Override
@@ -224,8 +236,10 @@ public final class VeloZipBatchEncoder extends ChannelDuplexHandler {
                 }
             });
         }
-        ctx.write(frame, writePromise);
-        ctx.flush();
+        ChannelHandlerContext output = bypassBefore == null ? null : ctx.pipeline().context(bypassBefore);
+        if (output == null) output = ctx;
+        output.write(frame, writePromise);
+        output.flush();
     }
 
     /** @param content ownership transfers into the returned frame */
