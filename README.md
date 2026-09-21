@@ -1,10 +1,12 @@
 # VeloZip
 
-[中文文档](README.zh-CN.md) · [兼容性说明](docs/COMPATIBILITY-1.1.0.md) · [测试报告](docs/E2E-1.0.0.zh-CN.md)
+[中文文档](README.zh-CN.md) · [兼容性说明](docs/COMPATIBILITY-1.1.0.md) · [非发布版测试报告](docs/TESTING-20260922.zh-CN.md) · [历史 E2E](docs/E2E-1.0.0.zh-CN.md)
 
-[![build](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml) [![Release](https://img.shields.io/badge/release-v1.0.0-blue)](https://github.com/Ande-ZH/VeloZip/releases)
+[![build](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml) [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases)
 
 在 **Velocity 3.4.0–4.1.1** 与 **Paper/Purpur 1.16–1.21.x / 26.1.x–26.2** 后端服务器之间的高性能 Zstd（Level 1）传输压缩 —— 对客户端 ↔ 代理链路**零改动**。
+
+> 当前为未发布的兼容性扩展：1.16/1.17 是待验证目标。Java 17/25 两组各 65 项单元测试通过，但本轮未执行真实服务器 E2E，也未验证 Java 16 运行时。
 
 ## VeloZip 是什么？
 
@@ -42,7 +44,7 @@ Velocity 等 Minecraft 代理使用原版 zlib 编解码器压缩与后端服务
 | 组件 | 要求 |
 |---|---|
 | 代理 | Velocity 3.4.0–4.1.1（一个插件 jar 覆盖全区间） |
-| 后端 | Paper/Purpur 1.16–1.21.x、26.1.x / 26.2 |
+| 后端 | 代码目标：Paper/Purpur 1.16–1.21.x、26.1.x / 26.2；1.16/1.17 待真实服务器验证 |
 | Java（代理） | 17+（Velocity 3.x）、21+（3.5.x）、25（Velocity 4.x） |
 | Java（后端） | 插件自身需要 Java 16+；服务端仍须满足对应版本要求 |
 | 客户端 | 取决于你的代理 —— 无需安装任何东西 |
@@ -51,7 +53,7 @@ Velocity 等 Minecraft 代理使用原版 zlib 编解码器压缩与后端服务
 
 ## 安装
 
-1. 从 [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases) 下载 `VeloZip-Velocity-1.0.0.jar` 和 `VeloZip-Backend-1.0.0.jar`（每个 Release 附带两个 jar 以及 SHA-256 `checksums.txt`），或从源码自行构建。
+1. 已发布版本见 [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases)。当前兼容性扩展尚未发布，请从源码构建；版本字段仍为 `1.0.0`，同名 jar 不代表与历史构建相同。
 2. 将 `VeloZip-Velocity-x.x.x.jar` 放入 Velocity 的 `plugins/` 目录。
 3. 将 `VeloZip-Backend-x.x.x.jar` 放入 Purpur 的 `plugins/` 目录。
 4. 重启。两端在启动时记录各自的版本和平台；每条连接的激活记录为 `VeloZip transport enabled for <server>`。未知/未验证的平台版本会打印警告，但仍会尝试协商（故障安全）。
@@ -82,9 +84,9 @@ Velocity 端还支持按服务器禁用（`servers: { lobby: { enabled: false } 
 
 ## 兼容性
 
-当前源码将后端 API 基线降至 **1.16.5**，一个 jar 适配 1.16–1.17 的版本化混淆类名及新版 Mojang 映射。代码支持系列为 1.16、1.17、1.18、1.19、1.20、1.21、26.1、26.2；1.16/1.17 尚未完成真实 E2E，未经测试的具体构建不标记为已验证。
+当前源码将后端 API 基线降至 **1.16.5**，加入 1.16 版本化连接类名候选，并沿用旧版混淆映射和新版 Mojang 映射的字段查找逻辑。代码识别系列为 1.16、1.17、1.18、1.19、1.20、1.21、26.1、26.2；1.16/1.17 尚未完成真实 E2E，版本识别不等于实际兼容性已验证。
 
-精确运行结果见 [v1.0.0 E2E 报告](docs/E2E-1.0.0.zh-CN.md)，1.16 扩展的接口证据与限制见 [兼容性说明](docs/COMPATIBILITY-1.1.0.md)。v0.3.0 的历史结果保留在原文档中。
+本轮结果见 [2026-09-22 非发布版测试报告](docs/TESTING-20260922.zh-CN.md)，扩展实现与限制见 [兼容性说明](docs/COMPATIBILITY-1.1.0.md)。[v1.0.0 E2E 报告](docs/E2E-1.0.0.zh-CN.md)及 v0.3.0 报告属于历史构建证据，不代表当前源码已完成 E2E 回归。
 
 后端必须启用 Velocity modern forwarding：
 
@@ -115,7 +117,7 @@ JMH 方法论、完整结果表格以及 32 vs 64 KiB 批处理大小决策数�
 ./gradlew build
 ```
 
-生成 `velozip-velocity/build/libs/VeloZip-Velocity-1.0.0.jar` 和 `velozip-backend/build/libs/VeloZip-Backend-1.0.0.jar`。构建前需安装 JDK 25；后端和 common 字节码目标为 Java 16，代理及工具模块为 Java 17，后端使用固定的 1.16.5 API。构建同时检查成品 jar 不夹带 Netty/NMS、依赖隔离及版本一致性。
+生成 `velozip-velocity/build/libs/VeloZip-Velocity-1.0.0.jar` 和 `velozip-backend/build/libs/VeloZip-Backend-1.0.0.jar`。构建前需安装 JDK 25；后端和 common 字节码目标为 Java 16，代理及工具模块为 Java 17，后端使用 Spigot `1.16.5-R0.1-SNAPSHOT` API。构建同时检查成品 jar 不夹带 Netty/NMS、依赖隔离及版本一致性。
 
 ## 项目结构
 

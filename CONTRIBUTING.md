@@ -10,22 +10,25 @@
 ## 开发与验证
 
 1. 创建功能分支，使用 Conventional Commits 风格提交信息，例如 `feat(backend): ...`。
-2. 安装 JDK 25（构建用）及 JDK 17（最低运行环境验证用）。
+2. 安装 JDK 25（构建用）及 JDK 17（兼容测试用）；验证后端/common 的最低目标运行时还需 JDK 16。
 3. 运行 `./gradlew build`，包括单元测试、插件打包和实际成品检查。
 4. 分别运行以下兼容测试：
 
 ```bash
 ./gradlew test -PtestJavaVersion=17 -PnettyTestVersion=4.1.68.Final
 ./gradlew test -PtestJavaVersion=25 -PnettyTestVersion=4.2.7.Final
+# 旧 Netty ABI 的补充回归，仅运行后端/common：
+./gradlew :velozip-backend:test :velozip-common:test -PtestJavaVersion=25 -PnettyTestVersion=4.1.50.Final
 ```
 
 必要时用 `-Dorg.gradle.java.installations.paths=...` 指定 JDK 安装路径。
+需要强制实际执行时加 `--rerun-tasks`。当前结果见 [非发布版测试报告](docs/TESTING-20260922.zh-CN.md)；Java 16 运行时及 1.16/1.17 真实 E2E 仍待验证。
 改动握手或帧格式时必须提高传输协议版本，或说明保持向后兼容的依据。
 
 ## 平台兼容策略
 
 目标后端系列包括 1.16、1.17、1.18、1.19、1.20、1.21、26.1、26.2；支持某个系列不意味着该系列的每个构建都已实测。
-当前后端适配器通过已核验的字段类型兼容旧版混淆映射和新版 Mojang 映射，并读取运行中的转发配置。
+当前后端适配器按字段类型查找旧版混淆映射和新版 Mojang 映射，并读取运行中的转发配置。历史已核验接口见 v1.0.0 兼容说明；新增 1.16/1.17 的版本识别和候选类型尚需真实服务器核验。
 
 新增版本时：
 
@@ -44,4 +47,4 @@ Netty 由平台提供，不得打进插件 jar。SnakeYAML / HdrHistogram 需要
 3. 完成构建与真实服务器矩阵，提交源码及脱敏测试证据。不要提交随机密钥、原始配置、世界或服务端二进制文件。
 4. 推送版本标签时，CI 才会创建 GitHub Release，上传两个可部署插件 jar 和 SHA-256 校验清单；推送 main 本身不发布 Release。
 
-历史接口研究保留在 [ANALYSIS.md](docs/ANALYSIS.md)，当前实现以 [1.1.0 兼容说明](docs/COMPATIBILITY-1.1.0.md)和 v1.0.0 E2E 证据为准。
+历史接口研究保留在 [ANALYSIS.md](docs/ANALYSIS.md)，当前实现与验证边界见 [未发布兼容性扩展说明](docs/COMPATIBILITY-1.1.0.md)。v1.0.0 E2E 证据只适用于当时的源码及构建。
