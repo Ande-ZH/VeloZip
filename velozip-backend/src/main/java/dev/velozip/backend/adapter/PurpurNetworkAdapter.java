@@ -13,10 +13,10 @@ import io.netty.util.AttributeKey;
 import org.bukkit.entity.Player;
 import java.util.Set;
 
-/** Paper/Purpur 1.18+ backend adapter; see docs/COMPATIBILITY-1.0.0.md. */
+/** Paper/Purpur 1.16+ backend adapter; see docs/COMPATIBILITY-1.1.0.md. */
 public final class PurpurNetworkAdapter implements NetworkAdapter {
     private static final AttributeKey<Boolean> ACTIVE_KEY = AttributeKey.valueOf("velozip.active");
-    private static final Set<String> SUPPORTED_FAMILIES = Set.of("1.18", "1.19", "1.20", "1.21", "26.1", "26.2");
+    private static final Set<String> SUPPORTED_FAMILIES = Set.of("1.16", "1.17", "1.18", "1.19", "1.20", "1.21", "26.1", "26.2");
     private final VeloZipConfig cfg;
     private final VeloZipMetrics metrics;
     private final VeloZipLogger logger;
@@ -32,7 +32,7 @@ public final class PurpurNetworkAdapter implements NetworkAdapter {
         family = PlatformVersions.majorMinor(version);
         if (!isSupported()) {
             logger.warn("VeloZip: backend {} is outside the supported families "
-                    + "(1.18–1.21, 26.1–26.2). See exact tested builds in the compatibility matrix.", version);
+                    + "(1.16–1.21, 26.1–26.2). See exact tested builds in the compatibility matrix.", version);
         }
     }
 

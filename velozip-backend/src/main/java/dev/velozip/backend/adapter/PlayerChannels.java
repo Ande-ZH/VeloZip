@@ -11,9 +11,15 @@ final class PlayerChannels {
 
     private static final ClassValue<Field> LISTENER = fields(type -> named(type,
             "net.minecraft.server.network.ServerGamePacketListenerImpl",
-            "net.minecraft.server.network.PlayerConnection"));
+            "net.minecraft.server.network.PlayerConnection",
+            "net.minecraft.server.v1_16_R1.PlayerConnection",
+            "net.minecraft.server.v1_16_R2.PlayerConnection",
+            "net.minecraft.server.v1_16_R3.PlayerConnection"));
     private static final ClassValue<Field> CONNECTION = fields(type -> named(type,
-            "net.minecraft.network.Connection", "net.minecraft.network.NetworkManager"));
+            "net.minecraft.network.Connection", "net.minecraft.network.NetworkManager",
+            "net.minecraft.server.v1_16_R1.NetworkManager",
+            "net.minecraft.server.v1_16_R2.NetworkManager",
+            "net.minecraft.server.v1_16_R3.NetworkManager"));
     private static final ClassValue<Field> CHANNEL = fields(Channel.class::isAssignableFrom);
 
     static Channel find(Object craftPlayer) throws ReflectiveOperationException {
@@ -24,8 +30,12 @@ final class PlayerChannels {
         return connection == null ? null : (Channel) CHANNEL.get(connection.getClass()).get(connection);
     }
 
-    private static boolean named(Class<?> type, String mojang, String spigot) {
-        return type.getName().equals(mojang) || type.getName().equals(spigot);
+    private static boolean named(Class<?> type, String... names) {
+        String actual = type.getName();
+        for (String name : names) {
+            if (actual.equals(name)) return true;
+        }
+        return false;
     }
 
     private static ClassValue<Field> fields(Predicate<Class<?>> match) {
@@ -47,8 +57,11 @@ final class PlayerChannels {
                 found = field;
             }
         }
-        if (found == null || !found.trySetAccessible()) {
-            throw new IllegalStateException("No accessible connection field in " + type.getName());
+        if (found == null) {
+            throw new IllegalStateException("No connection field in " + type.getName());
+        }
+        if (!found.trySetAccessible()) {
+            throw new IllegalStateException("Connection field is not accessible in " + type.getName());
         }
         return found;
     }

@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### 调整
+- 后端编译 API 基线降至 Spigot 1.16.5，描述文件声明 `api-version: '1.16'`；后端和 common 使用 Java 16 字节码，兼容 1.16–1.17 的版本化连接类名。
+- 扩展后端版本识别范围至 1.16、1.17；1.16/1.17 尚未完成真实 E2E，详见 [1.1.0 兼容说明](docs/COMPATIBILITY-1.1.0.md)。
+
 ## [1.0.0] — 待发布
 
 ### 新增

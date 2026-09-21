@@ -10,26 +10,35 @@ subprojects {
     repositories {
         mavenCentral()
         maven("https://repo.papermc.io/repository/maven-public/")
+        maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     }
 
     configure<org.gradle.api.plugins.JavaPluginExtension> {
         toolchain {
-            // Explicit build JDK; all plugin bytecode targets Java 17.
+            // Explicit build JDK; release targets are set per module below.
             languageVersion.set(JavaLanguageVersion.of(25))
         }
     }
 
     tasks.withType<JavaCompile>().configureEach {
-        // Includes Paper/Purpur 1.18 on Java 17.
-        options.release.set(17)
+        // Backend/common support the 1.16.5 API baseline; proxy/tooling modules keep Java 17.
+        val legacyCompatible = project.name == "velozip-common" || project.name == "velozip-backend"
+        options.release.set(if (legacyCompatible) 16 else 17)
         options.encoding = "UTF-8"
     }
 
     tasks.withType<Test>().configureEach {
         useJUnitPlatform()
         providers.gradleProperty("testJavaVersion").orNull?.let { testJava ->
+            val requested = testJava.toInt()
+            // Velocity's compile-only API and MCProtocolLib require Java 17+;
+            // the legacy matrix runs common/backend tests on Java 16 and keeps
+            // proxy/tooling tests on their minimum supported Java 17 runtime.
+            val effective = if (requested == 16
+                    && project.name != "velozip-common"
+                    && project.name != "velozip-backend") 17 else requested
             javaLauncher.set(project.extensions.getByType<JavaToolchainService>().launcherFor {
-                languageVersion.set(JavaLanguageVersion.of(testJava.toInt()))
+                languageVersion.set(JavaLanguageVersion.of(effective))
             })
         }
         // Leak detection for all Netty-based tests.
@@ -70,14 +79,17 @@ val verifyArtifacts = tasks.register("verifyArtifacts") {
                         zip.getInputStream(entry).use { input ->
                             val header = input.readNBytes(8)
                             val major = ((header[6].toInt() and 255) shl 8) or (header[7].toInt() and 255)
-                            check(major <= 61) { "Not Java 17 compatible: ${entry.name} (major $major)" }
+                            val maximum = if (module == "backend") 60 else 61
+                            check(major <= maximum) {
+                                "Not Java ${if (module == "backend") 16 else 17} compatible: ${entry.name} (major $major)"
+                            }
                         }
                     }
                 }
                 val descriptor = if (module == "backend") "plugin.yml" else "velocity-plugin.json"
                 val text = zip.getInputStream(zip.getEntry(descriptor)).bufferedReader().use { it.readText() }
                 check(text.contains(if (module == "backend") "version: ${project.version}" else "\"version\": \"${project.version}\""))
-                if (module == "backend") check(text.contains("api-version: '1.18'"))
+                if (module == "backend") check(text.contains("api-version: '1.16'"))
                 val source = project(":velozip-$module").file("src/main/java/dev/velozip/$module/VeloZip${side}Plugin.java").readText()
                 check(source.contains("PLUGIN_VERSION = \"${project.version}\"")) { "Plugin version constant drift" }
                 check(zip.getEntry("com/github/luben/zstd/Zstd.class") != null) { "zstd JNI binding missing/relocated" }

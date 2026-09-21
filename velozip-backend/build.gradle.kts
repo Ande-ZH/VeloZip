@@ -10,13 +10,14 @@ val libs = the<VersionCatalogsExtension>().named("libs")
 dependencies {
     api(project(":velozip-common"))
 
-    compileOnly(libs.findLibrary("paper-api").get())
+    // Compile against the oldest public API available on the supported range.
+    compileOnly(libs.findLibrary("spigot-api").get())
 
     // Isolate YAML from the incompatible versions bundled by old servers.
     implementation(libs.findLibrary("snakeyaml").get())
 
     testImplementation(project(":velozip-common"))
-    testImplementation(libs.findLibrary("paper-api").get())
+    testImplementation(libs.findLibrary("spigot-api").get())
     testImplementation(libs.findLibrary("netty-handler").get())
     testImplementation(libs.findLibrary("junit-jupiter").get())
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -31,7 +32,6 @@ tasks.named<ShadowJar>("shadowJar") {
 
     dependencies { exclude(dependency("io.netty:.*")) }
 
-    manifest.attributes["paperweight-mappings-namespace"] = "mojang"
     mergeServiceFiles()
 
     // The stub classes must never leak into the shipped jar.

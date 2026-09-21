@@ -1,10 +1,10 @@
 # VeloZip
 
-[项目首页](README.md) · [兼容性说明](docs/COMPATIBILITY-1.0.0.md) · [测试报告](docs/E2E-1.0.0.zh-CN.md)
+[项目首页](README.md) · [兼容性说明](docs/COMPATIBILITY-1.1.0.md) · [测试报告](docs/E2E-1.0.0.zh-CN.md)
 
 [![build](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml) [![Release](https://img.shields.io/badge/release-v1.0.0-blue)](https://github.com/Ande-ZH/VeloZip/releases)
 
-在 **Velocity 3.4.0–4.1.1** 与 **Paper/Purpur 1.18–1.21.x / 26.1.x–26.2** 后端服务器之间的高性能 Zstd（Level 1）传输压缩 —— 对客户端 ↔ 代理链路**零改动**。
+在 **Velocity 3.4.0–4.1.1** 与 **Paper/Purpur 1.16–1.21.x / 26.1.x–26.2** 后端服务器之间的高性能 Zstd（Level 1）传输压缩 —— 对客户端 ↔ 代理链路**零改动**。
 
 ## VeloZip 是什么？
 
@@ -29,7 +29,7 @@ Velocity 等 Minecraft 代理使用原版 zlib 编解码器压缩与后端服务
                        │  → 协议切换 → VeloZip 分帧
                        │  批处理（≤64 KiB / 500 µs）→ Zstd level 1
                        ▼
-           Paper/Purpur 1.18 起
+           Paper/Purpur 1.16 起
               VeloZip-Backend.jar
 ```
 
@@ -42,9 +42,9 @@ Velocity 等 Minecraft 代理使用原版 zlib 编解码器压缩与后端服务
 | 组件 | 要求 |
 |---|---|
 | 代理 | Velocity 3.4.0–4.1.1（一个插件 jar 覆盖全区间） |
-| 后端 | Paper/Purpur 1.18–1.21.x、26.1.x / 26.2 |
+| 后端 | Paper/Purpur 1.16–1.21.x、26.1.x / 26.2 |
 | Java（代理） | 17+（Velocity 3.x）、21+（3.5.x）、25（Velocity 4.x） |
-| Java（后端） | 1.18–1.20.4：17；1.20.5–1.21.x：21；26.x：25 |
+| Java（后端） | 插件自身需要 Java 16+；服务端仍须满足对应版本要求 |
 | 客户端 | 取决于你的代理 —— 无需安装任何东西 |
 
 > 客户端与后端协议必须匹配，否则需要另行验证的协议转换插件。代理支持某协议不等于能转换后端版本。
@@ -82,9 +82,9 @@ Velocity 端还支持按服务器禁用（`servers: { lobby: { enabled: false } 
 
 ## 兼容性
 
-v1.0.0 将后端最低版本降至 **1.18 本体**，一个 jar 适配旧版混淆映射和新版 Mojang 映射。支持系列为 1.18、1.19、1.20、1.21、26.1、26.2；未经测试的具体构建不标记为已验证。
+当前源码将后端 API 基线降至 **1.16.5**，一个 jar 适配 1.16–1.17 的版本化混淆类名及新版 Mojang 映射。代码支持系列为 1.16、1.17、1.18、1.19、1.20、1.21、26.1、26.2；1.16/1.17 尚未完成真实 E2E，未经测试的具体构建不标记为已验证。
 
-精确运行结果见 [v1.0.0 E2E 报告](docs/E2E-1.0.0.zh-CN.md)，接口证据与 Java 矩阵见 [兼容性说明](docs/COMPATIBILITY-1.0.0.md)。v0.3.0 的历史结果保留在原文档中。
+精确运行结果见 [v1.0.0 E2E 报告](docs/E2E-1.0.0.zh-CN.md)，1.16 扩展的接口证据与限制见 [兼容性说明](docs/COMPATIBILITY-1.1.0.md)。v0.3.0 的历史结果保留在原文档中。
 
 后端必须启用 Velocity modern forwarding：
 
@@ -115,7 +115,7 @@ JMH 方法论、完整结果表格以及 32 vs 64 KiB 批处理大小决策数�
 ./gradlew build
 ```
 
-生成 `velozip-velocity/build/libs/VeloZip-Velocity-1.0.0.jar` 和 `velozip-backend/build/libs/VeloZip-Backend-1.0.0.jar`。构建前需安装 JDK 25；所有插件字节码目标均为 Java 17，后端使用固定的 1.18 API。构建同时检查成品 jar 不夹带 Netty/NMS、依赖隔离及版本一致性。
+生成 `velozip-velocity/build/libs/VeloZip-Velocity-1.0.0.jar` 和 `velozip-backend/build/libs/VeloZip-Backend-1.0.0.jar`。构建前需安装 JDK 25；后端和 common 字节码目标为 Java 16，代理及工具模块为 Java 17，后端使用固定的 1.16.5 API。构建同时检查成品 jar 不夹带 Netty/NMS、依赖隔离及版本一致性。
 
 ## 项目结构
 
@@ -123,7 +123,7 @@ JMH 方法论、完整结果表格以及 32 vs 64 KiB 批处理大小决策数�
 |---|---|
 | `velozip-common` | 平台无关的传输核心：`0x00 0x5A` 分帧、双模解码、Zstd 压缩/解压缩、批处理、协商、指标 |
 | `velozip-velocity` | Velocity 代理插件 —— 协商、管道注入、配置、`/velozip` 命令 |
-| `velozip-backend` | Paper/Purpur 1.18+ 后端插件 —— 新旧映射与转发配置兼容、管道注入、命令及回归测试 |
+| `velozip-backend` | Paper/Purpur 1.16+ 后端插件 —— 新旧映射与转发配置兼容、管道注入、命令及回归测试 |
 | `velozip-benchmark` | JMH 微基准测试（见 [docs/BENCHMARK.md](docs/BENCHMARK.md)） |
 | `velozip-itest` | MCProtocolLib E2E bot —— `bot`（26.1 客户端）与 `botLegacy`（1.21.11 客户端） |
 

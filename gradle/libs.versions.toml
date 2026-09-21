@@ -1,7 +1,8 @@
 [versions]
-# All shipped classes target Java 17. Build toolchain remains Java 25.
-javaRelease = "17"
-# Compile against the 1.18 runtime ABI. Netty is supplied by the platform, never bundled.
+# Backend/common target Java 16 for the Paper/Purpur 1.16 API baseline;
+# proxy/tooling modules retain Java 17. The build toolchain remains Java 25.
+javaRelease = "16"
+# Compile against the oldest supported backend API. Netty is supplied by the platform, never bundled.
 netty = "4.1.68.Final"
 zstdJni = "1.5.7-15"
 snakeyaml = "2.6"
@@ -9,7 +10,7 @@ hdrHistogram = "2.2.2"
 jmh = "1.37"
 junit = "5.13.4"
 velocityApi = "3.4.0"
-paperApi = "1.18-R0.1-20211210.020702-61"
+spigotApi = "1.16.5-R0.1-SNAPSHOT"
 shadow = "9.6.1"
 
 [libraries]
@@ -23,7 +24,7 @@ jmh-core = { module = "org.openjdk.jmh:jmh-core", version.ref = "jmh" }
 jmh-annprocess = { module = "org.openjdk.jmh:jmh-generator-annprocess", version.ref = "jmh" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 velocity-api = { module = "com.velocitypowered:velocity-api", version.ref = "velocityApi" }
-paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paperApi" }
+spigot-api = { module = "org.spigotmc:spigot-api", version.ref = "spigotApi" }
 
 [plugins]
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }

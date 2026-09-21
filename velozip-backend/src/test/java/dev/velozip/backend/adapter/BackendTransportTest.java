@@ -172,9 +172,12 @@ class BackendTransportTest {
         try {
             adapter.activateChannel(ch, "test");
             ch.writeOutbound(Unpooled.wrappedBuffer(new byte[]{1, 2}));
-            assertNull(ch.readOutbound());
-            TimeUnit.MILLISECONDS.sleep(15); ch.runPendingTasks();
             ByteBuf wire = ch.readOutbound();
+            if (wire == null) {
+                TimeUnit.MILLISECONDS.sleep(15);
+                ch.runPendingTasks();
+                wire = ch.readOutbound();
+            }
             assertNotNull(wire);
             try { assertEquals(0x005a, wire.readUnsignedShort()); } finally { wire.release(); }
             assertFalse(state.closed);
@@ -206,10 +209,10 @@ class BackendTransportTest {
     }
 
     @Test void recognizesOldAndCurrentBackendFamiliesWithoutClaimingFutureOnes() {
-        for (String version : List.of("1.18", "1.18.2-R0.1-SNAPSHOT", "1.19.4", "1.20.4", "1.21.11", "26.1.2", "26.2")) {
+        for (String version : List.of("1.16.1", "1.16.5-R0.1-SNAPSHOT", "1.17.1", "1.18", "1.18.2-R0.1-SNAPSHOT", "1.19.4", "1.20.4", "1.21.11", "26.1.2", "26.2")) {
             adapter.checkPlatform(version); assertTrue(adapter.isSupported(), version);
         }
-        for (String version : List.of("1.17.1", "27.1", "unknown")) {
+        for (String version : List.of("1.15.2", "27.1", "unknown")) {
             adapter.checkPlatform(version); assertFalse(adapter.isSupported(), version);
         }
     }

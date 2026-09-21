@@ -11,6 +11,8 @@ dependencyResolutionManagement {
     repositories {
         mavenCentral()
         maven("https://repo.papermc.io/repository/maven-public/")
+        // Historical Spigot API snapshots are required for the 1.16 compile ABI.
+        maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     }
 }
 

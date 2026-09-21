@@ -1,8 +1,8 @@
 name: VeloZip
 version: 1.0.0
 main: dev.velozip.backend.VeloZipBackendPlugin
-api-version: '1.18'
-description: Zstd transport compression for Velocity and Paper/Purpur 1.18 or newer
+api-version: '1.16'
+description: Zstd transport compression for Velocity and Paper/Purpur 1.16 or newer
 author: Ande-ZH
 website: https://github.com/ande-zh/VeloZip
 commands:
