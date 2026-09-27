@@ -30,7 +30,7 @@ class VelocityNetworkAdapterTest {
         try {
             channel.pipeline().addLast("frame-decoder", original);
             channel.pipeline().replace("frame-decoder", "frame-decoder", decoder);
-            var state = new VelocityNetworkAdapter.NegotiationState(channel, "backend", null, original);
+            var state = new VelocityNetworkAdapter.NegotiationState(channel, "backend", null);
             var key = AttributeKey.<VelocityNetworkAdapter.NegotiationState>valueOf("velozip.negotiation");
             channel.attr(key).set(state);
             adapter.onRefuse(channel, new Negotiation.Refuse(4, "authentication refused"));

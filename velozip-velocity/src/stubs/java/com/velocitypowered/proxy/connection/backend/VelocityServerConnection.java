@@ -14,10 +14,6 @@ public class VelocityServerConnection {
         throw new UnsupportedOperationException("stub");
     }
 
-    public MinecraftConnection ensureConnected() {
-        throw new UnsupportedOperationException("stub");
-    }
-
     public RegisteredServer getServer() {
         throw new UnsupportedOperationException("stub");
     }

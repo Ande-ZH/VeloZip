@@ -97,7 +97,8 @@ public final class VeloZipVelocityPlugin {
             return;
         }
         // Must be fast: this event is @AwaitingEvent with autoRead paused.
-        adapter.negotiate(event.getPlayer(), event.getServer());    }
+        adapter.negotiate(event.getPlayer(), event.getServer());
+    }
 
     @Subscribe
     public void onPluginMessage(PluginMessageEvent event) {

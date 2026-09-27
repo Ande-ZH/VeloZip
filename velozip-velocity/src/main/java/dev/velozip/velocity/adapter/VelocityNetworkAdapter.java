@@ -167,7 +167,7 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
 
             ChannelPipeline pipeline = channel.pipeline();
             Object originalDecoder = pipeline.get(FRAME_DECODER);
-            if (!(originalDecoder instanceof MinecraftVarintFrameDecoder vanillaDecoder)) {
+            if (!(originalDecoder instanceof MinecraftVarintFrameDecoder)) {
                 failed(serverName, "unexpected frame decoder");
                 if (cfg.requireVelozip) channel.close();
                 logger.warn("VeloZip: unexpected frame-decoder type {} on backend pipeline, skipping",
@@ -175,7 +175,7 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
                 return;
             }
 
-            NegotiationState state = new NegotiationState(channel, serverName, player, vanillaDecoder);
+            NegotiationState state = new NegotiationState(channel, serverName, player);
             channel.attr(STATE_KEY).set(state);
             latestAttempts.put(serverName, state);
             serverStatuses.put(serverName, new ServerStatus("NEGOTIATING", "", 0));
@@ -336,16 +336,13 @@ public final class VelocityNetworkAdapter implements NetworkAdapter {
         final Channel channel;
         final String serverName;
         final Player player;
-        final MinecraftVarintFrameDecoder originalDecoder;
         final AtomicBoolean finished = new AtomicBoolean();
         volatile ScheduledFuture<?> timeout;
 
-        NegotiationState(Channel channel, String serverName, Player player,
-                         MinecraftVarintFrameDecoder originalDecoder) {
+        NegotiationState(Channel channel, String serverName, Player player) {
             this.channel = channel;
             this.serverName = serverName;
             this.player = player;
-            this.originalDecoder = originalDecoder;
         }
     }
 }
