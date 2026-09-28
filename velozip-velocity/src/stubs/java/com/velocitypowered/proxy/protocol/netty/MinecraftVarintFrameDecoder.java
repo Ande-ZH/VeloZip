@@ -7,8 +7,9 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 import java.util.List;
 
 /**
- * STUB of Velocity 3.4.0 internal (proxy/src/main/java/com/velocitypowered/proxy/
- * protocol/netty/MinecraftVarintFrameDecoder.java). Compile-time only; never
+ * STUB of Velocity 3.4.0 (commit 6b1ea78) internal
+ * (proxy/src/main/java/com/velocitypowered/proxy/protocol/netty/MinecraftVarintFrameDecoder.java).
+ * Compile-time only; never
  * packaged. Only the surface used by VeloZip is declared; the real class also
  * has setState(StateRegistry) which PLAY<->CONFIG transitions invoke — our
  * subclass inherits it from the real class at runtime, which is exactly why

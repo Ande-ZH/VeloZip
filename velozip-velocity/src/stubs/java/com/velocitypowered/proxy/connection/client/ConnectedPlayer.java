@@ -3,8 +3,9 @@ package com.velocitypowered.proxy.connection.client;
 import com.velocitypowered.proxy.connection.backend.VelocityServerConnection;
 
 /**
- * STUB of Velocity 3.4.0 internal (com.velocitypowered.proxy.connection.client.
- * ConnectedPlayer, the impl of the API Player interface). Compile-time only.
+ * STUB of Velocity 3.4.0 (commit 6b1ea78) internal
+ * (com.velocitypowered.proxy.connection.client.ConnectedPlayer, the impl of the
+ * API Player interface). Compile-time only.
  */
 public class ConnectedPlayer {
 

@@ -4,8 +4,9 @@ import io.netty.channel.Channel;
 import io.netty.channel.EventLoop;
 
 /**
- * STUB of Velocity 3.4.0 internal (com.velocitypowered.proxy.connection.
- * MinecraftConnection). Compile-time only; never packaged.
+ * STUB of Velocity 3.4.0 (commit 6b1ea78) internal
+ * (com.velocitypowered.proxy.connection.MinecraftConnection). Compile-time only;
+ * never packaged.
  */
 public class MinecraftConnection {
 

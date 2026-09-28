@@ -14,7 +14,8 @@ VeloZip-Velocity 需要调用 Velocity 代理的**内部类**（`com.velocitypow
 占位类位于独立的 `stubs` sourceSet（见
 [velozip-velocity/build.gradle.kts](../velozip-velocity/build.gradle.kts)），共有三道防线：
 
-1. `compileOnly(sourceSets["stubs"].output)` —— 只参与编译，不进运行时 classpath；
+1. `compileOnly(sourceSets["stubs"].output)` —— 只参与编译，不进成品 jar 与生产运行时
+   （单元测试运行时另有 `testImplementation(sourceSets["stubs"].output)`，属测试专用）；
 2. shadowJar `exclude("com/velocitypowered/proxy/**")` —— 双保险；
 3. 根构建的 `verifyArtifacts` 任务会打开实际成品 jar，逐条目确认不存在任何
    `com/velocitypowered/` 前缀的条目。
@@ -39,10 +40,14 @@ VeloZip-Velocity 需要调用 Velocity 代理的**内部类**（`com.velocitypow
 占位类不声明 `setState`：运行时继承真实类的实现，其签名以 ANALYSIS.md §10.2 的
 三 commit 比对为准。
 
+同理，`VelocityServerConnection` 的真实类还有 `ensureConnected()`（`getConnection()`
+的非空替代），而 VeloZip 用的是 `getConnection()` 加空值检查，因此占位类不声明它。
+占位类只覆盖**实际调用面**，不等同于真实类的完整 API。
+
 ## 签名依据与验证历史
 
-- **源码基线**：Velocity 3.4.0（commit `6b1ea78`，官方 build 566）；每个占位类的
-  javadoc 均标注来源。
+- **源码基线**：Velocity 3.4.0（commit `6b1ea78`，官方 build 566）；5 个占位类的
+  javadoc 均标注该 commit。
 - **跨版本比对**：`6b1ea78`（3.4.0）/ `4498f1e`（3.5.1）/ `db0a17e`（4.1.1）三个
   commit 中，`Connections` 常量、`BackendChannelInitializer` 安装顺序、
   `MinecraftVarintFrameDecoder` 构造器与 `setState(StateRegistry)` 签名完全一致

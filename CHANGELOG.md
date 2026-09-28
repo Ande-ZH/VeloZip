@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### 清理
 
 - 移除未使用代码：`YamlConfigs.list()`、协商状态中存而不用的 `NegotiationState.originalDecoder` 字段、stub 中零引用的 `ensureConnected()`；修正 stub javadoc 的 `setState` 签名表述（以 [ANALYSIS.md](docs/ANALYSIS.md) §10.2 的源码核验为准）。
-- 补齐 [编译占位类说明](docs/STUBS.md)，记录现存 5 个 stub 的签名来源、打包隔离防线与历史后端占位类的 javap 核验及移除原因。
+- 补齐 [编译占位类说明](docs/STUBS.md)，记录现存 5 个 stub 的签名来源、打包隔离防线与历史后端占位类的 javap 核验及移除原因；5 个占位类 javadoc 统一标注基线 commit `6b1ea78`，并写明只覆盖实际调用面。
 
 ### 调整
 - 后端编译 API 基线降至 Spigot `1.16.5-R0.1-SNAPSHOT`，描述文件声明 `api-version: '1.16'`；后端和 common 使用 Java 16 字节码，加入 1.16 版本化连接类名候选。
