@@ -336,7 +336,7 @@ REFUSE (Purpur → Velocity, plugin message, 走 vanilla 路径)：
 1. `inboundHandlerName(z)/outboundHandlerName(z)` 的分支方向（影响极小：登录完成后稳定名字为 `decoder`/`encoder`，已由 replace 目标名证实）。
 2. Purpur 自身补丁是否触碰网络层（网络层结论继承 Paper ver/26.1.2；M4 以真实 Purpur build 2592 集成测试兜底）。
 3. Bukkit 端 incoming plugin message 派发是否要求对端先行 `minecraft:register` 声明（现行证据：incoming 派发只依赖服务端插件注册；M4 实测验证，若需要则启用 Velocity ChannelRegistrar 注册公告作为通道声明，代码已预留）。
-4. 纯 paper-api 依赖下 stub 引用 paper-server 内部类的签名正确性 → M0/M3 从真实 26.1.2 服务端 jar 以 javap 复核（见 docs/STUBS.md）。**已完成**：核验记录见 [STUBS.md](STUBS.md)，原始 javap 结果见 [CHANGELOG](../CHANGELOG.md) 0.1.0 小节；该批后端占位类已于 v1.0.0 随 NMS 解耦一并移除。
+4. 纯 paper-api 依赖下 stub 引用 paper-server 内部类的签名正确性 → M0/M3 从真实 26.1.2 服务端 jar 以 javap 复核（见 docs/STUBS.md）。**已完成**：核验记录见 [STUBS.md](STUBS.md)，核验结论摘要见 [CHANGELOG](../CHANGELOG.md) 0.1.0 小节（该小节是摘要，原始命令输出未入库）；该批后端占位类已于 v1.0.0 随 NMS 解耦一并移除。
 5. Velocity 3.4.0 在 Java 25 JVM 上的运行兼容性（M4 本地实测）。
 
 ## 10. v0.2.0 版本扩展调研附录（2026-08-30）

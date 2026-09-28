@@ -56,7 +56,7 @@ Velocity 等 Minecraft 代理使用原版 zlib 编解码器压缩与后端服务
 1. 已发布版本见 [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases)。当前兼容性扩展尚未发布，请从源码构建；版本字段仍为 `1.0.0`，同名 jar 不代表与历史构建相同。
 2. 将 `VeloZip-Velocity-x.x.x.jar` 放入 Velocity 的 `plugins/` 目录。
 3. 将 `VeloZip-Backend-x.x.x.jar` 放入 Purpur 的 `plugins/` 目录。
-4. 重启。两端在启动时记录各自的版本和平台；每条连接的激活记录为 `VeloZip transport enabled for <server>`。未知/未验证的平台版本会打印警告，但仍会尝试协商（故障安全）。
+4. 重启。两端在启动时记录各自的版本和平台；每条连接的激活记录为 `VeloZip transport enabled for <server>`。版本族不在已识别集合内（代理 3.4–4.1，后端 1.16–1.21、26.1、26.2 之外）时会打印警告，但仍会尝试协商（故障安全）；已识别但尚未实测的版本（如 1.16/1.17）不会触发该警告，验证状态以兼容性文档为准。
 
 ## 配置
 
@@ -90,7 +90,7 @@ Velocity 端还支持按服务器禁用（`servers: { lobby: { enabled: false } 
 
 后端必须启用 Velocity modern forwarding：
 
-- 1.18.x：`paper.yml` 的 `settings.velocity-support.enabled: true`。
+- 1.16.x–1.18.x：`paper.yml` 的 `settings.velocity-support.enabled: true`（1.16/1.17 为待验证目标）。
 - 1.19+：`config/paper-global.yml` 的 `proxies.velocity.enabled: true`。
 
 转发密钥须与代理一致；插件的 `authentication.secret` 是另一个独立的可选共享密钥。客户端版本须匹配后端，或安装经过验证的协议转换插件。

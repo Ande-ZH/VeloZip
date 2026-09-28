@@ -1,10 +1,11 @@
 # VeloZip 编译占位类（stubs）说明
 
 VeloZip-Velocity 需要调用 Velocity 代理的**内部类**（`com.velocitypowered.proxy.*`），
-这些类没有任何 Maven 构件可以依赖。为此 `velozip-velocity` 维护一组**仅编译期**的
-占位类（stubs）：只声明 VeloZip 实际用到的成员签名，方法体一律抛出
-`UnsupportedOperationException("stub")`。运行时插件链接代理自带的真实类；
-占位类本身**永不进入成品 jar**。
+这些内部实现不在 `velocity-api` 构件里，也没有对应的 Maven 构件。为此
+`velozip-velocity` 维护一组**仅编译期**的占位类（stubs）：只声明 VeloZip 实际用到的
+成员签名，普通方法体一律抛出 `UnsupportedOperationException("stub")`（构造器为空
+实现，仅用于满足签名）。运行时插件链接代理自带的真实类；占位类本身**永不进入
+成品 jar**。
 
 本文件同时记录历史后端占位类的来源与移除原因，作为
 [ANALYSIS.md](ANALYSIS.md) §9 第 4 条所引用的核验记录。
@@ -52,21 +53,37 @@ VeloZip-Velocity 需要调用 Velocity 代理的**内部类**（`com.velocitypow
   commit 中，`Connections` 常量、`BackendChannelInitializer` 安装顺序、
   `MinecraftVarintFrameDecoder` 构造器与 `setState(StateRegistry)` 签名完全一致
   （ANALYSIS.md §10.2）。
-- **运行时实证**：v0.1.0–v1.0.0 的真实服务器 E2E 在 Velocity 3.4.0 build 566 与
-  4.1.1 build 24 上实际执行过上表全部成员——协商路径覆盖
-  `getConnectedServer`/`getConnectionInFlight`/`getConnection`/`getServer`/
-  `getChannel`/`eventLoop`/`sendPluginMessage`，解码路径覆盖构造器与 `decode`。
-  见 [E2E-1.0.0.zh-CN.md](E2E-1.0.0.zh-CN.md) 及更早的 E2E 报告、
+- **运行时实证**：v0.1.0–v1.0.0 的真实服务器 E2E 在 Velocity 3.4.0（build 563 /
+  566）与 4.1.1（build 24）上完成了加载、协商与传输，执行过协商路径的
+  `getConnectionInFlight`/`getConnection`/`getServer`/`getChannel`/`eventLoop`/
+  `sendPluginMessage`，以及解码路径的构造器与 `decode`。`getConnectedServer()`
+  是 in-flight 连接为空时的回退分支（见
+  [VelocityNetworkAdapter](../velozip-velocity/src/main/java/dev/velozip/velocity/adapter/VelocityNetworkAdapter.java)），
+  现有 E2E 记录不足以证明该分支被执行过。
+  见 [E2E-1.0.0.zh-CN.md](E2E-1.0.0.zh-CN.md)、
+  [E2E-0.3.0.zh-CN.md](E2E-0.3.0.zh-CN.md) 与
   [CHANGELOG.md](../CHANGELOG.md) 各版本 Verified 小节。
 
 ## 历史后端占位类（已在 v1.0.0 移除）
 
-v0.1.0 阶段后端也曾使用 paper-server / NMS 编译占位：`CraftPlayer` →
-`ServerPlayer` → `connection` 调用链、`GlobalConfiguration` 嵌套、`HandlerNames`
-常量、`ChannelInitializeListener`（见 [ANALYSIS.md §3.5](ANALYSIS.md)）。按
-ANALYSIS.md §9 第 4 条的计划，这些占位类的签名曾用 `javap` 对照真实 Purpur
-26.1.2 服务端 jar 逐一复核（`Connection.channel`、`Varint21FrameDecoder` 构造器、
-调用链、配置嵌套与常量），记录见 [CHANGELOG.md](../CHANGELOG.md) 0.1.0 小节。
+v0.1.0 阶段后端使用过 paper-server / NMS 编译占位。v1.0.0（提交 `af01606`）删除的
+占位类共 7 个（均位于 `velozip-backend/src/stubs`），正是当时插件的完整连接链：
+
+| 占位类 | 声明的内容 |
+|---|---|
+| `org.bukkit.craftbukkit.entity.CraftPlayer` | `getHandle()` |
+| `net.minecraft.server.level.ServerPlayer` | `connection` 字段 |
+| `net.minecraft.server.network.ServerGamePacketListenerImpl` | `connection` 字段 |
+| `net.minecraft.network.Connection` | `channel` 字段 |
+| `net.minecraft.network.Varint21FrameDecoder` | 构造器 `(BandwidthDebugMonitor)`、`decode` |
+| `net.minecraft.network.BandwidthDebugMonitor` | 空标记类型（作为构造参数） |
+| `io.papermc.paper.configuration.GlobalConfiguration` | `get()`、`proxies` 嵌套 |
+
+按 [ANALYSIS.md §9](ANALYSIS.md) 第 4 条的计划，上述签名曾用 `javap` 对照真实
+Purpur 26.1.2 服务端 jar 复核；[CHANGELOG.md](../CHANGELOG.md) 0.1.0 小节记录了
+核验结论摘要，其中还包含随该次核验一并确认的 `HandlerNames` 常量名——常量不是占位
+类，故不在上表内。`ChannelInitializeListener` 只出现在 [ANALYSIS.md §3.5](ANALYSIS.md)
+的早期 hook 调研中，最终实现改用插件消息触发激活，仓库中从未有其占位类。
 
 v1.0.0 起后端改为**不链接 NMS** 的实现：`PlayerChannels` 按已核验类型做受限反射
 寻找唯一字段，`PaperForwarding` 运行时读取转发配置，全部 NMS 占位类随之移除。

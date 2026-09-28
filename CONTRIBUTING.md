@@ -35,7 +35,7 @@
 1. 比较网络处理器名称、分帧签名、玩家到连接的字段链、插件消息接口和转发认证配置。
 2. 补充源码/ABI 依据、回归测试和真实 E2E 测试；只将实际通过的精确构建标记为已验证。
 3. 有不兼容差异时扩展或新增 `NetworkAdapter`；公共压缩核心不得引入平台专用类型。
-4. 证据写入 [兼容说明](docs/COMPATIBILITY-1.0.0.md) 和 [E2E 报告](docs/E2E-1.0.0.zh-CN.md)，新文档使用中文。
+4. 证据写入当期兼容说明与测试报告（当前为 [兼容性说明](docs/COMPATIBILITY-1.1.0.md)、[测试报告](docs/TESTING-20260922.zh-CN.md)）；历史报告（1.0.0 及更早）只记录当时的构建，不再追加新证据。新文档使用中文。
 
 编译依赖使用最旧支持 API：Velocity 3.4.0、Spigot 1.16.5；后端/common 成品字节码目标为 Java 16，代理及工具模块为 Java 17。
 Netty 由平台提供，不得打进插件 jar。SnakeYAML / HdrHistogram 需要隔离，zstd-jni 不得重定位。
