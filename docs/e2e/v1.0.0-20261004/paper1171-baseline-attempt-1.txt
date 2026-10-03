@@ -1,0 +1,8 @@
+--- backend.log (allowlisted excerpts) ---
+This server is running Paper version git-Paper-411 (MC: 1.17.1) (Implementing API version 1.17.1-R0.1-SNAPSHOT) (Git: 6625db3 on ver/1.17.1)
+--- bot-1.log (allowlisted excerpts) ---
+BOT reached PLAY state (1.17.1)
+BOT healthy hold milliseconds=30001
+BOT finished: success=true
+--- proxy.log (allowlisted excerpts) ---
+Booting up Velocity 4.1.1...

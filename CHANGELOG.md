@@ -14,13 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 调整
 - 后端编译 API 基线降至 Spigot `1.16.5-R0.1-SNAPSHOT`，描述文件声明 `api-version: '1.16'`；后端和 common 使用 Java 16 字节码，加入 1.16 版本化连接类名候选。
-- 扩展后端版本识别范围至 1.16、1.17；1.16/1.17 尚未完成真实 E2E，详见 [未发布兼容性扩展说明](docs/COMPATIBILITY-1.1.0.md)。
+- 扩展后端版本识别范围至 1.16、1.17；2026-10-04 已完成 Purpur 1.16.5 与 Paper 1.17.1 的真实服务器 E2E，详见 [未发布兼容性扩展说明](docs/COMPATIBILITY-1.1.0.md)。
 
 ### 验证
 
 - Java 17 / Netty 4.1.68 和 Java 25 / Netty 4.2.7 两组各 65 项测试通过；Java 25 / Netty 4.1.50 的后端/common 补充回归共 61 项通过。
-- 构建、成品包检查及 5 个 Node.js 测试脚本的语法检查通过。Java 16 运行时、真实服务端 E2E 和新性能基准尚未验证。
-- 详见 [2026-09-22 非发布版测试报告](docs/TESTING-20260922.zh-CN.md)。本次更新不变更项目版本，不创建 Release 或版本标签。
+- Java 16 运行时（Temurin 16.0.2）：Netty 4.1.68 与 4.1.50 两组各 65 项测试通过，worker 命令行核验为 JDK 16 实际执行。
+- 真实服务器 E2E：Purpur 1.16.5-1171 / Paper 1.17.1-411（后端 Java 16）× Velocity 4.1.1-24 / 3.4.0-566，原生老协议客户端，6 用例（两个版本激活、缺插件回退、密钥拒绝回退、旧代理、原版基线）全部通过；证据经脱敏入库 [docs/e2e/v1.0.0-20261004/](docs/e2e/v1.0.0-20261004/)。
+- JMH 基准在当前源码复测，结论与历史一致（MC_LIKE 32 KiB 压缩约 28 µs，远低于 1 ms 预算）；原始数据见 [docs/benchmarks/v1.0.0-20261004/](docs/benchmarks/v1.0.0-20261004/)。
+- 构建、成品包检查及 5 个 Node.js 测试脚本的语法检查通过；`test-evidence.mjs` 白名单加入 Java 16。
+- 详见 [2026-10-04 验证报告](docs/TESTING-20261004.zh-CN.md)。本轮不变更项目版本，不创建 Release 或版本标签。
 
 ## [1.0.0] — 待发布
 

@@ -117,6 +117,10 @@ if (threshold == -1) {
    MinecraftConnection mc = sc.ensureConnected();              // getConnection() 为 @Nullable 版
    Channel ch = mc.getChannel();  EventLoop loop = mc.eventLoop();
    ```
+
+   2026-10-04 核验：`VelocityServerConnection.ensureConnected()` 为真实 Velocity 代理 API 的
+   公开方法（javap 对照 `velocity-3.4.0-566.jar`，对应提交 `6b1ea78`），与本仓库曾于
+   `b286f2a` 删除的编译占位类同名方法无关。
 7. modern forwarding 的 login plugin channel 常量为 `PlayerDataForwarding.CHANNEL = "velocity:player_info"`。
 8. 插件事件面：`ServerConnectedEvent` 在 **PLAY 阶段**（`TransitionSessionHandler.handle(JoinGamePacket)`，事件期间 `smc.setAutoReading(false)`，处理必须快）；`ServerConnection.sendPluginMessage(ChannelIdentifier, byte[]|ByteBuf)`；拦截后端→客户端 plugin message 用 `PluginMessageEvent`（`com.velocitypowered.api.event.connection`，`setResult(ForwardResult.handled())` 阻止转发；**仅对 ChannelRegistrar 注册过的 channel 触发事件**，未注册 channel 的消息不触发事件、直接转发）。
 

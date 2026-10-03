@@ -6,7 +6,7 @@ import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const [java, netty] = process.argv.slice(2);
-if (!['17', '25'].includes(java) || !/^4\.[12]\.\d+\.Final$/.test(netty || '')) throw Error('需要明确的 Java/Netty 测试环境');
+if (!['16', '17', '25'].includes(java) || !/^4\.[12]\.\d+\.Final$/.test(netty || '')) throw Error('需要明确的 Java/Netty 测试环境');
 const suites = [];
 const totals = {tests: 0, failures: 0, errors: 0, skipped: 0};
 const sha = data => crypto.createHash('sha256').update(data).digest('hex');

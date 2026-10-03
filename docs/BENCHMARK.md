@@ -1,9 +1,14 @@
 # VeloZip Benchmark
 
 JMH microbenchmarks of the VeloZip transport core (Zstd level 1, native via
-`zstd-jni` 1.5.7-15). All measurements use a JDK 25 (Zulu 25.0.3) toolchain
-on the development machine; numbers are directional, not absolute guarantees —
-always re-measure on your own deployment hardware.
+`zstd-jni` 1.5.7-15). All measurements use a JDK 25 toolchain on the
+development machine; numbers are directional, not absolute guarantees —
+always re-measure on your own deployment hardware. The tables below were
+first taken on Zulu 25.0.3 and re-measured on 2026-10-04 against the current
+1.0.0 source (Zulu 25.0.4.1, shared two-core VM — wider confidence intervals);
+see [Re-measurement on the current source](#re-measurement-on-the-current-source-2026-10-04)
+and the raw JMH JSON in
+[docs/benchmarks/v1.0.0-20261004/](benchmarks/v1.0.0-20261004/results.json).
 
 ## Methodology
 
@@ -30,6 +35,31 @@ Reproduce with:
 ./gradlew :velozip-benchmark:jmh \
   -PjmhArgs="CompressionBenchmark.BatchRoundTrip.batchRoundTrip -wi 2 -i 3 -f 1 -t 1 -bm avgt"
 ```
+
+## Re-measurement on the current source (2026-10-04)
+
+Same methodology (`-wi 2 -i 3 -f 1 -t 1`, JDK 25 / Zulu 25.0.4.1, zstd-jni
+1.5.7-15) re-run against the current 1.0.0 source after the 1.16/1.17
+compatibility extension. Raw JMH JSON:
+[benchmarks/v1.0.0-20261004/results.json](benchmarks/v1.0.0-20261004/results.json).
+Run on a shared two-core VM, so error bars are wider than the original run;
+treat the numbers as directional confirmation, not precision data.
+
+Compress-only latency (µs/op):
+
+| size | RANDOM | COMPRESSIBLE | MC_LIKE |
+|---:|---:|---:|---:|
+| 128 B   | 1.11 | 2.86 | 1.52 |
+| 1 KiB   | 2.87 | 11.67 | 4.99 |
+| 4 KiB   | 5.42 | 20.41 | 11.54 |
+| 16 KiB  | 12.10 | 91.90 | 20.26 |
+| 32 KiB  | 20.82 | 117.54 | 28.17 |
+| 64 KiB  | 16.58 | 278.95 | 67.56 |
+
+Full batch round trip: 32 KiB ≈ 83,066 ops/s (≈ 12.0 µs/op), 64 KiB ≈
+39,216 ops/s (≈ 25.5 µs/op) — consistent with the historical "tens of
+microseconds" conclusion. `MC_LIKE` stays far below the 1 ms latency budget
+at production batch sizes (~28 µs at 32 KiB, ~68 µs at 64 KiB).
 
 ## Compress-only latency (Zstd level 1, reused ctx)
 

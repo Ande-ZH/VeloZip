@@ -1,12 +1,12 @@
 # VeloZip
 
-[项目首页](README.md) · [兼容性说明](docs/COMPATIBILITY-1.1.0.md) · [非发布版测试报告](docs/TESTING-20260922.zh-CN.md) · [历史 E2E](docs/E2E-1.0.0.zh-CN.md)
+[项目首页](README.md) · [兼容性说明](docs/COMPATIBILITY-1.1.0.md) · [验证报告](docs/TESTING-20261004.zh-CN.md) · [历史 E2E](docs/E2E-1.0.0.zh-CN.md)
 
 [![build](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml) [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases)
 
 在 **Velocity 3.4.0–4.1.1** 与 **Paper/Purpur 1.16–1.21.x / 26.1.x–26.2** 后端服务器之间的高性能 Zstd（Level 1）传输压缩 —— 对客户端 ↔ 代理链路**零改动**。
 
-> 当前为未发布的兼容性扩展：1.16/1.17 是待验证目标。Java 17/25 两组各 65 项单元测试通过，但本轮未执行真实服务器 E2E，也未验证 Java 16 运行时。
+> 当前为未发布的兼容性扩展。1.16/1.17 已于 2026-10-04 完成真实服务器 E2E（Purpur 1.16.5、Paper 1.17.1，6 用例全通过），Java 16 运行时亦已验证（两组各 65 项单元测试）；累计 Java 16/17/25 三组运行时矩阵全部通过。项目尚未发布 Release。
 
 ## VeloZip 是什么？
 
@@ -44,7 +44,7 @@ Velocity 等 Minecraft 代理使用原版 zlib 编解码器压缩与后端服务
 | 组件 | 要求 |
 |---|---|
 | 代理 | Velocity 3.4.0–4.1.1（一个插件 jar 覆盖全区间） |
-| 后端 | 代码目标：Paper/Purpur 1.16–1.21.x、26.1.x / 26.2；1.16/1.17 待真实服务器验证 |
+| 后端 | 代码目标：Paper/Purpur 1.16–1.21.x、26.1.x / 26.2；1.16/1.17 已实测（Purpur 1.16.5、Paper 1.17.1） |
 | Java（代理） | 17+（Velocity 3.x）、21+（3.5.x）、25（Velocity 4.x） |
 | Java（后端） | 插件自身需要 Java 16+；服务端仍须满足对应版本要求 |
 | 客户端 | 取决于你的代理 —— 无需安装任何东西 |
@@ -56,7 +56,7 @@ Velocity 等 Minecraft 代理使用原版 zlib 编解码器压缩与后端服务
 1. 已发布版本见 [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases)。当前兼容性扩展尚未发布，请从源码构建；版本字段仍为 `1.0.0`，同名 jar 不代表与历史构建相同。
 2. 将 `VeloZip-Velocity-x.x.x.jar` 放入 Velocity 的 `plugins/` 目录。
 3. 将 `VeloZip-Backend-x.x.x.jar` 放入 Purpur 的 `plugins/` 目录。
-4. 重启。两端在启动时记录各自的版本和平台；每条连接的激活记录为 `VeloZip transport enabled for <server>`。版本族不在已识别集合内（代理 3.4–4.1，后端 1.16–1.21、26.1、26.2 之外）时会打印警告，但仍会尝试协商（故障安全）；已识别但尚未实测的版本（如 1.16/1.17）不会触发该警告，验证状态以兼容性文档为准。
+4. 重启。两端在启动时记录各自的版本和平台；每条连接的激活记录为 `VeloZip transport enabled for <server>`。版本族不在已识别集合内（代理 3.4–4.1，后端 1.16–1.21、26.1、26.2 之外）时会打印警告，但仍会尝试协商（故障安全）；已识别但尚未实测的版本不会触发该警告，验证状态以兼容性文档为准。
 
 ## 配置
 
@@ -84,13 +84,13 @@ Velocity 端还支持按服务器禁用（`servers: { lobby: { enabled: false } 
 
 ## 兼容性
 
-当前源码将后端 API 基线降至 **1.16.5**，加入 1.16 版本化连接类名候选，并沿用旧版混淆映射和新版 Mojang 映射的字段查找逻辑。代码识别系列为 1.16、1.17、1.18、1.19、1.20、1.21、26.1、26.2；1.16/1.17 尚未完成真实 E2E，版本识别不等于实际兼容性已验证。
+当前源码将后端 API 基线降至 **1.16.5**，加入 1.16 版本化连接类名候选，并沿用旧版混淆映射和新版 Mojang 映射的字段查找逻辑。代码识别系列为 1.16、1.17、1.18、1.19、1.20、1.21、26.1、26.2；其中 1.16.5 与 1.17.1 已于 2026-10-04 完成真实 E2E，其余构建未逐一实测。
 
-本轮结果见 [2026-09-22 非发布版测试报告](docs/TESTING-20260922.zh-CN.md)，扩展实现与限制见 [兼容性说明](docs/COMPATIBILITY-1.1.0.md)。[v1.0.0 E2E 报告](docs/E2E-1.0.0.zh-CN.md)及 v0.3.0 报告属于历史构建证据，不代表当前源码已完成 E2E 回归。
+本轮结果见 [2026-10-04 验证报告](docs/TESTING-20261004.zh-CN.md)，扩展实现与限制见 [兼容性说明](docs/COMPATIBILITY-1.1.0.md)。[v1.0.0 E2E 报告](docs/E2E-1.0.0.zh-CN.md)及 v0.3.0 报告属于历史构建证据；1.18–26.2 的当前回归依赖单元测试与上述 1.16/1.17 实测。
 
 后端必须启用 Velocity modern forwarding：
 
-- 1.16.x–1.18.x：`paper.yml` 的 `settings.velocity-support.enabled: true`（1.16/1.17 为待验证目标）。
+- 1.16.x–1.18.x：`paper.yml` 的 `settings.velocity-support.enabled: true`（1.16/1.17 已实测）。
 - 1.19+：`config/paper-global.yml` 的 `proxies.velocity.enabled: true`。
 
 转发密钥须与代理一致；插件的 `authentication.secret` 是另一个独立的可选共享密钥。客户端版本须匹配后端，或安装经过验证的协议转换插件。
