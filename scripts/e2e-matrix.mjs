@@ -30,7 +30,9 @@ for (const c of fixture.cases) {
     BACKEND_JAR: c.backendJar, PROXY_JAR: c.proxyJar || fixture.proxyJar,
     BACKEND_SEED: c.backendSeed || '', BOT_TASK: c.botTask || 'bot', BOT_VERSION: c.botVersion || '',
     BOT_SECONDS: String(c.seconds || 30), BOT_REPEATS: String(c.repeats || 1),
-    E2E_CASE: c.id, E2E_MODE: c.mode || 'active', VIA_JARS: (c.viaJars || []).join(':')};
+    E2E_CASE: c.id, E2E_MODE: c.mode || 'active', VIA_JARS: (c.viaJars || []).join(':'),
+    E2E_LEVEL_TYPE: c.levelType || '', E2E_VIEW_DISTANCE: c.viewDistance ? String(c.viewDistance) : '',
+    E2E_SIM_DISTANCE: c.simDistance ? String(c.simDistance) : '', E2E_LEVEL_SEED: c.levelSeed || ''};
   console.log('START ' + c.id + ' ' + new Date().toISOString());
   const r = spawnSync(process.execPath, [path.join(root, 'scripts/e2e.mjs')], {env, encoding: 'utf8'});
   const log = (r.stdout || '') + (r.stderr || '');

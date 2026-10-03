@@ -21,7 +21,18 @@ if (!['active', 'missing', 'required-missing', 'auth-refusal', 'disabled', 'base
 const seconds = Number(process.env.BOT_SECONDS || 30);
 const repeats = Number(process.env.BOT_REPEATS || 1);
 if (!Number.isInteger(seconds) || seconds < 15 || seconds > 120 || !Number.isInteger(repeats) || repeats < 1 || repeats > 5) throw Error('invalid bot bounds');
-const result = {case: process.env.E2E_CASE || mode, mode, pluginVersion, botVersion: process.env.BOT_VERSION || process.env.BOT_TASK || 'bot', started: new Date().toISOString(), seconds, repeats, bots: [], snapshots: [], passed: false, inputs: {}};
+// World realism knobs. Defaults keep the historical fast flat profile; the
+// normal profile uses each version's default generator (real terrain).
+const levelType = process.env.E2E_LEVEL_TYPE === 'normal' ? 'normal' : 'flat';
+const viewDistance = Number(process.env.E2E_VIEW_DISTANCE || 3);
+const simDistance = Number(process.env.E2E_SIM_DISTANCE || 3);
+const levelSeed = process.env.E2E_LEVEL_SEED || '';
+const bootTimeout = Number(process.env.E2E_BOOT_TIMEOUT || 180);
+if (!Number.isInteger(viewDistance) || viewDistance < 2 || viewDistance > 32
+    || !Number.isInteger(simDistance) || simDistance < 2 || simDistance > 32
+    || !Number.isInteger(bootTimeout) || bootTimeout < 60 || bootTimeout > 900
+    || (levelSeed && !/^[\w:+-]+$/.test(levelSeed))) throw Error('invalid world bounds');
+const result = {case: process.env.E2E_CASE || mode, mode, pluginVersion, botVersion: process.env.BOT_VERSION || process.env.BOT_TASK || 'bot', started: new Date().toISOString(), seconds, repeats, world: {levelType, viewDistance, simDistance, levelSeed}, bots: [], snapshots: [], passed: false, inputs: {}};
 for (const key of ['BACKEND_JAR', 'PROXY_JAR', 'VIA_JARS']) for (const file of (process.env[key] || '').split(':').filter(Boolean)) result.inputs[path.basename(file)] = crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 for (const [name, executable] of [['proxy', java], ['backend', process.env.BACKEND_JAVA || java]]) {
   result[`${name}JavaVersion`] = spawnSync(executable, ['-version'], {encoding:'utf8'}).stderr.trim();
@@ -81,7 +92,7 @@ function start(cmd, args, cwd, name) {
   return child;
 }
 async function ready(child, log, regex) {
-  for (let i=0;i<180;i++) {
+  for (let i=0;i<bootTimeout;i++) {
     if (child.exitCode !== null) throw Error(`${log} exited during startup`);
     if (regex.test(fs.readFileSync(path.join(run, `${log}.log`),'utf8'))) return;
     await sleep(1000);
@@ -116,7 +127,13 @@ try {
     fs.writeFileSync(path.join(directory,'config.yml'),`enabled: ${!(mode === 'disabled' && side === 'proxy')}\nrequire-velozip: ${mode === 'required-missing'}\nauthentication:\n  secret: "${mode === 'auth-refusal' ? (side === 'backend' ? authSecret : crypto.randomBytes(32).toString('hex')) : ''}"\n`);
   }
   fs.writeFileSync(path.join(backend,'eula.txt'),'eula=true\n');
-  fs.writeFileSync(path.join(backend,'server.properties'),`server-ip=127.0.0.1\nserver-port=${backendPort}\nonline-mode=false\nlevel-name=fresh-world\nlevel-type=flat\ngenerator-settings={"layers":[{"block":"minecraft:bedrock","height":1},{"block":"minecraft:dirt","height":2},{"block":"minecraft:grass_block","height":1}],"biome":"minecraft:plains","structures":{}}\ngenerate-structures=false\nview-distance=3\nsimulation-distance=3\nspawn-protection=0\n`);
+  // Flat pins explicit layers because older versions fall back oddly on empty
+  // flat configs. Normal omits level-type entirely so every version uses its
+  // own default generator with structures enabled.
+  let worldProperties = '';
+  if (levelType === 'flat') worldProperties += 'level-type=flat\ngenerator-settings={"layers":[{"block":"minecraft:bedrock","height":1},{"block":"minecraft:dirt","height":2},{"block":"minecraft:grass_block","height":1}],"biome":"minecraft:plains","structures":{}}\ngenerate-structures=false\n';
+  if (levelSeed) worldProperties += `level-seed=${levelSeed}\n`;
+  fs.writeFileSync(path.join(backend,'server.properties'),`server-ip=127.0.0.1\nserver-port=${backendPort}\nonline-mode=false\nlevel-name=fresh-world\n${worldProperties}view-distance=${viewDistance}\nsimulation-distance=${simDistance}\nspawn-protection=0\n`);
   const secret = crypto.randomBytes(32).toString('hex');
   // 1.18 uses paper.yml; 1.19+ uses config/paper-global.yml. Seed both so the
   // server consumes its native configuration. Never copy a production secret.

@@ -15,7 +15,9 @@ for (const dir of matrices) {
 const version = fs.readFileSync(path.join(root, 'gradle.properties'), 'utf8').match(/^version=(.+)$/m)[1].trim();
 const date = process.env.E2E_EVIDENCE_DATE || new Date().toISOString().slice(0, 10);
 if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw Error('Invalid evidence date');
-const output = path.join(root, 'docs/e2e', 'v' + version + '-' + date.replaceAll('-', ''));
+// Optional suffix keeps multiple export rounds on the same date in separate directories.
+const suffix = process.env.E2E_EVIDENCE_SUFFIX ? '-' + process.env.E2E_EVIDENCE_SUFFIX.replace(/[^a-z0-9-]/gi, '') : '';
+const output = path.join(root, 'docs/e2e', 'v' + version + '-' + date.replaceAll('-', '') + suffix);
 fs.mkdirSync(output, {recursive: true});
 const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const results = [], latest = new Map(), attempts = new Map();

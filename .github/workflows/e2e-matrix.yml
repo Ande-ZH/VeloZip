@@ -1,0 +1,108 @@
+# Realistic-terrain E2E matrix: one representative Paper/Purpur build per major
+# Minecraft family (1.16 → 26.2) against real Velocity, using each version's
+# default world generator (fixed seed) and vanilla default view/simulation
+# distance. Server jars are downloaded and checksum-verified at run time by
+# scripts/ci-download-servers.mjs.
+#
+# Running the matrix accepts the Minecraft EULA on behalf of ephemeral,
+# loopback-only test instances (the harness writes eula=true); no production
+# data is involved. Expect ~30–45 minutes for the full 8-case matrix.
+name: e2e realistic matrix
+
+on:
+  workflow_dispatch:
+    inputs:
+      case_filter:
+        description: 'CASE_FILTER substrings (comma separated); empty runs all'
+        required: false
+        default: ''
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/e2e-matrix.yml'
+      - 'scripts/e2e.mjs'
+      - 'scripts/e2e-matrix.mjs'
+      - 'scripts/e2e-evidence.mjs'
+      - 'scripts/ci-download-servers.mjs'
+      - 'scripts/legacy-bot.mjs'
+      - 'velozip-common/src/**'
+      - 'velozip-backend/src/**'
+      - 'velozip-velocity/src/**'
+      - 'velozip-itest/src/**'
+      - 'build.gradle.kts'
+      - 'velozip-*/build.gradle.kts'
+      - 'gradle/**'
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install node test dependencies
+        run: npm ci --prefix scripts --ignore-scripts
+      # Install every backend runtime JDK; capture each install path before the
+      # next setup-java step overwrites JAVA_HOME (JDK 25 stays the default).
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '16'
+      - name: Record JDK 16
+        run: echo "JDK16_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Record JDK 17
+        run: echo "JDK17_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Record JDK 21
+        run: echo "JDK21_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: 'gradle'
+      - name: Record JDK 25
+        run: echo "JDK25_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
+      - name: Build plugins and bot classpaths
+        run: ./gradlew build :velozip-itest:writeBotClasspaths
+      - name: Download servers and generate fixture
+        run: node scripts/ci-download-servers.mjs
+      - name: Run realistic E2E matrix
+        env:
+          CASE_FILTER: ${{ inputs.case_filter }}
+        run: node scripts/e2e-matrix.mjs build/ci-fixture.json
+      - name: Export sanitized evidence
+        if: always()
+        id: evidence
+        continue-on-error: true
+        run: |
+          matrix=$(ls -dt "$PWD"/build/e2e-matrix-* | head -1)
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          E2E_EVIDENCE_DATE=$(date -u +%F) node scripts/e2e-evidence.mjs "$matrix"
+          dest=$(ls -dt "$PWD"/docs/e2e/*/ | head -1)
+          echo "dir=$dest" >> "$GITHUB_OUTPUT"
+      - name: Upload evidence artifacts
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-evidence-${{ github.run_number }}
+          path: |
+            ${{ steps.evidence.outputs.matrix }}
+            ${{ steps.evidence.outputs.dir }}
+          if-no-files-found: warn
