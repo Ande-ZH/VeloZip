@@ -106,3 +106,18 @@ jobs:
             ${{ steps.evidence.outputs.matrix }}
             ${{ steps.evidence.outputs.dir }}
           if-no-files-found: warn
+      # Console logs (backend/proxy/bot stdout per case) for diagnosing harness
+      # or protocol issues. Text only — never worlds, jars, or plugin configs.
+      - name: Upload run console logs
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-run-logs-${{ github.run_number }}
+          path: |
+            build/e2e-*/backend.log
+            build/e2e-*/proxy.log
+            build/e2e-*/bot-*.log
+            build/e2e-*/result.json
+          retention-days: 7
+          if-no-files-found: warn
