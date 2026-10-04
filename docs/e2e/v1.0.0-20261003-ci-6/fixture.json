@@ -39,13 +39,13 @@
     "velozip-velocity/src/main/java/dev/velozip/velocity/config/VelocityConfigLoader.java": "e98db2c3240609b5b455e6407b881b8b3a766fda1ab7ecd6d35a8d6cca3e25fc",
     "velozip-velocity/src/main/java/dev/velozip/velocity/network/VeloZipVelocityFrameDecoder.java": "809ce77ac1272a4b41c3e07b0bf6d112487c3ec6bb7f756f90130b5b7930dc76",
     "velozip-velocity/src/main/resources/velocity-plugin.json": "b7f12e9210d47b00c60cab42c419ece74a9444bb065b9043f2644ffd8a499ef9",
-    "scripts/e2e.mjs": "a885cfc8c8744705b7a95b0e9f76e4f5cb5c95fa534326eb5ee9ae7f523be1bd",
+    "scripts/e2e.mjs": "47cc26b6f69b5af59afcd3451a1cdc49761437ebc3734259b55871c341950bfe",
     "scripts/e2e-matrix.mjs": "a017110a363cf33e420a156e4e16e78814fd8772591fe18d94fb63574328c933",
-    "scripts/e2e-evidence.mjs": "61d7869c5a5823a3011d17e79e91cf7b51016bca1f37dc5a929a39a14675d243",
-    "scripts/legacy-bot.mjs": "edb5af060734f931c3904bbbf2b3a346fcad6abeac493b6742b1e43248559b41",
+    "scripts/e2e-evidence.mjs": "c541f38a661a75c7a1dfb9a9897b21ba96e2c1c4f943a46feee3f890531ea669",
+    "scripts/legacy-bot.mjs": "53aac6a870de1ff096777b05061edc0382b4ad265c29ed722ceee00fbffc928c",
     "scripts/package-lock.json": "ac49abb062db40d5a2a274d6150e3d5f9de613f1a11c5473e52a5208042ecdbe",
     "scripts/test-evidence.mjs": "019067682fefe507d802c4ea6c0546e0916f56fb9947d6f18103706f37b3fca8",
-    "velozip-itest/src/main/java/dev/velozip/itest/BotMain.java": "55eb86e8b7ce550baeb808d9909444ef92077ad16757783716869096a17e1274"
+    "velozip-itest/src/main/java/dev/velozip/itest/BotMain.java": "82bf39cc5a29911105a70e8be46ab3a31f02384b08dfea8d28cb5c3067d4e33e"
   },
   "configuration": {
     "bind": "loopback ephemeral",

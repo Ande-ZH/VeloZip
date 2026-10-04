@@ -19,8 +19,8 @@ Transport Protocol: 1
 Active connections: 1
 Total connections: 1
 VeloZip 1.0.0 — transport statistics
-TX: DirectionSnapshot[originalBytes=958249, wireBytes=148442, rawFrames=20, zstdFrames=36]
-RX: DirectionSnapshot[originalBytes=30, wireBytes=45, rawFrames=3, zstdFrames=0]
+TX: DirectionSnapshot[originalBytes=1834595, wireBytes=282132, rawFrames=55, zstdFrames=69]
+RX: DirectionSnapshot[originalBytes=50, wireBytes=75, rawFrames=5, zstdFrames=0]
 enabled=true
 authentication=disabled
 require-velozip=false debug=false
@@ -29,15 +29,16 @@ Transport Protocol: 1
 Active connections: 0
 Total connections: 1
 VeloZip 1.0.0 — transport statistics
-TX: DirectionSnapshot[originalBytes=4783106, wireBytes=778206, rawFrames=477, zstdFrames=370]
+TX: DirectionSnapshot[originalBytes=5318082, wireBytes=792451, rawFrames=500, zstdFrames=321]
 RX: DirectionSnapshot[originalBytes=300, wireBytes=450, rawFrames=30, zstdFrames=0]
 enabled=true
 authentication=disabled
 require-velozip=false debug=false
 --- bot-1.log (allowlisted excerpts) ---
 BOT reached PLAY state (join game received)
-BOT first world chunk after 6721 ms
-BOT healthy hold milliseconds=30046
+BOT first world chunk after 5585 ms
+BOT healthy hold milliseconds=30037
+BOT stream quiet after 0 ms
 BOT finished: success=true
 --- proxy.log (allowlisted excerpts) ---
 Booting up Velocity 4.1.1...
@@ -59,8 +60,8 @@ Transport Protocol: 1
 Active connections: 1
 Total connections: 1
 VeloZip 1.0.0 — transport statistics
-TX: DirectionSnapshot[originalBytes=30, wireBytes=45, rawFrames=3, zstdFrames=0]
-RX: DirectionSnapshot[originalBytes=958249, wireBytes=148442, rawFrames=20, zstdFrames=36]
+TX: DirectionSnapshot[originalBytes=50, wireBytes=75, rawFrames=5, zstdFrames=0]
+RX: DirectionSnapshot[originalBytes=1834595, wireBytes=282132, rawFrames=55, zstdFrames=69]
 enabled=true
 authentication=disabled
 require-velozip=false debug=false
@@ -71,7 +72,7 @@ Active connections: 0
 Total connections: 1
 VeloZip 1.0.0 — transport statistics
 TX: DirectionSnapshot[originalBytes=300, wireBytes=450, rawFrames=30, zstdFrames=0]
-RX: DirectionSnapshot[originalBytes=4783106, wireBytes=778206, rawFrames=477, zstdFrames=370]
+RX: DirectionSnapshot[originalBytes=5318082, wireBytes=792451, rawFrames=500, zstdFrames=321]
 enabled=true
 authentication=disabled
 require-velozip=false debug=false

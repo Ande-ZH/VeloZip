@@ -99,7 +99,7 @@ jobs:
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
           out=$(E2E_EVIDENCE_DATE=$(date -u +%F) node scripts/e2e-evidence.mjs "$matrix" \
             | sed -n 's/^Sanitized .* to //p' | sed 's/: {.*//')
-          echo "dir=$PWD/$out" >> "$GITHUB_OUTPUT"
+          echo "dir=$out" >> "$GITHUB_OUTPUT"
           echo "evidence dir: $out"
       - name: Upload evidence artifacts
         if: always()
