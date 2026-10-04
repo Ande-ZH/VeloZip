@@ -186,7 +186,18 @@ try {
   if (mode === 'auth-refusal' && !proxyText.includes('refused (code')) throw Error('no refusal status evidence');
   if (proxyText.includes('failed to restore vanilla decoder')) throw Error('vanilla fallback failed');
   if (mode === 'active') {
-    const final = result.snapshots.at(-1);
+    // Late chunk delivery can leave a final batch in flight when the first
+    // after-exit sample is taken; re-query until both sides settle instead of
+    // failing on a mid-relay snapshot.
+    let final = result.snapshots.at(-1);
+    for (let settle = 0; settle < 8; settle++) {
+      const s = final;
+      if (s.backend.active === 0 && s.proxy.active === 0
+          && JSON.stringify(s.backend.directions.TX) === JSON.stringify(s.proxy.directions.RX)
+          && JSON.stringify(s.backend.directions.RX) === JSON.stringify(s.proxy.directions.TX)) break;
+      await sleep(1500);
+      final = await diagnostics(b, p, `settle-${settle}`);
+    }
     if (final.backend.active !== 0 || final.proxy.active !== 0) throw Error('active connection counter leaked');
     if (JSON.stringify(final.backend.directions.TX) !== JSON.stringify(final.proxy.directions.RX)
         || JSON.stringify(final.backend.directions.RX) !== JSON.stringify(final.proxy.directions.TX)) throw Error('final bilateral counters differ');
