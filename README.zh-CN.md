@@ -1,6 +1,6 @@
 # VeloZip
 
-[项目首页](README.md) · [兼容性说明](docs/COMPATIBILITY-1.1.0.md) · [验证报告](docs/TESTING-20261004.zh-CN.md) · [历史 E2E](docs/E2E-1.0.0.zh-CN.md)
+[项目首页](README.md) · [兼容性说明](docs/COMPATIBILITY-1.1.0.md) · [验证报告](docs/TESTING-20261004.zh-CN.md) · [真实地形 E2E](docs/E2E-REALISTIC-20261004.zh-CN.md) · [历史 E2E](docs/E2E-1.0.0.zh-CN.md)
 
 [![build](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Ande-ZH/VeloZip/actions/workflows/build.yml) [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases)
 

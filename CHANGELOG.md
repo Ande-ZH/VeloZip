@@ -21,8 +21,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Java 17 / Netty 4.1.68 和 Java 25 / Netty 4.2.7 两组各 65 项测试通过；Java 25 / Netty 4.1.50 的后端/common 补充回归共 61 项通过。
 - Java 16 运行时（Temurin 16.0.2）：Netty 4.1.68 与 4.1.50 两组各 65 项测试通过，worker 命令行核验为 JDK 16 实际执行。
 - 真实服务器 E2E：Purpur 1.16.5-1171 / Paper 1.17.1-411（后端 Java 16）× Velocity 4.1.1-24 / 3.4.0-566，原生老协议客户端，6 用例（两个版本激活、缺插件回退、密钥拒绝回退、旧代理、原版基线）全部通过；证据经脱敏入库 [docs/e2e/v1.0.0-20261004/](docs/e2e/v1.0.0-20261004/)。
+- 新增真实地形版本矩阵 E2E（GitHub Actions，每次相关源码 push 自动触发）：每个大版本族的代表构建（1.16.5、1.17.1、1.18.2、1.19.4、1.20.4、1.21.11、26.1.2、26.2）在默认地形（固定种子）、原版默认视距 10 与各版本真实 Java 运行时下全部通过（8/8），真实地形带宽降低 83%–86.6%；详见 [真实地形 E2E 报告](docs/E2E-REALISTIC-20261004.zh-CN.md)。
+- 测试器强化：bot 健康保持从首个世界区块起算（旧判据无法区分"完成登录"与"世界已渲染"），保持时长断言加 100ms 容差。
 - JMH 基准在当前源码复测，结论与历史一致（MC_LIKE 32 KiB 压缩约 28 µs，远低于 1 ms 预算）；原始数据见 [docs/benchmarks/v1.0.0-20261004/](docs/benchmarks/v1.0.0-20261004/)。
-- 构建、成品包检查及 5 个 Node.js 测试脚本的语法检查通过；`test-evidence.mjs` 白名单加入 Java 16。
+- 构建、成品包检查及 Node.js 测试脚本的语法检查通过；`test-evidence.mjs` 白名单加入 Java 16。
 - 详见 [2026-10-04 验证报告](docs/TESTING-20261004.zh-CN.md)。本轮不变更项目版本，不创建 Release 或版本标签。
 
 ## [1.0.0] — 待发布

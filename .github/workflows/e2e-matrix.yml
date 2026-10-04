@@ -90,12 +90,17 @@ jobs:
         if: always()
         id: evidence
         continue-on-error: true
+        env:
+          # Run-scoped suffix avoids clashing with evidence directories that
+          # already exist in the checkout (they share mtimes after checkout).
+          E2E_EVIDENCE_SUFFIX: ci-${{ github.run_number }}
         run: |
           matrix=$(ls -dt "$PWD"/build/e2e-matrix-* | head -1)
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
-          E2E_EVIDENCE_DATE=$(date -u +%F) node scripts/e2e-evidence.mjs "$matrix"
-          dest=$(ls -dt "$PWD"/docs/e2e/*/ | head -1)
-          echo "dir=$dest" >> "$GITHUB_OUTPUT"
+          out=$(E2E_EVIDENCE_DATE=$(date -u +%F) node scripts/e2e-evidence.mjs "$matrix" \
+            | sed -n 's/^Sanitized .* to //p')
+          echo "dir=$PWD/$out" >> "$GITHUB_OUTPUT"
+          echo "evidence dir: $out"
       - name: Upload evidence artifacts
         if: always()
         continue-on-error: true
