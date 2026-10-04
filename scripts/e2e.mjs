@@ -160,7 +160,7 @@ try {
       ? start(process.execPath, [path.join(root, 'scripts/legacy-bot.mjs')], root, name)
       : start(java,[`-Dbot.port=${proxyPort}`, '-Dbot.host=127.0.0.1', `-Dbot.seconds=${seconds}`, '-cp', cp.trim(), 'dev.velozip.itest.BotMain'],root,name);
     const exit = new Promise(r => { bot.once('exit',r); bot.once('error',()=>r(1)); });
-    const watchdog = setTimeout(()=>bot.kill('SIGKILL'),(seconds+45)*1000);
+    const watchdog = setTimeout(()=>bot.kill('SIGKILL'),(2*seconds+90)*1000);
     await sleep(10000);
     const live = await diagnostics(b,p,`live-${i}`);
     const code = await exit;

@@ -38,6 +38,7 @@ public final class BotMain {
 
         final Object playReached = new Object();
         final long holdClock = System.nanoTime();
+        final java.util.concurrent.atomic.AtomicLong lastChunkNanos = new java.util.concurrent.atomic.AtomicLong();
         var joined = new java.util.concurrent.atomic.AtomicBoolean();
         var worldReady = new java.util.concurrent.atomic.AtomicBoolean();
         var disconnected = new java.util.concurrent.atomic.AtomicBoolean();
@@ -56,6 +57,7 @@ public final class BotMain {
                         playReached.notifyAll();
                     }
                 } else if (packet instanceof ClientboundLevelChunkWithLightPacket) {
+                    lastChunkNanos.set(System.nanoTime());
                     if (worldReady.compareAndSet(false, true)) {
                         log.info("BOT first world chunk after {} ms",
                                 java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - holdClock));
@@ -97,6 +99,16 @@ public final class BotMain {
                 }
                 log.info("BOT healthy hold milliseconds={}",
                         java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - holdStart));
+                // Wait for the chunk stream to go quiet so no in-flight tail is
+                // lost and end-to-end byte counters can be compared exactly.
+                long quietStart = System.nanoTime();
+                while (!disconnected.get() && System.nanoTime() - lastChunkNanos.get()
+                        < java.util.concurrent.TimeUnit.SECONDS.toNanos(5)
+                        && System.nanoTime() - quietStart < java.util.concurrent.TimeUnit.SECONDS.toNanos(30)) {
+                    playReached.wait(100);
+                }
+                log.info("BOT stream quiet after {} ms",
+                        java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - quietStart));
             } else if (joined.get() && !worldReady.get() && !disconnected.get()) {
                 log.info("BOT no world chunk before deadline");
             }
