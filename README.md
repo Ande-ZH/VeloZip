@@ -6,7 +6,7 @@
 
 在 **Velocity 3.4.0–4.1.1** 与 **Paper/Purpur 1.16–1.21.x / 26.1.x–26.2** 后端服务器之间的高性能 Zstd（Level 1）传输压缩 —— 对客户端 ↔ 代理链路**零改动**。
 
-> 当前为未发布的兼容性扩展。1.16/1.17 已于 2026-10-04 完成真实服务器 E2E（Purpur 1.16.5、Paper 1.17.1，6 用例全通过），Java 16 运行时亦已验证（两组各 65 项单元测试）；累计 Java 16/17/25 三组运行时矩阵全部通过。项目尚未发布 Release。
+> 当前版本 **1.0.1**。1.16/1.17 已于 2026-10-04 完成真实服务器 E2E（Purpur 1.16.5、Paper 1.17.1，6 用例全通过），Java 16 运行时亦已验证（两组各 65 项单元测试）；累计 Java 16/17/25 三组运行时矩阵全部通过。CI 真实地形版本矩阵 8 版本族全绿（带宽降低 82%–86.5%）。
 
 ## VeloZip 是什么？
 
@@ -53,9 +53,9 @@ Velocity 等 Minecraft 代理使用原版 zlib 编解码器压缩与后端服务
 
 ## 安装
 
-1. 已发布版本见 [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases)。当前兼容性扩展尚未发布，请从源码构建；版本字段仍为 `1.0.0`，同名 jar 不代表与历史构建相同。
-2. 将 `VeloZip-Velocity-x.x.x.jar` 放入 Velocity 的 `plugins/` 目录。
-3. 将 `VeloZip-Backend-x.x.x.jar` 放入 Purpur 的 `plugins/` 目录。
+1. 从 [GitHub Releases](https://github.com/Ande-ZH/VeloZip/releases) 下载 `VeloZip-Velocity-1.0.1.jar` 与 `VeloZip-Backend-1.0.1.jar`（附 SHA-256 校验和）。
+2. 将 `VeloZip-Velocity-1.0.1.jar` 放入 Velocity 的 `plugins/` 目录。
+3. 将 `VeloZip-Backend-1.0.1.jar` 放入 Purpur 的 `plugins/` 目录。
 4. 重启。两端在启动时记录各自的版本和平台；每条连接的激活记录为 `VeloZip transport enabled for <server>`。版本族不在已识别集合内（代理 3.4–4.1，后端 1.16–1.21、26.1、26.2 之外）时会打印警告，但仍会尝试协商（故障安全）；已识别但尚未实测的版本不会触发该警告，验证状态以兼容性文档为准。
 
 ## 配置

@@ -1,7 +1,7 @@
 {
   "id": "velozip",
   "name": "VeloZip",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Zstd transport compression for Velocity <-> Paper/Purpur backend connections",
   "authors": [
     "Ande-ZH"

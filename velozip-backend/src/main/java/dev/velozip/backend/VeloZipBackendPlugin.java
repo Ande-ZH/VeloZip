@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public final class VeloZipBackendPlugin extends JavaPlugin implements org.bukkit.plugin.messaging.PluginMessageListener {
 
-    public static final String PLUGIN_VERSION = "1.0.0";
+    public static final String PLUGIN_VERSION = "1.0.1";
 
     private VeloZipLogger logger;
     private VeloZipConfig config;

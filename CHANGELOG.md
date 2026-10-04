@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.0.1] - 2026-10-04
 
 ### 清理
 
@@ -25,9 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 测试器强化：bot 健康保持从首个世界区块起算（旧判据无法区分"完成登录"与"世界已渲染"），保持时长断言加 100ms 容差。
 - JMH 基准在当前源码复测，结论与历史一致（MC_LIKE 32 KiB 压缩约 28 µs，远低于 1 ms 预算）；原始数据见 [docs/benchmarks/v1.0.0-20261004/](docs/benchmarks/v1.0.0-20261004/)。
 - 构建、成品包检查及 Node.js 测试脚本的语法检查通过；`test-evidence.mjs` 白名单加入 Java 16。
-- 详见 [2026-10-04 验证报告](docs/TESTING-20261004.zh-CN.md)。本轮不变更项目版本，不创建 Release 或版本标签。
+- 详见 [2026-10-04 验证报告](docs/TESTING-20261004.zh-CN.md)。本节内容随 1.0.1 首次发布。
 
-## [1.0.0] — 待发布
+## [1.0.0] — 未单独发布（内容随 1.0.1 交付）
 
 ### 新增
 - 后端支持扩展到 Paper/Purpur 1.18（包含 1.18 本体），单个 Java 17 插件包兼容旧版 Spigot 与新版 Mojang 运行时映射。
