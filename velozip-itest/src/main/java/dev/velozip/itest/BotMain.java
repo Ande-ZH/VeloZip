@@ -10,6 +10,7 @@ import org.geysermc.mcprotocollib.network.packet.Packet;
 import org.geysermc.mcprotocollib.network.session.ClientNetworkSession;
 import org.geysermc.mcprotocollib.protocol.MinecraftProtocol;
 import org.geysermc.mcprotocollib.protocol.packet.ingame.clientbound.ClientboundLoginPacket;
+import org.geysermc.mcprotocollib.protocol.packet.ingame.clientbound.level.ClientboundLevelChunkWithLightPacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +37,9 @@ public final class BotMain {
                 .create();
 
         final Object playReached = new Object();
+        final long holdClock = System.nanoTime();
         var joined = new java.util.concurrent.atomic.AtomicBoolean();
+        var worldReady = new java.util.concurrent.atomic.AtomicBoolean();
         var disconnected = new java.util.concurrent.atomic.AtomicBoolean();
         SessionListener listener = new SessionAdapter() {
             @Override
@@ -51,6 +54,14 @@ public final class BotMain {
                     log.info("BOT reached PLAY state (join game received)");
                     synchronized (playReached) {
                         playReached.notifyAll();
+                    }
+                } else if (packet instanceof ClientboundLevelChunkWithLightPacket) {
+                    if (worldReady.compareAndSet(false, true)) {
+                        log.info("BOT first world chunk after {} ms",
+                                java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - holdClock));
+                        synchronized (playReached) {
+                            playReached.notifyAll();
+                        }
                     }
                 }
             }
@@ -72,7 +83,13 @@ public final class BotMain {
             while (!joined.get() && !disconnected.get() && System.nanoTime() < loginDeadline) {
                 playReached.wait(100);
             }
-            if (joined.get() && !disconnected.get()) {
+            // The healthy hold starts at the first world chunk: a session that
+            // never renders terrain must not count as healthy.
+            long worldDeadline = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(seconds + 30);
+            while (joined.get() && !worldReady.get() && !disconnected.get() && System.nanoTime() < worldDeadline) {
+                playReached.wait(100);
+            }
+            if (joined.get() && worldReady.get() && !disconnected.get()) {
                 long holdStart = System.nanoTime();
                 long holdDeadline = holdStart + java.util.concurrent.TimeUnit.SECONDS.toNanos(seconds);
                 while (!disconnected.get() && System.nanoTime() < holdDeadline) {
@@ -80,9 +97,11 @@ public final class BotMain {
                 }
                 log.info("BOT healthy hold milliseconds={}",
                         java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - holdStart));
+            } else if (joined.get() && !worldReady.get() && !disconnected.get()) {
+                log.info("BOT no world chunk before deadline");
             }
         }
-        boolean success = joined.get() && !disconnected.get();
+        boolean success = joined.get() && worldReady.get() && !disconnected.get();
         log.info("BOT finished: success={}", success);
         session.disconnect(Component.text("E2E test complete"));
         Thread.sleep(1000);

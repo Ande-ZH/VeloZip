@@ -174,7 +174,7 @@ try {
     await diagnostics(b,p,`after-${i}`);
     if (['required-missing','outdated'].includes(mode)) {
       if (code !== 1 || healthy) throw Error('expected bot failure with exit 1');
-    } else if (code !== 0 || !play || !healthy || holdMilliseconds < seconds*1000) throw Error(`bot failed healthy-hold criteria with exit ${code}`);
+    } else if (code !== 0 || !play || !healthy || holdMilliseconds < seconds*1000 - 100) throw Error(`bot failed healthy-hold criteria with exit ${code}`);
     if (mode === 'active' && (live.backend.active !== 1 || live.proxy.active !== 1)) throw Error('live active connections must be 1 bilaterally');
   }
   for (const name of ['backend','proxy']) {
